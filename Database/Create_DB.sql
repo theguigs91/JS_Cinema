@@ -12,9 +12,9 @@ CREATE TABLE user
 CREATE TABLE cinema
 (
     id SERIAL PRIMARY KEY NOT NULL,
-    code VARCHAR(5) NOT NULL UNIQUE,
     name VARCHAR(50) NOT NULL,
-    zip_code VARCHAR(50) NOT NULL
+    zip_code VARCHAR(50) NOT NULL,
+    adress VARCHAR(150) NOT NULL
 );
 
 CREATE TABLE room
