@@ -1,3 +1,6 @@
+CREATE database js_cinema;
+USE js_cinema;
+
 CREATE TABLE user
 (
     id SERIAL PRIMARY KEY NOT NULL,
@@ -22,7 +25,6 @@ CREATE TABLE room
     places_max BIGINT NOT NULL,
 	CONSTRAINT fk_cinema_id FOREIGN KEY (cinema_id)
 	REFERENCES cinema(id)
-    
 );
 
 CREATE TABLE movie
@@ -46,7 +48,6 @@ CREATE TABLE seance
 	REFERENCES room(id),
     CONSTRAINT fk_movie_id FOREIGN KEY (movie_id)
 	REFERENCES movie(id)
-    
 );
 
 CREATE TABLE reservation
