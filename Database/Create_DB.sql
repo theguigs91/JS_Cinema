@@ -4,7 +4,6 @@ CREATE TABLE user
     login VARCHAR(30) NOT NULL UNIQUE,
     password VARCHAR(30) NOT NULL,
 	zip_code VARCHAR(50) NOT NULL
-
 );
 
 CREATE TABLE cinema
@@ -13,7 +12,6 @@ CREATE TABLE cinema
     code VARCHAR(5) NOT NULL UNIQUE,
     name VARCHAR(50) NOT NULL,
     zip_code VARCHAR(50) NOT NULL
-    
 );
 
 CREATE TABLE room
@@ -21,7 +19,9 @@ CREATE TABLE room
     id SERIAL PRIMARY KEY NOT NULL,
     cinema_id BIGINT NOT NULL,
     numero BIGINT NOT NULL,
-    places_max BIGINT NOT NULL
+    places_max BIGINT NOT NULL,
+	CONSTRAINT fk_cinema_id FOREIGN KEY (cinema_id)
+	REFERENCES cinema(id)
     
 );
 
@@ -41,7 +41,11 @@ CREATE TABLE seance
     room_id BIGINT NOT NULL,
     movie_id BIGINT NOT NULL,
     places_available BIGINT NOT NULL,
-    datetime DATETIME NOT NULL
+    datetime DATETIME NOT NULL,
+    CONSTRAINT fk_room_id FOREIGN KEY (room_id)
+	REFERENCES room(id),
+    CONSTRAINT fk_movie_id FOREIGN KEY (movie_id)
+	REFERENCES movie(id)
     
 );
 
@@ -49,6 +53,10 @@ CREATE TABLE reservation
 (
     id SERIAL PRIMARY KEY NOT NULL,
     user_id BIGINT NOT NULL,
-    seance_id BIGINT NOT NULL    
+    seance_id BIGINT NOT NULL,
+    CONSTRAINT fk_user_idd FOREIGN KEY (user_id)
+	REFERENCES user(id),
+    CONSTRAINT fk_seance_id FOREIGN KEY (seance_id)
+	REFERENCES seance(id)
 );
 
