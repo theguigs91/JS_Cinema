@@ -17,7 +17,7 @@ CREATE TABLE cinema
 CREATE TABLE room
 (
     id SERIAL PRIMARY KEY NOT NULL,
-    cinema_id BIGINT NOT NULL,
+    cinema_id BIGINT UNSIGNED NOT NULL,
     numero BIGINT NOT NULL,
     places_max BIGINT NOT NULL,
 	CONSTRAINT fk_cinema_id FOREIGN KEY (cinema_id)
@@ -38,8 +38,8 @@ CREATE TABLE movie
 CREATE TABLE seance
 (
     id SERIAL PRIMARY KEY NOT NULL,
-    room_id BIGINT NOT NULL,
-    movie_id BIGINT NOT NULL,
+    room_id BIGINT UNSIGNED NOT NULL,
+    movie_id BIGINT UNSIGNED NOT NULL,
     places_available BIGINT NOT NULL,
     datetime DATETIME NOT NULL,
     CONSTRAINT fk_room_id FOREIGN KEY (room_id)
@@ -52,8 +52,8 @@ CREATE TABLE seance
 CREATE TABLE reservation
 (
     id SERIAL PRIMARY KEY NOT NULL,
-    user_id BIGINT NOT NULL,
-    seance_id BIGINT NOT NULL,
+    user_id BIGINT UNSIGNED NOT NULL,
+    seance_id BIGINT UNSIGNED NOT NULL,
     CONSTRAINT fk_user_idd FOREIGN KEY (user_id)
 	REFERENCES user(id),
     CONSTRAINT fk_seance_id FOREIGN KEY (seance_id)
