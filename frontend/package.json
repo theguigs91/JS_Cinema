@@ -1,0 +1,21 @@
+{
+  "name": "js_cinema",
+  "version": "1.0",
+  "main": "index.js",
+  "author": "audine_g, luu_k, san_p",
+  "license": "MIT",
+  "scripts": {
+    "start": "./node_modules/.bin/webpack-dev-server --config ./config/webpack/server.js",
+    "build": "./node_modules/.bin/webpack --config ./config/webpack/build.js"
+  },
+  "dependencies": {
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
+    "webpack-dev-server": "^2.4.5"
+  },
+  "devDependencies": {
+    "webpack": "^2.6.1"
+  }
+}
