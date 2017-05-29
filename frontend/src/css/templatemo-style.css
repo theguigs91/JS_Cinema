@@ -407,7 +407,6 @@ body { overflow-x: hidden; }
 	}
 
 .tm-schedules-box-info {
-    height: 300px;
 	background: white;
 	padding: 40px;
 	overflow: hidden;
@@ -467,6 +466,27 @@ body { overflow-x: hidden; }
 		}
 
 
+.tm-schedules-box-link-right {
+	float: left;
+	background-color: #FCDD44;
+	font-weight: 600;
+	font-size: 18px;
+	display: block;
+	transition: all 0.3s;
+	text-align: center;
+	color: #000000;
+	padding: 20px 0px;
+}
+
+.tm-schedules-box-link-right.schedule:hover,
+.tm-schedules-box-link-right.schedule:focus {
+	background: rgba(252, 221, 68, 0.39) none repeat scroll 0% 0%;
+	border: 1px solid #D2B731;
+	color: #000000;
+	font-weight: 600;
+	display: inline-block;
+	transition: all 0.3s ease;
+}
 
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 																	Footer
