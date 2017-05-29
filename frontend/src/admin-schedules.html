@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JS Cinema</title>
+
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet"> 
+  <link href="css/flexslider.css" rel="stylesheet"> 
+  <link href="css/templatemo-style.css" rel="stylesheet">
+
+  </head>
+  <body class="tm-gray-bg">
+  	<!-- Header -->
+  	<div class="tm-header">
+		<div class="container">
+			<div class="row">
+				<!-- Logo -->		
+				<div class="col-lg-2 col-md-2 col-sm-2 tm-site-name-container">
+					<a href="#" class="tm-site-name">JS Cinema</a>	
+				</div>
+				<!-- Navigation -->	
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<nav class="tm-nav">
+						<ul>
+							<li><a href="index.html">Accueil</a></li>
+							<li><a href="schedules.html" class="active">Séances</a></li>
+							<li><a href="movies.html">Tous les films</a></li>
+							<li><a href="about.html">A propos</a></li>
+						</ul>
+					</nav>		
+				</div>
+				<!-- Search -->
+				<div class="col-lg-2 col-md-2 col-sm-2 search">
+				    <div class="input-group">
+				      <input type="text" class="form-control" placeholder="Rechercher un film...">
+				      <span class="input-group-btn">
+				        <button class="btn btn-default" type="button">
+				        	<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+				        </button>
+				      </span>
+				    </div>
+				</div>
+				<!-- Login -->
+				<div class="col-lg-1 col-md-1 col-sm-1 login">
+    		      	<a href="login.html" class="active"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+				</div>
+		    </div>
+		</div>	
+	</div>
+
+	<!-- Banner -->
+	<section class="tm-small-banner">
+		<div class="flexslider flexslider-banner">
+		  <ul class="slides">
+		    <li>
+			    <div class="tm-small-banner-inner">
+					<h1 class="tm-small-banner-title">Toutes les <span class="tm-yellow-text">séances</span></h1>
+					<p class="tm-small-banner-subtitle">Réservez votre place de cinéma!</p>
+				</div>
+				<img src="img/banner-1-2.jpg" alt="Image" />
+			</li>	
+		</ul>
+	</section>
+
+
+	<section class="container tm-home-section-1" id="more">
+		<div class="row col-lg-offset-4 col-md-offset-4 col-sm-offset-4">
+			<!-- Log in -->
+			<div class="col-lg-12 col-md-12 col-sm-12">
+				<div class="tm-home-box-1">
+					<ul class="tm-home-title tm-yellow-bg">Choisissez une date</ul>
+
+				    <div class="tm-white-bg">
+						<div class="date-picker">
+							<form action="#" method="post" class="date-picker-form">
+								<div class="tm-form-inner">
+						          	<div class="form-group">
+						                <div class='input-group date' id='schedules-date-picker'>
+						                    <input type='text' class="form-control" placeholder="Choisissez une date" />
+						                    <span class="input-group-addon">
+						                        <span class="fa fa-calendar"></span>
+						                    </span>
+						                </div>
+						            </div>
+								</div>							
+					            <div class="form-group tm-yellow-gradient-bg text-center">
+					            	<button type="submit" name="submit" class="tm-yellow-btn">Voir les séances</button>
+					            </div>  
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<!-- gray bg -->
+	<section class="container tm-home-section-1" id="more">
+		<div class="section-margin-top">
+			<div class="row tm-schedules-box">
+				<div class="col-lg-3 col-mg-3 col-sm-3">
+					<img src="img/movie1.jpg" alt="image" class="img-responsive movie-img">
+				</div>
+				<div class="col-lg-9 col-mg-9 col-sm-9">
+					<div class="tm-schedules-box-info">
+						<div class="tm-schedules-box-info-left">
+							<p class="text-uppercase margin-bottom-20 title">Movie 1</p>	
+							<p class="release-date">28 Mai 2017</p>
+							<p class="duration">2h00</p>
+							<p class="type">Aventure, Fantastique, Action</p>
+							<img src="img/rating.png" alt="image" class="margin-bottom-5">
+						</div>
+						<div class="tm-schedules-box-info-right">
+							<p class="description">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+							</p>	
+						</div>							
+					</div>
+					<div class="tm-schedules-box-link">
+						<div class="tm-schedules-box-link-left col-sm-10">
+							<ul class="schedules">
+								<li class="schedule">
+									<span class="schedules-title row">En VO, Numérique</span>
+									<div class="btn-group col-lg-12 col-md-12 col-sm-12" role="group">
+										<button type="button" class="btn btn-default">09:30</button>
+									  	<button type="button" class="btn btn-default">11:30</button>
+									  	<button type="button" class="btn btn-default">13:30</button>
+									  	<button type="button" class="btn btn-default">15:30</button>
+									  	<button type="button" class="btn btn-default">17:30</button>
+									  	<button type="button" class="btn btn-default">19:30</button>
+									  	<button type="button" class="btn btn-default">21:30</button>
+									</div>
+								</li>
+								<li class="schedule">
+									<span class="schedules-title row">En VF, Numérique</span>
+									<div class="btn-group col-lg-12 col-md-12 col-sm-12" role="group">
+										<button type="button" class="btn btn-default">09:30</button>
+									  	<button type="button" class="btn btn-default">11:30</button>
+									  	<button type="button" class="btn btn-default">13:30</button>
+									  	<button type="button" class="btn btn-default">15:30</button>
+									  	<button type="button" class="btn btn-default">17:30</button>
+									  	<button type="button" class="btn btn-default">19:30</button>
+									  	<button type="button" class="btn btn-default">21:30</button>
+									</div>
+								</li>				
+							</ul>
+						</div>
+						<a href="admin-edit-schedule.html" class="tm-schedules-box-link-right col-sm-2">
+							Modifier<br/>
+							<span class="glyphicon glyphicon-pencil"></span>							
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="row tm-schedules-box">
+				<div class="col-lg-3 col-mg-3 col-sm-3">
+					<img src="img/movie2.jpg" alt="image" class="img-responsive movie-img">
+				</div>
+				<div class="col-lg-9 col-mg-9 col-sm-9">
+					<div class="tm-schedules-box-info">
+						<div class="tm-schedules-box-info-left">
+							<p class="text-uppercase margin-bottom-20 title">Movie 2</p>	
+							<p class="release-date">28 Mai 2017</p>
+							<p class="duration">2h00</p>
+							<p class="type">Aventure, Fantastique, Action</p>
+							<img src="img/rating.png" alt="image" class="margin-bottom-5">
+						</div>
+						<div class="tm-schedules-box-info-right">
+							<p class="description">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+							</p>	
+						</div>							
+					</div>
+					<div class="tm-schedules-box-link">
+						<div class="tm-schedules-box-link-left col-sm-10">
+							<ul class="schedules">
+								<li class="schedule">
+									<span class="schedules-title row">En VO, Numérique</span>
+									<div class="btn-group col-lg-12 col-md-12 col-sm-12" role="group">
+										<button type="button" class="btn btn-default">09:30</button>
+									  	<button type="button" class="btn btn-default">11:30</button>
+									  	<button type="button" class="btn btn-default">13:30</button>
+									  	<button type="button" class="btn btn-default">15:30</button>
+									  	<button type="button" class="btn btn-default">17:30</button>
+									  	<button type="button" class="btn btn-default">19:30</button>
+									  	<button type="button" class="btn btn-default">21:30</button>
+									</div>
+								</li>
+								<li class="schedule">
+									<span class="schedules-title row">En VF, Numérique</span>
+									<div class="btn-group col-lg-12 col-md-12 col-sm-12" role="group">
+										<button type="button" class="btn btn-default">09:30</button>
+									  	<button type="button" class="btn btn-default">11:30</button>
+									  	<button type="button" class="btn btn-default">13:30</button>
+									  	<button type="button" class="btn btn-default">15:30</button>
+									  	<button type="button" class="btn btn-default">17:30</button>
+									  	<button type="button" class="btn btn-default">19:30</button>
+									  	<button type="button" class="btn btn-default">21:30</button>
+									</div>
+								</li>				
+							</ul>
+						</div>
+						<a href="admin-edit-schedule.html" class="tm-schedules-box-link-right col-sm-2">
+							Modifier<br/>
+							<span class="glyphicon glyphicon-pencil"></span>							
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="row tm-schedules-box">
+				<div class="col-lg-3 col-mg-3 col-sm-3">
+					<img src="img/movie3.jpg" alt="image" class="img-responsive movie-img">
+				</div>
+				<div class="col-lg-9 col-mg-9 col-sm-9">
+					<div class="tm-schedules-box-info">
+						<div class="tm-schedules-box-info-left">
+							<p class="text-uppercase margin-bottom-20 title">Movie 3</p>	
+							<p class="release-date">28 Mai 2017</p>
+							<p class="duration">2h00</p>
+							<p class="type">Aventure, Fantastique, Action</p>
+							<img src="img/rating.png" alt="image" class="margin-bottom-5">
+						</div>
+						<div class="tm-schedules-box-info-right">
+							<p class="description">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+							</p>	
+						</div>							
+					</div>
+					<div class="tm-schedules-box-link">
+						<div class="tm-schedules-box-link-left col-sm-10">
+							<ul class="schedules">
+								<li class="schedule">
+									<span class="schedules-title row">En VO, Numérique</span>
+									<div class="btn-group col-lg-12 col-md-12 col-sm-12" role="group">
+										<button type="button" class="btn btn-default">09:30</button>
+									  	<button type="button" class="btn btn-default">11:30</button>
+									  	<button type="button" class="btn btn-default">13:30</button>
+									  	<button type="button" class="btn btn-default">15:30</button>
+									  	<button type="button" class="btn btn-default">17:30</button>
+									  	<button type="button" class="btn btn-default">19:30</button>
+									  	<button type="button" class="btn btn-default">21:30</button>
+									</div>
+								</li>
+								<li class="schedule">
+									<span class="schedules-title row">En VF, Numérique</span>
+									<div class="btn-group col-lg-12 col-md-12 col-sm-12" role="group">
+										<button type="button" class="btn btn-default">09:30</button>
+									  	<button type="button" class="btn btn-default">11:30</button>
+									  	<button type="button" class="btn btn-default">13:30</button>
+									  	<button type="button" class="btn btn-default">15:30</button>
+									  	<button type="button" class="btn btn-default">17:30</button>
+									  	<button type="button" class="btn btn-default">19:30</button>
+									  	<button type="button" class="btn btn-default">21:30</button>
+									</div>
+								</li>				
+							</ul>
+						</div>
+						<a href="admin-edit-schedule.html" class="tm-schedules-box-link-right col-sm-2">
+							Modifier<br/>
+							<span class="glyphicon glyphicon-pencil"></span>							
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<footer class="tm-black-bg">
+		<div class="container">
+			<div class="row">
+				<p class="tm-copyright-text">Copyright &copy; 2017 JS Cinema 
+			</div>
+		</div>		
+	</footer>
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>      		<!-- jQuery -->
+  	<script type="text/javascript" src="js/moment.js"></script>							<!-- moment.js -->
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>					<!-- bootstrap js -->
+	<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>	<!-- bootstrap date time picker js, http://eonasdan.github.io/bootstrap-datetimepicker/ -->
+	<script type="text/javascript" src="js/jquery.flexslider-min.js"></script>
+   	<script type="text/javascript" src="js/templatemo-script.js"></script>      		<!-- Templatemo Script -->
+	<script>
+		// HTML document is loaded. DOM is ready.
+		$(function() {
+
+			$('#hotelCarTabs a').click(function (e) {
+			  e.preventDefault()
+			  $(this).tab('show')
+			})
+
+        	$('.date').datetimepicker({
+            	format: 'MM/DD/YYYY'
+            });
+            $('.date-time').datetimepicker();
+           
+			// https://css-tricks.com/snippets/jquery/smooth-scrolling/
+		  	$('a[href*=#]:not([href=#])').click(function() {
+			    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+			      var target = $(this.hash);
+			      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+			      if (target.length) {
+			        $('html,body').animate({
+			          scrollTop: target.offset().top
+			        }, 1000);
+			        return false;
+			      }
+			    }
+		  	});
+		});
+		
+		// Load Flexslider when everything is loaded.
+		$(window).load(function() {	  		
+		    $('.flexslider').flexslider({
+			    controlNav: false
+		    });
+	  	});
+	</script>
+ </body>
+ </html>
