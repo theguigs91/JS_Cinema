@@ -934,7 +934,7 @@ hr {
 .tm-submit-btn:hover { background: #f5d11d; }
 
 /* -------------------------------------------------------------------------------------------------------------------------------------------------- 
-																	Reservation
+															Confirmation reservation
 -------------------------------------------------------------------------------------------------------------------------------------------------- */
 
 .confirm-reservation .tm-reservation-box-right {
@@ -949,6 +949,27 @@ hr {
 }
 
 	.confirm-reservation .tm-movies-box-1 .img-ctn img {
+		display: block;
+		max-height: 300px;
+	}
+
+/* -------------------------------------------------------------------------------------------------------------------------------------------------- 
+																My reservations
+-------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+
+.reservation .tm-reservation-box-right {
+    height: 240px;
+	background: white;
+	padding: 40px;
+	overflow: hidden;
+}
+
+.reservation .tm-movies-box-1 .img-ctn {
+	margin: 0 auto;
+}
+
+	.reservation .tm-movies-box-1 .img-ctn img {
 		display: block;
 		max-height: 300px;
 	}
