@@ -933,6 +933,26 @@ hr {
 
 .tm-submit-btn:hover { background: #f5d11d; }
 
+/* -------------------------------------------------------------------------------------------------------------------------------------------------- 
+																	Reservation
+-------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+.confirm-reservation .tm-reservation-box-right {
+    height: 240px;
+	background: white;
+	padding: 40px;
+	overflow: hidden;
+}
+
+.confirm-reservation .tm-movies-box-1 .img-ctn {
+	margin: 0 auto;
+}
+
+	.confirm-reservation .tm-movies-box-1 .img-ctn img {
+		display: block;
+		max-height: 300px;
+	}
+
 @media screen and (max-width: 1199px) {
 	.tm-banner-title { font-size: 50px; }
 	.tm-banner-subtitle { font-size: 30px; }
