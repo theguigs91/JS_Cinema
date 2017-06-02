@@ -8,7 +8,9 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "express-minify": "^0.2.0",
+    "md5": "^2.2.1",
     "method-override": "^2.3.9",
+    "mysql": "^2.13.0",
     "node-fetch": "^1.7.0",
     "nodemon": "^1.11.0",
     "whatwg-fetch": "^2.0.3"
