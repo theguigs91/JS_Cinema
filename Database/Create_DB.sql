@@ -5,26 +5,14 @@ CREATE TABLE user
 (
     id SERIAL PRIMARY KEY NOT NULL,
     login VARCHAR(30) NOT NULL UNIQUE,
-    password VARCHAR(30) NOT NULL,
-	zip_code VARCHAR(50) NOT NULL
-);
-
-CREATE TABLE cinema
-(
-    id SERIAL PRIMARY KEY NOT NULL,
-    name VARCHAR(50) NOT NULL,
-    zip_code VARCHAR(50) NOT NULL,
-    adress VARCHAR(150) NOT NULL
+    password VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE room
 (
     id SERIAL PRIMARY KEY NOT NULL,
-    cinema_id BIGINT UNSIGNED NOT NULL,
     numero BIGINT NOT NULL,
-    places_max BIGINT NOT NULL,
-	CONSTRAINT fk_cinema_id FOREIGN KEY (cinema_id)
-	REFERENCES cinema(id)
+    places_max BIGINT NOT NULL
 );
 
 CREATE TABLE movie
