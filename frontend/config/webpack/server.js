@@ -2,6 +2,7 @@ const { resolve } = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+
 module.exports = {
     context: resolve(__dirname, '../../src'),
 
@@ -9,7 +10,7 @@ module.exports = {
         'react-hot-loader/patch',
         // activate HMR for React
 
-        'webpack-dev-server/client?http://localhost:8080',
+        'webpack-dev-server/client?http://localhost:1234',
         // bundle the client for webpack-dev-server
         // and connect to the provided endpoint
 
@@ -52,6 +53,13 @@ module.exports = {
                 test: /\.css$/,
                 use: [ 'style-loader', 'css-loader?modules', ],
             },
+            {
+                test: /\.(ttf|svg|eot|woff|woff2)$/,
+                loader: 'file-loader',
+                options: {
+                    name: 'fonts/[name].[ext]',
+                },
+            },
         ],
     },
 
@@ -63,7 +71,7 @@ module.exports = {
         // prints more readable module names in the browser console on HMR updates
 
         new HtmlWebpackPlugin({
-            template: '../public/index.html',
+            template: '../src/html/movies.html',
             chunksSortMode: 'dependency'
         })
     ],

@@ -1,6 +1,15 @@
-import { createStore } from 'redux';
-import reducers from './reducers';
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
-const store = createStore(reducers);
+import RootReducer from './reducers';
+
+const createStoreWithMiddleWares = compose(
+    // provides the ability to return a function from action creators
+    applyMiddleware(thunk),
+    // provides linking to Redux chrome extension
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+)(createStore);
+
+const store = createStoreWithMiddleWares(combineReducers(RootReducer));
 
 export default store;

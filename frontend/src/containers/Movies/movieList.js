@@ -3,25 +3,22 @@
  */
 import React from 'react'
 import { connect } from 'react-redux'
-import MovieItem from '../components/movieItem'
-import flex from '../styles/flex.css'
-import { fet } from '../actions'
+import MovieItem from '../../components/movieItem'
+import { fetch_DisplayMovies } from '../../actions/movie-actions'
 
-export class PictureList extends React.Component {
-    constructor(props) {
-        super.props(props);
-    }
+export class MovieList extends React.Component {
 
     componentWillMount() {
         console.log("Component Will Mount");
-        this.props.loadPicturesState()
+        this.props.loadMovies()
     }
 
     render(){
         console.log("Rendering..");
-        console.log("props.pictures: ", this.props.pictures);
+        console.log("props.movies: ", this.props.movies);
         return (
             <div>
+                <p>OK</p>
                 {this.props.movies.map(movie =>
                     <MovieItem
                         key={movie.id}
@@ -37,14 +34,13 @@ export class PictureList extends React.Component {
  )}*/
 
 const mapStateToProps = (state, ownProps) => ({
-    pictures: state.pictures
+    movies: state.movies
 });
 
 const mapDispatchToProps = (dispatch) => ({
     loadMovies(){
-        dispatch(fetch_DisplayPictures());
-        this.render();
+        dispatch(fetch_DisplayMovies());
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(PictureList);
+export default connect(mapStateToProps, mapDispatchToProps)(MovieList);
