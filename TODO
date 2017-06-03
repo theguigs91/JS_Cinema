@@ -1,10 +1,10 @@
-[POST] addUser()
-[GET] getUser(mail, password)
-[PUT] updateUser
+OK [POST] addUser()
+OK [GET] getUser(mail, password)
+OK [PUT] updateUser
 [GET] getSchedules(date) : pour récupérer tous les films à l’affiche avec les séances : nom du film, date de création, genres (il peut y en avoir plusieurs), note, description, séances pour ce jour-ci)
-[GET] getMovies() [GET] : pour récupérer tous les films : nom du film, date de création, genres, note, description, est à l’affiche
-[GET] getMovies(name) : Pour la recherche. Prendre en compte les cas où le mot est compris dans le nom du film
-[PUT] updateMovie
+OK [GET] getMovies() [GET] : pour récupérer tous les films : nom du film, date de création, genres, note, description, est à l’affiche
+OK [GET] getMovies(name) : Pour la recherche. Prendre en compte les cas où le mot est compris dans le nom du film
+OK [PUT] updateMovie
 
 [GET] getRooms()
 
