@@ -36,7 +36,7 @@ function handleDisconnect() {
 
 handleDisconnect();
 
-
+/* GET all Room */
 router.get('/room', function(req, res, next) {
 	res.setHeader("Content-Type", "application/json");
 	
@@ -53,6 +53,7 @@ router.get('/room', function(req, res, next) {
     });
 });
 
+/* GET a Room by id */
 router.get('/room/:id', function(req, res, next) {
 	res.setHeader("Content-Type", "application/json");
 	
@@ -61,7 +62,7 @@ router.get('/room/:id', function(req, res, next) {
 
   connection.query(queryString, param, function(err, rows, fields) {
       if (!err) {
-        res.status(200).send(JSON.stringify({rows}));
+        res.status(200).send(JSON.stringify({rows: rows}));
       }
       else {
         res.status(400).send(JSON.stringify({message: err}));
@@ -69,40 +70,5 @@ router.get('/room/:id', function(req, res, next) {
       }
     });
 });
-
-router.get('/movie/', function(req, res, next) {
-	res.setHeader("Content-Type", "application/json");
-	 
-	var queryString = 'SELECT * FROM movie';
-
-  connection.query(queryString, function(err, rows, fields) {
-      if (!err) {
-        res.status(200).send(JSON.stringify({rows}));
-      }
-      else {
-        res.status(400).send(JSON.stringify({message: err}));
-        console.log("Error while performing query" + err);
-      }
-    });
-});
-
-router.get('/movie/:id', function(req, res, next) {
-	res.setHeader("Content-Type", "application/json");
-	
-	var param = [req.params.id]; 
-	var queryString = 'SELECT * FROM movie WHERE id = ?';
-
-  connection.query(queryString, param, function(err, rows, fields) {
-      if (!err) {
-        res.status(200).send(JSON.stringify({rows}));
-      }
-      else {
-        res.status(400).send(JSON.stringify({message: err}));
-        console.log("Error while performing query" + err);
-      }
-    });
-});
-
-
 
 module.exports = router;
