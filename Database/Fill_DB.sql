@@ -1,4 +1,4 @@
-INSERT INTO user (login, password) VALUES ('root', 'root',);
+INSERT INTO user (login, password) VALUES ('root', 'root');
 INSERT INTO user (login, password) VALUES ('presci', 'root');
 INSERT INTO user (login, password) VALUES ('guigui', 'root');
 INSERT INTO user (login, password) VALUES ('kelly', 'root');
