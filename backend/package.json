@@ -1,6 +1,6 @@
 {
   "name": "js_cinema_back",
-  "version": "1.0",
+  "version": "1.0.0",
   "main": "server.js",
   "author": "audine_g, luu_k, san_p",
   "license": "MIT",

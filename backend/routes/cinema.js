@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var mysql = require('mysql');
+var mysql =require('mysql');
 var http = require('http');
 
 /* A CHANGER */
 var db_config = {
   host: 'localhost',
     user: 'root',
-    password: 'root',
+    password: 'Passw0rd!',
     database: 'js_cinema'
 };
 

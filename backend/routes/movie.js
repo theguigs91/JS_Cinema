@@ -7,7 +7,7 @@ var http = require('http');
 var db_config = {
     host: 'localhost',
     user: 'root',
-    password: 'root',
+    password: 'Passw0rd!',
     database: 'js_cinema'
 };
 

@@ -8,7 +8,7 @@ var md5 = require('md5');
 var db_config = {
   host: 'localhost',
     user: 'root',
-    password: 'root',
+    password: 'Passw0rd!',
     database: 'js_cinema'
 };
 

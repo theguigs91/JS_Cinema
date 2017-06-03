@@ -1,21 +1,21 @@
-CREATE database js_cinema;
+CREATE database IF NOT EXISTS js_cinema;
 USE js_cinema;
 
-CREATE TABLE user
+CREATE TABLE IF NOT EXISTS user
 (
     id SERIAL PRIMARY KEY NOT NULL,
     login VARCHAR(30) NOT NULL UNIQUE,
     password VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE room
+CREATE TABLE IF NOT EXISTS room
 (
     id SERIAL PRIMARY KEY NOT NULL,
     numero BIGINT NOT NULL,
     places_max BIGINT NOT NULL
 );
 
-CREATE TABLE movie
+CREATE TABLE IF NOT EXISTS movie
 (
     id SERIAL PRIMARY KEY NOT NULL,
     name VARCHAR(40) NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE movie
     description VARCHAR(200)
 );
 
-CREATE TABLE seance
+CREATE TABLE IF NOT EXISTS seance
 (
     id SERIAL PRIMARY KEY NOT NULL,
     room_id BIGINT UNSIGNED NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE seance
 	REFERENCES movie(id)
 );
 
-CREATE TABLE reservation
+CREATE TABLE IF NOT EXISTS reservation
 (
     id SERIAL PRIMARY KEY NOT NULL,
     user_id BIGINT UNSIGNED NOT NULL,
