@@ -1,17 +1,18 @@
-/** 
- * Holiday Template
- * http://www.templatemo.com/tm-475-holiday
- *
- * COLOR CODES
- * Yellow	#FCDD44
- *
- */
+textarea {
+	resize: none;
+}
 
-/* CSS Resets */ 
-ul,p {
+li {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+p {
 	margin: 0; 
 	padding: 0;
 }
+
 h1,h2,h3 {
 	margin: 0;
 	padding: 0;
@@ -246,7 +247,6 @@ body { overflow-x: hidden; }
 	color: white;
 	text-transform: uppercase;
 	-webkit-justify-content: space-around;
-	    -ms-flex-pack: distribute;
 	        justify-content: space-around;
 }
 .tm-city-price-container:hover { font-weight: 600; }
@@ -846,7 +846,6 @@ hr {
 .tm-about-box { overflow: hidden; }
 .tm-about-box-img {
 	float: left;
-	height: ;
 }
 
 .tm-about-box-text {
@@ -1108,18 +1107,15 @@ hr {
 }
 
 @media screen and (max-width: 767px) {
-	
-	/* http://www.impressivewebs.com/animate-display-block-none/
-	 * Comment by Jon Christensen
-	 */
+
 	.tm-nav.show {
 		opacity: 1;
 		height: auto;
-		transition: opacity 1s, height 0;
+		transition: opacity 1s;
 	}
 	.tm-nav {
 	    opacity: 0;
-		transition: opacity 1s, height 0 1s;
+		transition: opacity 1s;
 		height: 0;
 	    position: fixed;
 	    z-index: 1000;
@@ -1265,4 +1261,3 @@ hr {
 .showtimes-date-roller .disabled,.showtimes-date-roller .disabled:hover{background-color:#fbfbfb;color:#e0e0e0;cursor:auto}
 .showtimes-date-roller .current{border-top:2px solid #fecc00;border-bottom:0}
 .showtimes-date-roller.roller-no-nav{padding:0}
-@media (min-width:45.0625em)
