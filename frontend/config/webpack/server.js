@@ -10,7 +10,7 @@ module.exports = {
         'react-hot-loader/patch',
         // activate HMR for React
 
-        'webpack-dev-server/client?http://localhost:1234',
+        'webpack-dev-server/client?http://localhost:9090',
         // bundle the client for webpack-dev-server
         // and connect to the provided endpoint
 
