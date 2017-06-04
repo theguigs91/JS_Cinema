@@ -27,20 +27,3 @@ export function displayMovies(payload) {
     };
 }
 
-export function fetch_DisplayMovies() {
-    console.log("fetch display movies");
-    return (dispatch) => {
-        return loadMovies().then((json) => {
-            console.log("json: ", json)
-            dispatch(displayMovies(json))
-        })
-    }
-}
-
-function loadMovies() {
-    console.log("Load movies from server");
-    return fetch("http://localhost:8080/movies")
-        .then(response => {
-            return response.json()
-        })
-}
