@@ -1,12 +1,9 @@
 import fetch from 'isomorphic-fetch'
-
-export const DISPLAY_MOVIES = "DISPLAY_MOVIES";
-export const ADD_MOVIE = "ADD_MOVIE";
-export const REMOVE_MOVIE = "REMOVE_MOVIE";
+import * as types from './action-types'
 
 export function addMovie(id, name, director, time, type, description) {
     return {
-        type: ADD_MOVIE,
+        type: types.ADD_MOVIE,
         id: id,
         name: name,
         director: director,
@@ -18,14 +15,14 @@ export function addMovie(id, name, director, time, type, description) {
 
 export function removeMovie(id) {
     return {
-        type: REMOVE_MOVIE,
+        type: types.REMOVE_MOVIE,
         id: id
     }
 }
 
 export function displayMovies(payload) {
     return {
-        type: DISPLAY_MOVIES,
+        type: types.DISPLAY_MOVIES,
         payload
     };
 }
