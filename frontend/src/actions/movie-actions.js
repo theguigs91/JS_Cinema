@@ -20,10 +20,30 @@ export function removeMovie(id) {
     }
 }
 
-export function displayMovies(payload) {
+export function getAllMovies(payload) {
     return {
-        type: types.DISPLAY_MOVIES,
-        payload
-    };
+        type: types.GET_ALL_MOVIES,
+        payload: payload
+    }
 }
 
+export function getMovieById(payload) {
+    return {
+        type: types.GET_MOVIE_BY_ID,
+        payload: payload
+    }
+}
+
+export function getMovieByName(payload) {
+    return {
+        type: types.GET_MOVIE_BY_NAME,
+        payload: payload
+    }
+}
+
+export function updateMovieById(payload) {
+    return {
+        type: types.UPDATE_MOVIE_BY_ID,
+        payload: payload
+    }
+}

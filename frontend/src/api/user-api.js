@@ -14,7 +14,7 @@ export function getAllUsers() {
         })
 }
 
-export function getUseById(id) {
+export function getUserById(id) {
     return fetch('http://localhost:8080/user/id/' + id)
         .then(response => response.json())
         .then(json => {
