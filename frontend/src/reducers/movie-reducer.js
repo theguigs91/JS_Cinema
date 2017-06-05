@@ -1,19 +1,26 @@
 import React from 'react';
+import * as types from '../actions/action-types';
 
-const movies = function (state = {}, action) {
+const initialMovieState = {
+  movies: []
+};
 
-    console.log("Action payload: ", action.payload)
+const movieReducer = function (state = initialMovieState, action) {
 
-    switch (action.type) {
-        case 'ADD_MOVIE':
-            return [...state, {id: action.id, url: action.url}];
-        case 'DELETE_MOVIE':
-            return state.filter(p => p.id !== action.id);
-        case 'DISPLAY_MOVIES':
-            return {...state, pictures: action.payload};
-        default:
-            return state;
-    }
-}
+  console.log("Action payload: ", action.payload);
 
-export default movies
+  switch (action.type) {
+    case types.ADD_MOVIE_SUCCESS:
+      return { ...state, movies: [...state.movies, action.movie] };
+    case types.DELETE_MOVIE_SUCCESS:
+      return state.filter(p => p.id !== action.id);
+    case types.DISPLAY_MOVIES:
+      return {...state, movies: action.payload};
+    case types.GET_MOVIES_SUCCESS:
+      return {...state, movies: action.movies};
+    default:
+      return {...state};
+  }
+};
+
+export default movieReducer;

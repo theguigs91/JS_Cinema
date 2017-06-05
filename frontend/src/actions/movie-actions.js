@@ -4,21 +4,22 @@ export const DISPLAY_MOVIES = "DISPLAY_MOVIES";
 export const ADD_MOVIE = "ADD_MOVIE";
 export const REMOVE_MOVIE = "REMOVE_MOVIE";
 
-export function addMovie(id, name, director, time, type, description) {
-    return {
-        type: ADD_MOVIE,
-        id: id,
-        name: name,
-        director: director,
-        time: time,
-        movie_type: type,
-        description: description
+export function addMovieSuccess(movie) {//id, name, director, date, duration, type, description) {
+  console.log("movie-actions.addMovie: ", movie);
+  return {
+        type: types.ADD_MOVIE_SUCCESS,
+        name: movie.name,
+        realisator: movie.realisator,
+        date: movie.date,
+        time: movie.time,
+        genre: movie.genre,
+        description: movie.description
     }
 }
 
-export function removeMovie(id) {
+export function deleteMovieSuccess(id) {
     return {
-        type: REMOVE_MOVIE,
+        type: types.DELETE_MOVIE_SUCCESS,
         id: id
     }
 }
@@ -30,20 +31,9 @@ export function displayMovies(payload) {
     };
 }
 
-export function fetch_DisplayMovies() {
-    console.log("fetch display movies");
-    return (dispatch) => {
-        return loadMovies().then((json) => {
-            console.log("json: ", json)
-            dispatch(displayMovies(json))
-        })
-    }
-}
-
-function loadMovies() {
-    console.log("Load movies from server");
-    return fetch("http://localhost:8080/movies")
-        .then(response => {
-            return response.json()
-        })
+export function getMoviesSuccess(movies) {
+  return {
+    type: types.GET_MOVIES_SUCCESS,
+    movies
+  }
 }
