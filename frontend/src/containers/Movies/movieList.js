@@ -4,27 +4,32 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import MovieItem from '../../components/movieItem'
-import { fetch_DisplayMovies } from '../../actions/movie-actions'
+import * as movieApi from '../../api/movie-api'
 
 export class MovieList extends React.Component {
 
-    componentWillMount() {
-        console.log("Component Will Mount");
-        this.props.loadMovies()
+    componentDidMount() {
+        console.log("Component Did Mount");
+        movieApi.getAllMovies();
     }
 
     render(){
         console.log("Rendering..");
-        console.log("props.movies: ", this.props.movies);
+        console.log("props movies: ", this.props.movies);
+
+        this.props.movies.map(el => {
+            console.log("id: ", el.name)
+        });
+
         return (
             <div>
-                <p>OK</p>
                 {this.props.movies.map(movie =>
                     <MovieItem
                         key={movie.id}
                         data = {movie}
                     />
                 )}
+                <p> --------------------- </p>
             </div>
         )
     }
@@ -33,14 +38,10 @@ export class MovieList extends React.Component {
 /*
  )}*/
 
-const mapStateToProps = (state, ownProps) => ({
-    movies: state.movies
-});
-
-const mapDispatchToProps = (dispatch) => ({
-    loadMovies(){
-        dispatch(fetch_DisplayMovies());
+const mapStateToProps = function(store) {
+    return {
+        movies: store.movieReducer.movies
     }
-})
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieList);
+export default connect(mapStateToProps)(MovieList);

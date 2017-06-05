@@ -7,15 +7,16 @@ import templatemo from '../css/templatemo-style.css'
 import bootstrap from '../css/bootstrap.min.css'
 
 const MovieItem = ({ data }) => (
-    <div className={templatemo.tm-movies-box-1-info}>
-        <div className={bootstrap.tm-movies-box-1-info-left}>
-            <p className={bootstrap.margin-bottom-20}>{data.title}</p>
+    <div className="caca">
+        <div className="toto">
+            <p className="pipi">{data.name}</p>
+            <p className="pipi">{data.realisator}</p>
             <p className="release-date">{data.release}</p>
-            <p className="duration">{data.duration}</p>
-            <p className="type">{data.type}</p>
-            <img src="../img/rating.png" alt="image" className={bootstrap.margin-bottom-5}/>
+            <p className="duration">{data.time}</p>
+            <p className="type">{data.genre}</p>
+            <img src="../img/rating.png" alt="image"/>
         </div>
-        <div className={bootstrap.tm-movies-box-1-info-right}>
+        <div className="ok">
             <p className="description">
                 {data.description}
             </p>

@@ -7,6 +7,10 @@ import * as movie_actions from '../actions/movie-actions'
 
 export function getAllMovies() {
     return fetch('http://localhost:8080/movie')
+        /*.then(response => {
+            store.dispatch(movie_actions.getAllMovies(response.json()))
+            return response.json();
+        })*/
         .then(response => response.json())
         .then(json => {
             store.dispatch(movie_actions.getAllMovies(json));
