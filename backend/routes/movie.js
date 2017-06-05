@@ -9,7 +9,7 @@ let jsonParser = bodyParser.json();
 let db_config = {
     host: 'localhost',
     user: 'root',
-    password: 'Passw0rd!',
+    password: 'password',
     database: 'js_cinema'
 };
 
@@ -38,20 +38,8 @@ function handleDisconnect() {
 
 handleDisconnect();
 
-router.all('/*', function(req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", 'http://localhost:3000');
-  res.setHeader("Access-Control-Allow-Origin", 'http://localhost:8080');
-  res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS,PUT,DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Accept');
-  next();
-});
-
 router.get('/', function(req, res, next) {
     res.setHeader("Content-Type", "application/json");
-  res.setHeader("Access-Control-Allow-Origin", 'http://localhost:3000');
-  res.setHeader("Access-Control-Allow-Origin", 'http://localhost:8080');
-  res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS,PUT,DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Accept');
 
     let queryString = 'SELECT * FROM movie';
 
@@ -109,7 +97,6 @@ router.get('/name/:name', function(req, res, next) {
 router.post('/', jsonParser, function (req, res) {
   console.log('req', req.body);
 
-  // Check if 'picture' field is valid
   let movie = req.body;
   let fields = ["name", "realisator", "date", "time", "genre", "description"];
 
@@ -139,7 +126,7 @@ router.post('/', jsonParser, function (req, res) {
   });
 });
 
-/* UPDATE user data by id */
+/* UPDATE movie data by id */
 router.put('/id/:id', function(req, res) {
     res.setHeader("Content-Type", "application/json");
 

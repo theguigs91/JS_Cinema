@@ -24,17 +24,20 @@ app.use(function (req, res, next) {
 });
 
 // Rajouter tous les routes
-const cinema = require('./routes/cinema');
+const room = require('./routes/room');
 const movie = require('./routes/movie');
 const user = require('./routes/user');
+const seance = require('./routes/seance');
+const reservation = require('./routes/reservation');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/cinema', cinema);
+app.use('/room', room);
 app.use('/movie', movie);
 app.use('/user', user);
-
+app.use('/seance', seance);
+app.use('/reservation', reservation);
 
 app.listen(8080);
 console.log("Server connected");

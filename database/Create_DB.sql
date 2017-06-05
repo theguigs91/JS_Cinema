@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS movie
     realisator VARCHAR(40) NOT NULL,
     time TIME NOT NULL,
     genre VARCHAR(50),
-    description VARCHAR(200)
+    description VARCHAR(1000)
 );
 
 CREATE TABLE IF NOT EXISTS seance
