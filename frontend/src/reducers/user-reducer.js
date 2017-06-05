@@ -1,18 +1,34 @@
 import React from 'react';
 import * as types from '../actions/action-types';
+import _ from 'lodash';
 
+const initialState = {
+  users: [],
+  userProfile: {
+    repos: []
+  }
+};
 
-const userReducer = function (state = {}, action) {
+const userReducer = function(state = initialState, action) {
 
-    console.log("Action type: ", action.type)
+  switch(action.type) {
 
-    switch (action.type) {
-        case 'ADD_MOVIE':
-            return [...state, {movies: action.payload}];
-        case 'DELETE_MOVIE':
-            return state.filter(movie => movie.id !== action.id);
-        default:
-            return state;
-    }
-}
-export default userReducer
+    case types.GET_USERS_SUCCESS:
+      return Object.assign({}, state, { users: action.users });
+
+    case types.DELETE_USER_SUCCESS:
+
+      // Use lodash to create a new user array without the user we want to remove
+      const newUsers = _.filter(state.users, user => user.id !== action.userId);
+      return Object.assign({}, state, { users: newUsers });
+
+    case types.USER_PROFILE_SUCCESS:
+      return Object.assign({}, state, { userProfile: action.userProfile });
+
+  }
+
+  return state;
+
+};
+
+export default userReducer;

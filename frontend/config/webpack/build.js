@@ -4,8 +4,13 @@ const webpack = require('webpack');
 module.exports = {
     context: resolve(__dirname, '../../src'),
 
-    entry: './index.js',
-
+    entry:[
+      './app.js',
+      'babel-polyfill',
+      'webpack-dev-server/client?http://localhost:9090',
+      'webpack/hot/only-dev-server',
+      'react-hot-loader/patch'
+    ],
     output: {
         path: resolve(__dirname, '../../dist'),
         filename: '[name].bundle.js',
