@@ -25,3 +25,17 @@ export function getSchedulesSuccess(schedules) {
     schedules
   }
 }
+
+export function incrementSeancePlaces(id) {
+  return {
+    type: types.INCREMENT_SEANCE_PLACES,
+    id
+  }
+}
+
+export function decrementSeancePlaces(id) {
+  return {
+    type: types.DECREMENT_SEANCE_PLACES,
+    id
+  }
+}

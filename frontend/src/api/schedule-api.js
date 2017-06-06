@@ -7,10 +7,18 @@ import store from '../store';
 import { addScheduleSuccess, getSchedulesSuccess, deleteScheduleSuccess } from '../actions/schedule-actions';
 
 
+let config = {
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  },
+  mode: 'no-cors'
+};
+
 export function addSchedule(schedule) {
-  return axios.post('http://localhost:8080/seance', JSON.parse(schedule))
+  return axios.post('http://localhost:8080/seance', schedule, config)
     .then(response => {
-      store.dispatch(addScheduleSuccess(response.data));
+      store.dispatch(addScheduleSuccess(schedule));
       return response;
     }).catch(err => {
       console.log(err.message);
@@ -20,7 +28,6 @@ export function addSchedule(schedule) {
 /**
  * Get all schedules
  */
-
 export function getSchedules() {
   return axios.get('http://localhost:8080/seance')
     .then(response => {
@@ -32,7 +39,6 @@ export function getSchedules() {
 /**
  * Search schedules
  */
-
 export function searchSchedules(query = '') {
   return axios.get('http://localhost:8080/seance?q='+ query)
     .then(response => {
@@ -44,11 +50,34 @@ export function searchSchedules(query = '') {
 /**
  * Delete a schedule
  */
-
 export function deleteSchedule(scheduleId) {
   return axios.delete('http://localhost:8080/seance/' + scheduleId)
     .then(response => {
       store.dispatch(deleteScheduleSuccess(scheduleId));
       return response;
     });
+}
+
+export function updateSchedule(schedule) {
+  return axios.put('http://localhost:8080/seance', schedule, config)
+    .then(response => {
+      store.dispatch(schedule_actions.updateSchedule(schedule));
+      return json;
+    })
+}
+
+export function incrementSeancePlaces(seanceId) {
+  return axios.put('http://localhost:8080/seance/id/' + seanceId + '/increment', config)
+    .then(response => {
+      store.dispatch(schedule_actions.incrementSeancePlaces(seanceId));
+      return json;
+    })
+}
+
+export function decrementSeancePlaces(seanceId) {
+  return axios.put('http://localhost:8080/seance/id/' + seanceId + '/decrement', config)
+    .then(response => {
+      store.dispatch(schedule_actions.decrementSeancePlaces(seanceId));
+      return json;
+    })
 }
