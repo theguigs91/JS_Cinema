@@ -91,7 +91,7 @@ router.post('/', jsonParser, function (req, res) {
   }
 
   let param = [reservation.user_id, reservation.seance_id];
-  let queryString = 'UPDATE reservation SET user_id = ?, seance_id = ?';
+  let queryString = 'INSERT INTO reservation SET user_id = ?, seance_id = ?';
 
   connection.query(queryString, param, function(err, rows, fields)
   {
