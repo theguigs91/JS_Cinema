@@ -12,6 +12,8 @@ const ReservationReducer = function(state: initialReservationState, action) {
       return { ...state, reservations: [...state.reservations, action.reservation] };
     case types.DELETE_RESERVATION_SUCCESS:
       return state.filter(p => p.id !== action.id);
+    case types.DISPLAY_RESERVATIONS:
+      return {...state, reservations: action.payload};
     case types.GET_RESERVATIONS_SUCCESS:
       return {...state, reservations: action.reservations};
     default:
