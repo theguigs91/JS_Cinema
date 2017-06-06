@@ -2,7 +2,7 @@ import React from 'react';
 import * as scheduleApi from '../../api/schedule-api';
 import * as movieApi from '../../api/movie-api';
 import * as roomApi from '../../api/room-api';
-import ScheduleCreation from '../views/schedule-creation-form';
+import ScheduleCreationForm from '../views/schedule-creation-form';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { HHMMSSToSeconds, HHMMToSeconds, secondsToHHMM } from '../../helpers/time-helper';
@@ -65,14 +65,17 @@ const ScheduleCreationContainer = React.createClass({
     let errors = validate(formInfos);
     if (_.isEmpty(errors)) {
 
+      let now = new Date();
       let start = new Date(formInfos.date_start);
+      if (start < now)
+        start = now;
       let end = new Date(formInfos.date_end);
 
       // Iterate over days and schedule of each, and add seance.
-      while(start < end) {
+      while(start <= end) {
         start.setDate(start.getDate() + 1);
 
-        formInfos.schedules.map(schedule => {
+        formInfos.schedules.forEach(schedule => {
 
           let seance = {
             movie_id: formInfos.movie.id,
@@ -101,7 +104,7 @@ const ScheduleCreationContainer = React.createClass({
       schedules = this.getComputedSchedules(movie);
     }
     return (
-      <ScheduleCreation
+      <ScheduleCreationForm
         addSchedule={this.addSeance}
         movies={this.props.movies}
         rooms={this.props.rooms}

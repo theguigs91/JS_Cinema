@@ -2,9 +2,21 @@
  * Created by kelly on 04/06/17.
  */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
+import Checkbox from './checkbox';
 
-export default React.createClass({
+const ScheduleCreationForm = React.createClass({
+
+  componentWillMount: function() {
+    this.selectedSchedulesCheckboxes = new Set();
+  },
+
+  toggleSchedulesCheckbox: function(schedule) {
+    if (this.selectedSchedulesCheckboxes.has(schedule))
+      this.selectedSchedulesCheckboxes.delete(schedule);
+    else
+      this.selectedSchedulesCheckboxes.add(schedule);
+  },
 
   /**
    * Get the value of movie (input)
@@ -29,14 +41,32 @@ export default React.createClass({
   },
 
   getFormInfos: function() {
+
+    console.log('getFormInfos: ', this.selectedSchedulesCheckboxes);
+
     return {
       movie: this.getMovie(),
       room: this.getRoom(),
-      schedules: ['09:30:00', '11:30:00'],//this.refs.schedules.value,
+      schedules: this.selectedSchedulesCheckboxes,
       date_start: this.refs.date_start.value,
       date_end: this.refs.date_end.value
     };
   },
+
+  /**
+   * {
+                          this.props.schedules.map(schedule => {
+                            return (
+                              <div className="form-check">
+                                <label className="form-check-label">
+                                  <input className="form-check-input" type="checkbox" value={schedule} /> {schedule}
+                                </label>
+                              </div>
+                            );
+                          })
+                        }
+   * @returns {XML}
+   */
 
   render: function() {
     return (
@@ -63,13 +93,13 @@ export default React.createClass({
                   <div className="form-group">
                     <label for="movie-begin-date" className="col-2 col-form-label">Du</label>
                     <div className="col-10">
-                      <input className="form-control" type="date" value="2017-05-29" ref="date_start" id="movie-begin-date" />
+                      <input className="form-control" type="date" ref="date_start" id="movie-begin-date" />
                     </div>
                   </div>
                   <div className="form-group">
                     <label for="movie-end-date" className="col-2 col-form-label">Au</label>
                     <div className="col-10">
-                      <input className="form-control" type="date" value="2017-06-29" ref="date_end" id="movie-end-date" />
+                      <input className="form-control" type="date" ref="date_end" id="movie-end-date" />
                     </div>
                   </div>
                 </div>
@@ -83,12 +113,12 @@ export default React.createClass({
                         {
                           this.props.schedules.map(schedule => {
                             return (
-                              <div className="form-check">
-                                <label className="form-check-label">
-                                  <input className="form-check-input" type="checkbox" value={schedule} /> {schedule}
-                                </label>
-                              </div>
-                            );
+                              <Checkbox
+                                label={schedule}
+                                handleCheckboxChange={this.toggleSchedulesCheckbox}
+                                key={schedule}
+                              />
+                            )
                           })
                         }
                       </div>
@@ -123,3 +153,14 @@ export default React.createClass({
     );
   }
 });
+
+
+ScheduleCreationForm.propTypes = {
+  addSchedule: PropTypes.func.isRequired,
+  movies: PropTypes.array.isRequired,
+  rooms: PropTypes.array.isRequired,
+  schedules: PropTypes.array.isRequired,
+  handleMovieChange: PropTypes.func.isRequired
+};
+
+export default ScheduleCreationForm;
