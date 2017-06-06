@@ -21,8 +21,9 @@ CREATE TABLE IF NOT EXISTS movie
     name VARCHAR(40) NOT NULL,
     realisator VARCHAR(40) NOT NULL,
     time TIME NOT NULL,
-    genre VARCHAR(50),
-    description VARCHAR(200)
+    genre VARCHAR(50) NOT NULL,
+    description VARCHAR(1000) NOT NULL,
+    date DATE NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS seance
@@ -31,11 +32,12 @@ CREATE TABLE IF NOT EXISTS seance
     room_id BIGINT UNSIGNED NOT NULL,
     movie_id BIGINT UNSIGNED NOT NULL,
     places_available BIGINT NOT NULL,
-    datetime DATETIME NOT NULL,
+    date DATE NOT NULL,
+    time TIME NOT NULL,
     CONSTRAINT fk_room_id FOREIGN KEY (room_id)
-	REFERENCES room(id),
+    REFERENCES room(id),
     CONSTRAINT fk_movie_id FOREIGN KEY (movie_id)
-	REFERENCES movie(id)
+    REFERENCES movie(id)
 );
 
 CREATE TABLE IF NOT EXISTS reservation
@@ -44,8 +46,8 @@ CREATE TABLE IF NOT EXISTS reservation
     user_id BIGINT UNSIGNED NOT NULL,
     seance_id BIGINT UNSIGNED NOT NULL,
     CONSTRAINT fk_user_idd FOREIGN KEY (user_id)
-	REFERENCES user(id),
+    REFERENCES user(id),
     CONSTRAINT fk_seance_id FOREIGN KEY (seance_id)
-	REFERENCES seance(id)
+    REFERENCES seance(id)
 );
 

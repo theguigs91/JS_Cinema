@@ -1,3 +1,5 @@
+use js_cinema;
+
 DROP TABLE reservation;
 DROP TABLE seance;
 DROP TABLE room;
