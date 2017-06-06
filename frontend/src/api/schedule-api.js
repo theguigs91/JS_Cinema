@@ -8,9 +8,9 @@ import { addScheduleSuccess, getSchedulesSuccess, deleteScheduleSuccess } from '
 
 
 export function addSchedule(schedule) {
-  return axios.post('http://localhost:8080/schedules', JSON.parse(schedule))
+  return axios.post('http://localhost:8080/seance', JSON.parse(schedule))
     .then(response => {
-      store.dispatch(addSchedulesSuccess(response.data));
+      store.dispatch(addScheduleSuccess(response.data));
       return response;
     }).catch(err => {
       console.log(err.message);
@@ -22,7 +22,7 @@ export function addSchedule(schedule) {
  */
 
 export function getSchedules() {
-  return axios.get('http://localhost:8080/schedules')
+  return axios.get('http://localhost:8080/seance')
     .then(response => {
       store.dispatch(getSchedulesSuccess(response.data));
       return response;
@@ -34,7 +34,7 @@ export function getSchedules() {
  */
 
 export function searchSchedules(query = '') {
-  return axios.get('http://localhost:8080/schedules?q='+ query)
+  return axios.get('http://localhost:8080/seance?q='+ query)
     .then(response => {
       store.dispatch(getSchedulesSuccess(response.data));
       return response;
@@ -46,7 +46,7 @@ export function searchSchedules(query = '') {
  */
 
 export function deleteSchedule(scheduleId) {
-  return axios.delete('http://localhost:8080/schedules/' + scheduleId)
+  return axios.delete('http://localhost:8080/seance/' + scheduleId)
     .then(response => {
       store.dispatch(deleteScheduleSuccess(scheduleId));
       return response;
