@@ -1,16 +1,20 @@
 /**
- * Created by kelly on 04/06/17.
+ * Created by kelly on 06/06/17.
  */
+import React, { PropTypes } from 'react';
 
-import React from 'react';
-
-const ScheduleCreationForm = React.createClassNameName({
+const ReservationCreationForm = React.createClass({
 
   getReservation: function() {
     return {
-      user_id: this.refs.user_id.value,
-      schedule_id: this.refs.schedule_id.value,
+      //user_id: this.refs.user_id.value,
+      //schedule_id: this.refs.schedule_id.value,
+      number_seats: this.refs.number_seats.value
     };
+  },
+
+  getNumberSeats: function() {
+    return this.refs.number_seats.value;
   },
 
   render: function() {
@@ -20,7 +24,6 @@ const ScheduleCreationForm = React.createClassNameName({
         <div className="section-margin-top">
           <div className="row confirm-reservation">
 
-            <!-- Recap -->
             <div className="col-sm-8 col-xs-12">
               <div className="tm-movies-box-1">
                 <div className="img-ctn col-sm-4">
@@ -30,36 +33,35 @@ const ScheduleCreationForm = React.createClassNameName({
                   <div className="tm-movies-box-1-info">
                     <div className="tm-movies-box-1-info-left">
                       <p className="text-uppercase margin-bottom-20 title" ref="movieTitle" id="reservation-movie-title">
-                        PIRATES DES CARAIBES: LA VENGEANCE DE SALAZAR - VOSTF
+                        {this.props.movie.name}
                       </p>
                     </div>
                     <div className="tm-movies-box-1-info-right">
-                      <p id="reservation-date margin-bottom-20">28 Mai 2017</p>
-                      <p id="reservation-time">21:45</p>
+                      <p id="reservation-date margin-bottom-20">{this.props.seance.date}</p>
+                      <p id="reservation-time">{this.props.seance.time}</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- Tarif -->
             <div className="col-sm-4 col-xs-12">
               <div className="tm-movies-box-1">
-                <form action="#" method="post" className="login-form">
+                <form onSubmit={this.props.addReservation} method="post" className="login-form">
                   <div className="tm-reservation-box-right">
                     <p>Tarif: 4,90 €</p>
                     <div className="tm-form-inner">
                       <div className="form-group row">
                         <label for="number-seats" className="col-2 col-form-label">Nombre de places</label>
                         <div className="col-10">
-                          <input className="form-control" type="number" value="1" id="number-seats" />
+                          <input className="form-control" type="number" ref="number_seats" onChange={this.props.updateTotalPrice} min="0" max={this.props.seance.places_available} id="number-seats" />
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className="tm-movies-box-1-link">
                     <div className="tm-movies-box-1-link-left col-xs-8">
-                      Total: <span id="reservation-total-price">4,90</span> €
+                      Total: <span id="reservation-total-price">{this.props.totalPrice}</span> €
                     </div>
                     <button className="tm-movies-box-1-link-right glyphicon glyphicon-ok" type="submit" name="submit" />
                   </div>
@@ -71,5 +73,15 @@ const ScheduleCreationForm = React.createClassNameName({
       </section>
     );
   }
-
 });
+
+
+ReservationCreationForm.propTypes = {
+  addReservation: PropTypes.func.isRequired,
+  movie: PropTypes.object.isRequired,
+  seance: PropTypes.object.isRequired,
+  updateTotalPrice: PropTypes.func.isRequired,
+  totalPrice: PropTypes.number.isRequired
+};
+
+export default ReservationCreationForm;
