@@ -113,6 +113,7 @@ router.put('/id/:id', function(req, res) {
   let seance = req.body;
 
   let param = [seance.room_id, seance.movie_id, seance.places_available, seance.datetime, req.params.id];
+
   let queryString = 'UPDATE seance SET room_id = ?, movie_id = ?, places_available = ?, date = ?, time = ? WHERE id = ?';
 
   /* Dans l'application, remplir déjà les champs avec les données de la seance */
@@ -124,9 +125,40 @@ router.put('/id/:id', function(req, res) {
       res.status(400).send(JSON.stringify({message: err}));
     }
   });
-
 });
 
+router.get('/id/:id/increment', function(req, res) {
+  res.setHeader("Content-Type", "application/json");
 
+  let param = [req.params.id];
+
+  let queryString = 'UPDATE seance SET places_available = places_available + 1 WHERE id = ?';
+
+  connection.query(queryString, param, function(err, rows, fields) {
+    if (!err) {
+      res.status(200).send(JSON.stringify({message: "Seance updated"}));
+    }
+    else {
+      res.status(400).send(JSON.stringify({message: err}));
+    }
+  });
+});
+
+router.get('/id/:id/decrement', function(req, res) {
+  res.setHeader("Content-Type", "application/json");
+
+  let param = [req.params.id];
+
+  let queryString = 'UPDATE seance SET places_available = places_available - 1 WHERE id = ?';
+
+  connection.query(queryString, param, function(err, rows, fields) {
+    if (!err) {
+      res.status(200).send(JSON.stringify({message: "Seance updated"}));
+    }
+    else {
+      res.status(400).send(JSON.stringify({message: err}));
+    }
+  });
+});
 
 module.exports = router;
