@@ -44,7 +44,10 @@ router.get('/', function(req, res, next) {
 
   connection.query(queryString, function(err, rows, fields) {
     if (!err) {
-      res.status(200).send(JSON.stringify({rows: rows}));
+      res.status(200)
+        .json(rows)
+        .end();
+      //res.status(200).send(JSON.stringify({rows: rows}));
     }
     else {
       res.status(400).send(JSON.stringify({message: err}));
