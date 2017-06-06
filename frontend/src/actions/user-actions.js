@@ -8,6 +8,13 @@ export function getAllUsers(payload) {
     }
 }
 
+export function getUsersSuccess(payload) {
+  return {
+    type: types.GET_USERS_SUCCESS,
+    payload
+  }
+}
+
 export function getUserById(payload) {
     return {
         type: types.GET_USER_BY_ID,
