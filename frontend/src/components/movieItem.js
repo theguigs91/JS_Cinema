@@ -3,8 +3,8 @@
  */
 import React from 'react'
 import { connect } from 'react-redux'
-import templatemo from '../css/templatemo-style.css'
-import bootstrap from '../css/bootstrap.min.css'
+import templatemo from '../misc/css/templatemo-style.css'
+import bootstrap from '../misc/css/bootstrap.min.css'
 
 const MovieItem = ({ data }) => (
     <div className="tm-movies-box-1-info">

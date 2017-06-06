@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 // Reducers
-import searchLayoutReducer from './search-layout-reducer';
+//import searchLayoutReducer from './search-layout-reducer';
 
 import userReducer from './user-reducer';
 import movieReducer from './movie-reducer';
