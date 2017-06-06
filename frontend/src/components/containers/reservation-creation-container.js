@@ -68,8 +68,8 @@ const ReservationCreationContainer = React.createClass({
           seance_id: this.seance.id // reservation.seance_id
         };
         console.log(reservation);
-        //reservationApi.addReservation(reservation);
-        //scheduleApi.decrementSeancePlaces(this.seance.id);
+        reservationApi.addReservation(reservation);
+        scheduleApi.decrementSeancePlaces(this.seance.id);
       }
     }
     else
