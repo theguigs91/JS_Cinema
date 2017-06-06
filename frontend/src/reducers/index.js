@@ -12,10 +12,10 @@ import roomReducer from './room-reducer';
 // Combine Reducers
 let reducers = combineReducers({
    userReducer,
-   movieReducer
+   movieReducer,
+   roomReducer
   //scheduleState: scheduleReducer,
   //reservationState: reservationReducer,
-  //roomState: roomReducer
 });
 
 export default reducers;
