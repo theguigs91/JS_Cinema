@@ -67,7 +67,7 @@ export function updateSchedule(schedule) {
 }
 
 export function incrementSeancePlaces(seanceId) {
-  return axios.put('http://localhost:8080/seance/id/' + seanceId + '/increment', config)
+  return axios.get('http://localhost:8080/seance/id/' + seanceId + '/increment', config)
     .then(response => {
       store.dispatch(schedule_actions.incrementSeancePlaces(seanceId));
       return json;
@@ -75,7 +75,7 @@ export function incrementSeancePlaces(seanceId) {
 }
 
 export function decrementSeancePlaces(seanceId) {
-  return axios.put('http://localhost:8080/seance/id/' + seanceId + '/decrement', config)
+  return axios.get('http://localhost:8080/seance/id/' + seanceId + '/decrement', config)
     .then(response => {
       store.dispatch(schedule_actions.decrementSeancePlaces(seanceId));
       return json;

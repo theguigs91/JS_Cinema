@@ -24,7 +24,7 @@ export function addReservation(reservation) {
       console.log(store.getState());
       console.log('--------------');
 
-      store.dispatch(addReservationsSuccess(reservation));
+      store.dispatch(addReservationSuccess(reservation));
 
       console.log('[ReservationAPI] After dispatch. Current state:');
       console.log(store.getState());
