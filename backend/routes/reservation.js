@@ -88,7 +88,7 @@ router.post('/', jsonParser, function (req, res) {
   }
 
   let param = [reservation.user_id, reservation.seance_id];
-  let queryString = 'UPDATE user SET user_id = ?, seance_id = ?';
+  let queryString = 'UPDATE reservation SET user_id = ?, seance_id = ?';
 
   connection.query(queryString, param, function(err, rows, fields)
   {
@@ -109,7 +109,7 @@ router.put('/id/:id', function(req, res) {
   let reservation = req.body;
 
   let param = [reservation.room_id, reservation.movie_id, reservation.places_available, reservation.datetime, reservation.language_version, req.params.id];
-  let queryString = 'UPDATE user SET user_id = ?, seance_id = ? WHERE id = ?';
+  let queryString = 'UPDATE reservation SET user_id = ?, seance_id = ? WHERE id = ?';
 
   /* Dans l'application, remplir déjà les champs avec les données de la reservation */
   connection.query(queryString, param, function(err, rows, fields) {

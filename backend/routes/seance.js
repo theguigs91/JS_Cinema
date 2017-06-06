@@ -76,7 +76,7 @@ router.post('/', jsonParser, function (req, res) {
   console.log('req', req.body);
 
   let seance = req.body;
-  let fields = ["room_id", "movie_id", "places_available", "datetime"];
+  let fields = ["room_id", "movie_id", "places_available", "date", "time"];
 
   if (seance === undefined)
     return res.status(409).send("ERROR: Undefined.");
@@ -88,8 +88,8 @@ router.post('/', jsonParser, function (req, res) {
     }
   }
 
-  let param = [seance.room_id, seance.movie_id, seance.places_available, seance.datetime];
-  let queryString = 'UPDATE user SET room_id = ?, movie_id = ?, places_available = ?, datetime = ?';
+  let param = [seance.room_id, seance.movie_id, seance.places_available, seance.date, seance.time];
+  let queryString = 'UPDATE seance SET room_id = ?, movie_id = ?, places_available = ?, date = ?, time = ?';
 
   connection.query(queryString, param, function(err, rows, fields)
   {
@@ -110,7 +110,7 @@ router.put('/id/:id', function(req, res) {
   let seance = req.body;
 
   let param = [seance.room_id, seance.movie_id, seance.places_available, seance.datetime, req.params.id];
-  let queryString = 'UPDATE user SET room_id = ?, movie_id = ?, places_available = ?, datetime = ? WHERE id = ?';
+  let queryString = 'UPDATE seance SET room_id = ?, movie_id = ?, places_available = ?, date = ?, time = ? WHERE id = ?';
 
   /* Dans l'application, remplir déjà les champs avec les données de la seance */
   connection.query(queryString, param, function(err, rows, fields) {
