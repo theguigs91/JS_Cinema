@@ -26,6 +26,22 @@ export function getSchedulesSuccess(schedules) {
   }
 }
 
+export function getSchedulesOfAMovieSuccess(schedules) {
+  console.log("[ACTION] schedules: ", schedules)
+    return {
+        type: types.GET_SCHEDULES_OF_A_MOVIE_SUCCESS,
+        schedules
+    }
+}
+
+export function getSchedulesFromDateSuccess(schedules) {
+  console.log("[ACTION] schedules: ", schedules)
+  return {
+    type: types.GET_SCHEDULES_FROM_DATE_SUCCESS,
+    schedules
+  }
+}
+
 export function incrementSeancePlaces(id) {
   return {
     type: types.INCREMENT_SEANCE_PLACES,

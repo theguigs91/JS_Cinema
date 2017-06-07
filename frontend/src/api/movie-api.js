@@ -4,7 +4,7 @@
 import 'isomorphic-fetch'
 import store from '../store'
 import * as movie_actions from '../actions/movie-actions'
-
+import {getAllSchedulesOfAMovie} from './schedule-api'
 
 let config = {
   headers: {
@@ -32,10 +32,6 @@ export function addMovie(movie) {
 
 export function getAllMovies() {
     return fetch('http://localhost:8080/movie')
-        /*.then(response => {
-            store.dispatch(movie_actions.getAllMovies(response.json()))
-            return response.json();
-        })*/
         .then(response => response.json())
         .then(json => {
             store.dispatch(movie_actions.getAllMovies(json));
@@ -43,10 +39,21 @@ export function getAllMovies() {
         })
 }
 
+export function getAllMoviesFromDate(date) {
+    return fetch("http://localhost:8080/movie/date/" + date)
+        .then(response => response.json())
+        .then(json => {
+            store.dispatch(movie_actions.getAllMoviesFromDate(json));
+            return json;
+        })
+}
+
+
 export function getMovieById(id) {
     return fetch('http://localhost:8080/movie/id/' + id)
         .then(response => response.json())
         .then(json => {
+            console.log("movie: ", json);
             store.dispatch(movie_actions.getMovieById(json));
             return json;
         })

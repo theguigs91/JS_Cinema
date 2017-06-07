@@ -16,7 +16,10 @@ const scheduleReducer = function (state = initialScheduleState, action) {
       return state.filter(p => p.id !== action.id);
     case types.GET_SCHEDULES_SUCCESS:
       return {...state, schedules: action.schedules};
-
+    case types.GET_SCHEDULES_FROM_DATE_SUCCESS:
+      return {...state, schedules: action.schedules};
+    case types.GET_SCHEDULES_OF_A_MOVIE_SUCCESS:
+        return {...state, schedules: [...state.schedules, action.schedules] };
     case types.INCREMENT_SEANCE_PLACES:
       let incSeance = state.filter(p => p.id === action.id);
       incSeance.places_available++;

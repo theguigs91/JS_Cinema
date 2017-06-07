@@ -4,8 +4,9 @@
 
 import axios from 'axios';
 import store from '../store';
-import { addScheduleSuccess, getSchedulesSuccess, deleteScheduleSuccess } from '../actions/schedule-actions';
-
+import 'isomorphic-fetch'
+import { addScheduleSuccess, getSchedulesSuccess, getSchedulesFromDateSuccess, getSchedulesOfAMovieSuccess, deleteScheduleSuccess } from '../actions/schedule-actions';
+import * as movieApi from './movie-api'
 
 let config = {
   headers: {
@@ -28,12 +29,44 @@ export function addSchedule(schedule) {
 /**
  * Get all schedules
  */
-export function getSchedules() {
-  return axios.get('http://localhost:8080/seance')
-    .then(response => {
-      store.dispatch(getSchedulesSuccess(response.data));
-      return response;
-    });
+export function getAllSchedules() {
+  return fetch('http://localhost:8080/seance')
+      .then(response => response.json())
+      .then(json => {
+          json.map(el => {
+                movieApi.getMovieById(el.movie_id)
+                  .then((m) => {
+                      el["movie_name"] = m[0].name;
+                      el["movie_duration"] = m[0].time;
+                      el["movie_realisator"] = m[0].realisator;
+                      el["movie_genre"] = m[0].genre;
+                      el["movie_description"] = m[0].description;
+                  })
+                   .then(() => store.dispatch(addScheduleSuccess(el)))
+          })
+          console.log("Json with movie:", JSON.stringify(json));
+          store.dispatch(getSchedulesSuccess(json));
+
+          return json;
+      })
+      //.then((json) => { console.log(json);})
+}
+
+export function getAllSchedulesOfAMovie(movie_id, date) {
+    return fetch("http://localhost:8080/seance/movie/" + movie_id + "/date/" + date)
+        .then(response => response.json())
+        .then((json) =>{
+            store.dispatch(getSchedulesOfAMovieSuccess(json))
+            return json
+        })
+}
+export function getAllSchedulesFromDate(date) {
+  return fetch("http://localhost:8080/seance/date/" + date)
+    .then(response => response.json())
+    .then((json) =>{
+      store.dispatch(getSchedulesFromDateSuccess(json))
+      return json
+    })
 }
 
 /**

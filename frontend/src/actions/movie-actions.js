@@ -27,6 +27,13 @@ export function getAllMovies(payload) {
     }
 }
 
+export function getAllMoviesFromDate(payload) {
+    return {
+        type: types.GET_ALL_MOVIES_FROM_DATE,
+        payload
+    }
+}
+
 export function getMovieById(payload) {
     return {
         type: types.GET_MOVIE_BY_ID,
