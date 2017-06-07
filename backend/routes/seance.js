@@ -66,6 +66,7 @@ router.get('/movie/:movie_id/date/:date', function(req, res, next) {
 
   connection.query(queryString, param, function(err, rows, fields) {
     if (!err) {
+      console.log("[SUCCESS] Get movie for ", req.params.movie_id, "at date ", req.params.date, ": ", rows)
       res.status(200)
         .json(rows)
         .end();

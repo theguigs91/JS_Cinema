@@ -171,7 +171,10 @@ router.get('/date/:date', function(req, res, next) {
     //let date = '%' + req.params.date + '%';
 
     let param = [req.params.date];
-    let queryString = 'SELECT * FROM movie AS m JOIN seance AS s ON s.movie_id = m.id WHERE s.date = ?';
+    let queryString = 'SELECT distinct m.id, m.name, m.realisator, m.genre, m.description, m.time\ ' +
+        'FROM movie AS m \ ' +
+        'INNER JOIN seance AS s ON s.movie_id = m.id \ ' +
+        'WHERE s.date = ?';
 
     connection.query(queryString, param, function(err, rows, fields) {
         if (!err) {
