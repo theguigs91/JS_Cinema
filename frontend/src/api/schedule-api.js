@@ -36,11 +36,11 @@ export function getAllSchedules() {
       json.map(el => {
         movieApi.getMovieById(el.movie_id)
           .then((m) => {
-              el["movie_name"] = m[0].name;
-              el["movie_duration"] = m[0].time;
-              el["movie_realisator"] = m[0].realisator;
-              el["movie_genre"] = m[0].genre;
-              el["movie_description"] = m[0].description;
+            el["movie_name"] = m[0].name;
+            el["movie_duration"] = m[0].time;
+            el["movie_realisator"] = m[0].realisator;
+            el["movie_genre"] = m[0].genre;
+            el["movie_description"] = m[0].description;
           })
            .then(() => store.dispatch(addScheduleSuccess(el)))
       });
@@ -56,8 +56,8 @@ export function getAllSchedulesOfAMovie(movie_id, date) {
   return fetch("http://localhost:8080/seance/movie/" + movie_id + "/date/" + date)
     .then(response => response.json())
     .then((json) =>{
-        store.dispatch(scheduleActions.getSchedulesOfAMovieSuccess(json));
-        return json
+      store.dispatch(scheduleActions.getSchedulesOfAMovieSuccess(json));
+      return json
     })
 }
 
@@ -68,6 +68,15 @@ export function getAllSchedulesFromDate(date) {
       store.dispatch(scheduleActions.getSchedulesFromDateSuccess(json));
       return json
   })
+}
+
+export function getSchedulesFromUserId(userId) {
+  return fetch("http://localhost:8080/seance/user/" + userId)
+    .then(response => response.json())
+    .then((json) => {
+      store.dispatch(scheduleActions.getSchedulesSuccess(json));
+      return json
+    })
 }
 
 /**

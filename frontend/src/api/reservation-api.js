@@ -5,10 +5,8 @@
 import axios from 'axios';
 import store from '../store';
 import { addReservationSuccess, getReservationsSuccess, deleteReservationSuccess } from '../actions/reservation-actions';
-import { incrementSeancePlaces, decrementSeancePlaces } from '../actions/schedule-actions';
 
-
-var config = {
+let config = {
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
@@ -48,6 +46,15 @@ export function getReservations() {
     });
 }
 
+export function getReservationsFromUserId(userId) {
+  return fetch("http://localhost:8080/reservation/user/" + userId)
+    .then(response => response.json())
+    .then((json) => {
+      store.dispatch(reservationActions.getReservationsSuccess(json));
+      return json
+    })
+}
+
 /**
  * Search reservations
  */
@@ -63,11 +70,11 @@ export function searchReservationsSuccess(query = '') {
 /**
  * Delete a reservation
  */
-
 export function deleteReservation(reservation) {
+  console.log('[ReservationAPI.deleteReservation] ', reservation);
+
   return axios.delete('http://localhost:8080/reservation/' + reservation.id)
     .then(response => {
-
       console.log('[ReservationAPI] Before dispatch. Current state:');
       console.log(store.getState());
       console.log('--------------');
