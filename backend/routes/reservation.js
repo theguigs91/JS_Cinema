@@ -123,9 +123,29 @@ router.put('/id/:id', function(req, res) {
       res.status(400).send(JSON.stringify({message: err}));
     }
   });
-
 });
 
+/**
+ * Get reservations from a given user id
+ */
+router.get('/user/:id', function(req, res, next) {
+  res.setHeader("Content-Type", "application/json");
 
+  let param = [req.params.id];
+  let queryString =
+    'SELECT * FROM reservation WHERE user_id = ?';
+
+  connection.query(queryString, param, function(err, rows, fields) {
+    if (!err) {
+      res.status(200);
+      res.json(rows);
+      res.end();
+    }
+    else {
+      res.status(400).send(JSON.stringify({message: err}));
+      console.log("Error while performing query" + err);
+    }
+  });
+});
 
 module.exports = router;

@@ -190,4 +190,31 @@ router.get('/date/:date', function(req, res, next) {
     });
 });
 
+/**
+ * Get movies from a user id (The movies on which the user took reservations)
+ */
+router.get('/user/:id', function(req, res, next) {
+  res.setHeader("Content-Type", "application/json");
+
+  let param = [req.params.id];
+  let queryString =
+    'SELECT district m.id, m.name, m.realisator, m.genre, m.time \ '
+    + 'FROM movie AS m \ '
+    + 'INNER JOIN seance AS s ON s.movie_id = m.id \ '
+    + 'INNER JOIN reservation as r ON r.seance_id = s.id \ '
+    + 'WHERE r.user_id = ?';
+
+  connection.query(queryString, param, function(err, rows, fields) {
+    if (!err) {
+      res.status(200);
+      res.json(rows);
+      res.end();
+    }
+    else {
+      res.status(400).send(JSON.stringify({message: err}));
+      console.log("Error while performing query" + err);
+    }
+  });
+});
+
 module.exports = router;
