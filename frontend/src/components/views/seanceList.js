@@ -7,11 +7,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import SeanceItem from '../../components/views/seanceItem'
-import HourButtonList from '../../components/views/HourButtonList'
-import * as scheduleApi from '../../api/schedule-api'
+import ScheduleDate from './schedule-date-form'
 import * as movieApi from '../../api/movie-api'
-import _ from 'lodash';
-import ReactDOM from 'react-dom';
+import * as scheduleApi from '../../api/schedule-api'
 
 export class SeanceList extends React.Component {
 
@@ -21,13 +19,13 @@ export class SeanceList extends React.Component {
             movies: [],
             schedules: []
         }
-
     }
 
-    componentDidMount() {
-        console.log("Component Did Mount");
-        movieApi.getAllMoviesFromDate("2017-05-16");
-        scheduleApi.getAllSchedulesFromDate("2017-05-16")
+    selectDate(event){
+      event.preventDefault();
+      console.log("SELECT DATE")
+      movieApi.getAllMoviesFromDate(this.refs.date.value)
+      scheduleApi.getAllSchedulesFromDate(this.refs.date.value);
     }
 
     render(){
@@ -37,6 +35,11 @@ export class SeanceList extends React.Component {
         console.log("props schedules: ", (this.props.schedules));
 
         return (
+          <div>
+          <ScheduleDate
+            selectDate={this.selectDate}
+            ref="child"
+          />
             <div>
                 {this.props.movies.map(movie =>
                   <SeanceItem
@@ -46,6 +49,7 @@ export class SeanceList extends React.Component {
                   />
                 )}
             </div>
+          </div>
         )
     }
 }
