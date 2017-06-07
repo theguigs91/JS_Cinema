@@ -25,9 +25,9 @@ const scheduleReducer = function (state = initialScheduleState, action) {
       incSeance.places_available++;
       return {...state.filter(p => p.id !== action.id), incSeance};
     case types.DECREMENT_SEANCE_PLACES:
-      let decSeance = state.filter(p => p.id === action.id);
+      let decSeance = state.schedules.filter(p => p.id === action.id);
       decSeance.places_available--;
-      return {...state.filter(p => p.id !== action.id), decSeance};
+      return {...state.schedules.filter(p => p.id !== action.id), decSeance};
     default:
       return {...state};
   }

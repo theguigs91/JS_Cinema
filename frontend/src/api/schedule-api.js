@@ -5,8 +5,8 @@
 import axios from 'axios';
 import store from '../store';
 import 'isomorphic-fetch'
-import { addScheduleSuccess, getSchedulesSuccess, getSchedulesFromDateSuccess, getSchedulesOfAMovieSuccess, deleteScheduleSuccess } from '../actions/schedule-actions';
 import * as movieApi from './movie-api'
+import * as scheduleActions from '../actions/schedule-actions';
 
 let config = {
   headers: {
@@ -19,7 +19,7 @@ let config = {
 export function addSchedule(schedule) {
   return axios.post('http://localhost:8080/seance', schedule, config)
     .then(response => {
-      store.dispatch(addScheduleSuccess(schedule));
+      store.dispatch(scheduleActions.addScheduleSuccess(schedule));
       return response;
     }).catch(err => {
       console.log(err.message);
@@ -31,40 +31,50 @@ export function addSchedule(schedule) {
  */
 export function getAllSchedules() {
   return fetch('http://localhost:8080/seance')
-      .then(response => response.json())
-      .then(json => {
-          json.map(el => {
-                movieApi.getMovieById(el.movie_id)
-                  .then((m) => {
-                      el["movie_name"] = m[0].name;
-                      el["movie_duration"] = m[0].time;
-                      el["movie_realisator"] = m[0].realisator;
-                      el["movie_genre"] = m[0].genre;
-                      el["movie_description"] = m[0].description;
-                  })
-                   .then(() => store.dispatch(addScheduleSuccess(el)))
+    .then(response => response.json())
+    .then(json => {
+      json.map(el => {
+        movieApi.getMovieById(el.movie_id)
+          .then((m) => {
+            el["movie_name"] = m[0].name;
+            el["movie_duration"] = m[0].time;
+            el["movie_realisator"] = m[0].realisator;
+            el["movie_genre"] = m[0].genre;
+            el["movie_description"] = m[0].description;
           })
-          console.log("Json with movie:", JSON.stringify(json));
-          store.dispatch(getSchedulesSuccess(json));
+           .then(() => store.dispatch(addScheduleSuccess(el)))
+      });
+      console.log("Json with movie:", JSON.stringify(json));
+      store.dispatch(scheduleActions.getSchedulesSuccess(json));
 
-          return json;
-      })
+      return json;
+    })
       //.then((json) => { console.log(json);})
 }
 
 export function getAllSchedulesOfAMovie(movie_id, date) {
-    return fetch("http://localhost:8080/seance/movie/" + movie_id + "/date/" + date)
-        .then(response => response.json())
-        .then((json) =>{
-            store.dispatch(getSchedulesOfAMovieSuccess(json))
-            return json
-        })
+  return fetch("http://localhost:8080/seance/movie/" + movie_id + "/date/" + date)
+    .then(response => response.json())
+    .then((json) =>{
+      store.dispatch(scheduleActions.getSchedulesOfAMovieSuccess(json));
+      return json
+    })
 }
+
 export function getAllSchedulesFromDate(date) {
   return fetch("http://localhost:8080/seance/date/" + date)
     .then(response => response.json())
-    .then((json) =>{
-      store.dispatch(getSchedulesFromDateSuccess(json))
+    .then((json) => {
+      store.dispatch(scheduleActions.getSchedulesFromDateSuccess(json));
+      return json
+  })
+}
+
+export function getSchedulesFromUserId(userId) {
+  return fetch("http://localhost:8080/seance/user/" + userId)
+    .then(response => response.json())
+    .then((json) => {
+      store.dispatch(scheduleActions.getSchedulesSuccess(json));
       return json
     })
 }
@@ -75,7 +85,7 @@ export function getAllSchedulesFromDate(date) {
 export function searchSchedules(query = '') {
   return axios.get('http://localhost:8080/seance?q='+ query)
     .then(response => {
-      store.dispatch(getSchedulesSuccess(response.data));
+      store.dispatch(scheduleActions.getSchedulesSuccess(response.data));
       return response;
     });
 }
@@ -86,7 +96,7 @@ export function searchSchedules(query = '') {
 export function deleteSchedule(scheduleId) {
   return axios.delete('http://localhost:8080/seance/' + scheduleId)
     .then(response => {
-      store.dispatch(deleteScheduleSuccess(scheduleId));
+      store.dispatch(scheduleActions.deleteScheduleSuccess(scheduleId));
       return response;
     });
 }
@@ -94,23 +104,23 @@ export function deleteSchedule(scheduleId) {
 export function updateSchedule(schedule) {
   return axios.put('http://localhost:8080/seance', schedule, config)
     .then(response => {
-      store.dispatch(schedule_actions.updateSchedule(schedule));
-      return json;
+      store.dispatch(scheduleActions.updateSchedule(schedule));
+      return response;
     })
 }
 
 export function incrementSeancePlaces(seanceId) {
   return axios.get('http://localhost:8080/seance/id/' + seanceId + '/increment', config)
     .then(response => {
-      store.dispatch(schedule_actions.incrementSeancePlaces(seanceId));
-      return json;
+      store.dispatch(scheduleActions.incrementSeancePlaces(seanceId));
+      return response;
     })
 }
 
 export function decrementSeancePlaces(seanceId) {
   return axios.get('http://localhost:8080/seance/id/' + seanceId + '/decrement', config)
     .then(response => {
-      store.dispatch(schedule_actions.decrementSeancePlaces(seanceId));
-      return json;
+      store.dispatch(scheduleActions.decrementSeancePlaces(seanceId));
+      return response;
     })
 }

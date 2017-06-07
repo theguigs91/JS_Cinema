@@ -28,7 +28,7 @@ const validate = function(schedule) {
 const ScheduleCreationContainer = React.createClass({
 
   componentWillMount: function() {
-    movieApi.getMovies();
+    movieApi.getAllMovies();
     roomApi.getRooms();
   },
 

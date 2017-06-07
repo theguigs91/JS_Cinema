@@ -1,26 +1,17 @@
 import * as types from './action-types';
 
-export function addReservation(reservation) {
+export function addReservationSuccess(reservation) {
   return {
     type: types.ADD_RESERVATION_SUCCESS,
-    id: reservation.id,
-    user_id: reservation.user_id,
-    schedule_id: reservation.schedule_id
+    reservation
   }
 }
 
-export function deleteReservation(id) {
+export function deleteReservationSuccess(id) {
   return {
     type: types.DELETE_RESERVATION_SUCCESS,
     id: id
   }
-}
-
-export function displayReservations(payload) {
-  return {
-    type: types.DISPLAY_RESERVATIONS,
-    payload
-  };
 }
 
 export function getReservationsSuccess(reservations) {
