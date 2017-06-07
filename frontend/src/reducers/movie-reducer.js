@@ -19,12 +19,14 @@ const movieReducer = function (state = initialState, action) {
             return {...state, movies: action.payload};
         case types.GET_ALL_MOVIES_FROM_DATE:
             return {...state, movies: action.payload};
+        case types.GET_MOVIES_SUCCESS:
+            return state;
         case types.GET_MOVIE_BY_ID:
-            return state
+            return state;
         case types.GET_MOVIE_BY_NAME:
-            return state
+            return state;
         case types.UPDATE_MOVIE_BY_ID:
-            return state
+            return state;
         default:
             return state;
     }

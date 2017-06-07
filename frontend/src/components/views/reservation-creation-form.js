@@ -2,7 +2,7 @@
  * Created by kelly on 06/06/17.
  */
 import React, { PropTypes } from 'react';
-import MovieInfo from './movie-info';
+import MovieInfo from './seance-info';
 
 const ReservationCreationForm = React.createClass({
 
@@ -25,10 +25,12 @@ const ReservationCreationForm = React.createClass({
         <div className="section-margin-top">
           <div className="row confirm-reservation">
 
-            <MovieInfo
-              seance={this.props.seance}
-              movie={this.props.movie}
-            />
+            <div className="col-sm-8 col-xs-12">
+              <SeanceInfo
+                seance={this.props.seance}
+                movie={this.props.movie}
+              />
+            </div>
 
             <div className="col-sm-4 col-xs-12">
               <div className="tm-movies-box-1">
