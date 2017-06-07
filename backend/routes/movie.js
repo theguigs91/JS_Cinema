@@ -198,7 +198,7 @@ router.get('/user/:id', function(req, res, next) {
 
   let param = [req.params.id];
   let queryString =
-    'SELECT district m.id, m.name, m.realisator, m.genre, m.time \ '
+    'SELECT distinct m.id, m.name, m.realisator, m.genre, m.time \ '
     + 'FROM movie AS m \ '
     + 'INNER JOIN seance AS s ON s.movie_id = m.id \ '
     + 'INNER JOIN reservation as r ON r.seance_id = s.id \ '

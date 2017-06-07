@@ -212,8 +212,9 @@ router.get('/user/:id', function(req, res, next) {
 
   let param = [req.params.id];
   let queryString =
-    'SELECT district s.id, s.room, s.movie_id, s.date, s.time \ '
+    'SELECT distinct s.id, room.numero AS room_numero, s.movie_id, s.date, s.time \ '
     + 'FROM seance AS s \ '
+    + 'INNER JOIN room as room ON room.id = s.room_id \ '
     + 'INNER JOIN reservation as r ON r.seance_id = s.id \ '
     + 'WHERE r.user_id = ?';
 

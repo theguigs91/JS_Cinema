@@ -126,14 +126,20 @@ router.put('/id/:id', function(req, res) {
 });
 
 /**
- * Get reservations from a given user id
+ * Get reservations from a given user id, with movie and seance information
  */
 router.get('/user/:id', function(req, res, next) {
   res.setHeader("Content-Type", "application/json");
 
   let param = [req.params.id];
+
   let queryString =
-    'SELECT * FROM reservation WHERE user_id = ?';
+    'SELECT r.id, s.date AS seance_date, s.time AS seance_time, room.numero AS room_numero, m.name AS movie_name, m.realisator AS movie_realisator \ '
+  + 'FROM reservation AS r \ '
+  + 'INNER JOIN seance AS s ON r.seance_id = s.id \ '
+  + 'INNER JOIN room AS room ON s.room_id = room.id \ '
+  + 'INNER JOIN movie AS m ON s.movie_id = m.id \ '
+  + 'WHERE r.user_id = ?';
 
   connection.query(queryString, param, function(err, rows, fields) {
     if (!err) {
