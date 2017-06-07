@@ -52,7 +52,7 @@ export function getReservations() {
  * Search reservations
  */
 
-export function searchReservations(query = '') {
+export function searchReservationsSuccess(query = '') {
   return axios.get('http://localhost:8080/reservation?q='+ query)
     .then(response => {
       store.dispatch(getReservationsSuccess(response.data));

@@ -5,6 +5,31 @@ import 'isomorphic-fetch'
 import store from '../store'
 import * as movie_actions from '../actions/movie-actions'
 
+
+let config = {
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  },
+  mode: 'no-cors'
+};
+
+/**
+ * Add movie
+ */
+export function addMovie(movie) {
+
+  console.log("movie-api: addMovie ", movie);
+
+  return axios.post('http://localhost:8080/movie', movie, config)
+    .then(response => {
+      store.dispatch(addMovieSuccess(response.data));
+      return response;
+    }).catch(err => {
+      console.log(err.message);
+    });
+}
+
 export function getAllMovies() {
     return fetch('http://localhost:8080/movie')
         /*.then(response => {
@@ -47,4 +72,26 @@ export function updateMovieById(id) {
             store.dispatch(movie_actions.updateMovieById(json))
             return json;
         })
+}
+
+/**
+ * Search movies
+ */
+export function searchMovies(query = '') {
+  return axios.get('http://localhost:8080/movie?q='+ query)
+    .then(response => {
+      store.dispatch(getMoviesSuccess(response.data));
+      return response;
+    });
+}
+
+/**
+ * Delete a movie
+ */
+export function deleteMovie(movieId) {
+  return axios.delete('http://localhost:8080/movie/' + movieId)
+    .then(response => {
+      store.dispatch(deleteMovieSuccess(movieId));
+      return response;
+    });
 }

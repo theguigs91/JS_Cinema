@@ -1,7 +1,7 @@
 import React from 'react';
 import * as types from '../actions/action-types';
 
-const initialscheduleState = {
+const initialScheduleState = {
   schedules: []
 };
 
