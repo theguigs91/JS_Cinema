@@ -77,6 +77,27 @@ router.get('/movie/:movie_id/date/:date', function(req, res, next) {
   });
 });
 
+/**
+ * Get all seances from a given date
+ */
+router.get('/date/:date', function(req, res, next) {
+
+  let queryString = 'SELECT * FROM seance WHERE date = ?';
+  let param = [req.params.date];
+
+  connection.query(queryString, param, function(err, rows, fields) {
+    if (!err) {
+      res.status(200)
+        .json(rows)
+        .end();
+    }
+    else {
+      res.status(400).send(JSON.stringify({message: err}));
+      console.log("Error while performing query" + err);
+    }
+  });
+});
+
 router.get('/id/:id', function(req, res, next) {
   res.setHeader("Content-Type", "application/json");
 
