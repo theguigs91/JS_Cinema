@@ -67,7 +67,10 @@ router.get('/id/:id', function(req, res, next) {
 
     connection.query(queryString, param, function(err, rows, fields) {
         if (!err) {
-            res.status(200).send(JSON.stringify({rows: rows}));
+            res.status(200);
+            res.json(rows);
+            res.end();
+            //res.status(200).send(JSON.stringify({rows: rows}));
         }
         else {
             res.status(400).send(JSON.stringify({message: err}));
@@ -158,5 +161,27 @@ router.post('/', jsonParser, function (req, res) {
   });
 });
 
+/*
+ GET all movies from a date (ex: 2017-05-16)
+ */
+
+router.get('/date/:date', function(req, res, next) {
+    res.setHeader("Content-Type", "application/json");
+
+    //let date = '%' + req.params.date + '%';
+
+    let param = [req.params.date];
+    let queryString = 'SELECT * FROM movie AS m JOIN seance AS s ON s.movie_id = m.id WHERE s.date = ?';
+
+    connection.query(queryString, param, function(err, rows, fields) {
+        if (!err) {
+            res.status(200).send(JSON.stringify({rows: rows}));
+        }
+        else {
+            res.status(400).send(JSON.stringify({message: err}));
+            console.log("Error while performing query" + err);
+        }
+    });
+});
 
 module.exports = router;
