@@ -6,11 +6,12 @@
  */
 import React from 'react'
 import { connect } from 'react-redux'
-import SeanceItem from '../../components/seanceItem'
-import HourButton from '../../components/hourButton'
+import SeanceItem from '../../components/views/seanceItem'
+import HourButtonList from '../../components/views/HourButtonList'
 import * as scheduleApi from '../../api/schedule-api'
 import * as movieApi from '../../api/movie-api'
 import _ from 'lodash';
+import ReactDOM from 'react-dom';
 
 export class SeanceList extends React.Component {
 
@@ -33,17 +34,16 @@ export class SeanceList extends React.Component {
         console.log("Rendering..");
 
         console.log("props movies: ", JSON.stringify(this.props.movies));
-        console.log("props schedules: ", (this.props.schedules.filter(el => el.movie_id == 3)));
+        console.log("props schedules: ", (this.props.schedules));
 
         return (
             <div>
                 {this.props.movies.map(movie =>
-                    <SeanceItem
-                        key={movie.id}
-                        data = {movie}
-                        schedules = {this.props.schedules.filter(el=> el.movie_id == movie.id)}
-                    />
-
+                  <SeanceItem
+                    key = {movie.id}
+                    data = {movie}
+                    schedules = {this.props.schedules.filter(el => el.movie_id == movie.id)}
+                  />
                 )}
             </div>
         )
