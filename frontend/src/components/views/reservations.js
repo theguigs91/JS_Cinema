@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import Reservation from './reservation';
 import * as reservationApi from '../../api/reservation-api';
 import * as scheduleApi from '../../api/schedule-api';
-import { connect } from 'react-redux';
 
 const Reservations = React.createClass({
 
