@@ -6,7 +6,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import SearchMovie from '../views/search-movie-form'
 import * as movieApi from '../../api/movie-api'
-import ResultList from '../views/resultList'
 import ReactDOM from 'react-dom'
 import store from '../../store';
 import { Provider } from 'react-redux'
