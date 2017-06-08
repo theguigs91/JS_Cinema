@@ -217,4 +217,24 @@ router.get('/user/:id', function(req, res, next) {
   });
 });
 
+/**
+ * Delete a movie from id
+ */
+router.delete('/id/:id', function(req, res, next) {
+  res.setHeader("Content-Type", "application/json");
+
+  let param = [req.params.id];
+  let queryString = 'DELETE FROM movie WHERE id = ?';
+  connection.query(queryString, param, function(err, rows, fields) {
+    if (!err) {
+      return res.status(201).send(JSON.stringify({message: "Movie deleted"}));
+    }
+    else {
+      res.status(400).send(JSON.stringify({message: err}));
+      console.log("Error while performing query" + err);
+    }
+  });
+});
+
+
 module.exports = router;

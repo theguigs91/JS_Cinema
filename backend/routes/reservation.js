@@ -134,7 +134,7 @@ router.get('/user/:id', function(req, res, next) {
   let param = [req.params.id];
 
   let queryString =
-    'SELECT r.id, s.date AS seance_date, s.time AS seance_time, room.numero AS room_numero, m.name AS movie_name, m.realisator AS movie_realisator \ '
+    'SELECT r.id, s.id AS seance_id, s.date AS seance_date, s.time AS seance_time, room.numero AS room_numero, m.name AS movie_name, m.realisator AS movie_realisator \ '
   + 'FROM reservation AS r \ '
   + 'INNER JOIN seance AS s ON r.seance_id = s.id \ '
   + 'INNER JOIN room AS room ON s.room_id = room.id \ '
@@ -146,6 +146,25 @@ router.get('/user/:id', function(req, res, next) {
       res.status(200);
       res.json(rows);
       res.end();
+    }
+    else {
+      res.status(400).send(JSON.stringify({message: err}));
+      console.log("Error while performing query" + err);
+    }
+  });
+});
+
+/**
+ * Delete a reservation from id
+ */
+router.delete('/id/:id', function(req, res, next) {
+  res.setHeader("Content-Type", "application/json");
+
+  let param = [req.params.id];
+  let queryString = 'DELETE FROM reservation WHERE id = ?';
+  connection.query(queryString, param, function(err, rows, fields) {
+    if (!err) {
+      return res.status(201).send(JSON.stringify({message: "Reservation deleted"}));
     }
     else {
       res.status(400).send(JSON.stringify({message: err}));
