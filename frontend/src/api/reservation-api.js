@@ -85,7 +85,7 @@ export function searchReservationsSuccess(query = '') {
 export function deleteReservation(reservation) {
   console.log('[ReservationAPI.deleteReservation] ', reservation);
 
-  return axios.delete('http://localhost:8080/reservation/' + reservation.id)
+  return axios.delete('http://localhost:8080/reservation/id/' + reservation.id)
     .then(response => {
       console.log('[ReservationAPI] Before dispatch. Current state:');
       console.log(store.getState());

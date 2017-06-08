@@ -18,23 +18,28 @@ const ReservationCreationContainer = React.createClass({
       "login": "kelly",
       "password": "root"
     };
-    this.movie = {
-      "id": 5,
-      "name": "Your name",
-      "realisator": "Makoto Shinkai",
-      "time": "01:46:00",
+    this.movie =   {
+      "id": 4,
+      "name": "MOI, MOCHE ET MÉCHANT 3",
+      "realisator": "Kyle Balda",
+      "time": "01:25:00",
       "genre": "Animation",
-      "description": "Mitsuha, adolescente coincée dans une famille traditionnelle, rêve de quitter ses montagnes natales pour découvrir la vie trépidante de Tokyo. Elle est loin d’imaginer pouvoir vivre l’aventure urbaine dans la peau de… Taki, un jeune lycéen vivant à Tokyo, occupé entre son petit boulot dans un restaurant italien et ses nombreux amis. À travers ses rêves, Mitsuha se voit littéralement propulsée dans la vie du jeune garçon au point qu’elle croit vivre la réalité... Tout bascule lorsqu’elle réalise que Taki rêve également d’une vie dans les montagnes, entouré d’une famille traditionnelle… dans la peau d’une jeune fille ! Une étrange relation s’installe entre leurs deux corps qu’ils accaparent mutuellement. Quel mystère se cache derrière ces rêves étranges qui unissent deux destinées que tout oppose et qui ne se sont jamais rencontrées ?",
-      "date": "2016-12-27T23:00:00.000Z"
+      "description": "Dans ce troisième volet, Balthazar Bratt, un ancien enfant star reste obnubilé par le rôle qu'il a interprété dans les années 80. Il va devenir l'ennemi juré de Gru.",
+      "date": "2017-07-04T22:00:00.000Z"
     };
     this.seance = {
+      "id": 12,
+      "room_id": 1,
+      "movie_id": 4,
+      "places_available": 380,
+      "date": "2017-06-24T22:00:00.000Z",
+      "time": "16:10:00"
+    };
+    this.room = {
       "id": 1,
-      "room_id": 6,
-      "movie_id": 5,
-      "places_available": 178,
-      "date": "2017-06-11T22:00:00.000Z",
-      "time": "13:30:00"
-    }
+      "numero": 1,
+      "places_max": 380
+    };
   },
 
   validate(reservation) {
@@ -93,6 +98,7 @@ const ReservationCreationContainer = React.createClass({
         addReservation={this.addReservation}
         movie={this.movie}
         seance={this.seance}
+        room={this.room}
         updateTotalPrice={this.updateTotalPrice}
         totalPrice={this.totalPrice}
         ref="child"

@@ -26,6 +26,10 @@ const Reservation = React.createClass({
     }
   },
 
+  getReservation: function() {
+    return this.props.reservation;
+  },
+
   render: function() {
 
     return (
