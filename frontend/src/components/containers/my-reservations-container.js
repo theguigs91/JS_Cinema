@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 const MyReservationsContainer = React.createClass({
 
-  componentWillMount: function() {
+  componentDidMount: function() {
     // TODO: To replace by current user id.
     let userId = 4;
     getReservationsFromUserId(userId);

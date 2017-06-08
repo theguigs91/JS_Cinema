@@ -1,16 +1,27 @@
 import React, { PropTypes } from 'react';
 import Reservation from './reservation';
 import * as reservationApi from '../../api/reservation-api';
+import * as scheduleApi from '../../api/schedule-api';
+import { connect } from 'react-redux';
 
 const Reservations = React.createClass({
 
-  deleteReservation: function() {
-    reservationApi.deleteReservation(this.refs.child.value);
+  deleteReservation: function(reservation) {
+    console.log('deleteReservation ', reservation);
+    reservationApi.deleteReservation(reservation).then(() => {
+      console.log('incrementSeancePlaces');
+      scheduleApi.incrementSeancePlaces(reservation.seance_id).then(() => {
+        console.log('this.setState');
+        this.setState({deleted: reservation.id});
+      });
+    });
   },
 
   render: function() {
+    console.log('[Reservations] Rendering ... ', this.props.reservations);
 
     if (!_.isEmpty(this.props.reservations)) {
+      console.log('is not empty');
       return (
         <section className="container tm-home-section-1" id="more">
           <div className="section-margin-top">
@@ -18,10 +29,9 @@ const Reservations = React.createClass({
               this.props.reservations.map(reservation => {
                 return (
                   <Reservation
-                    onClickButtonFunc={this.deleteReservation}
+                    onClickButtonFunc={this.deleteReservation.bind(null, reservation)}
                     reservation={reservation}
                     buttonGlyphicon="glyphicon-remove"
-                    value={JSON.stringify(reservation)}
                     ref="child"
                   />
                 )
@@ -32,6 +42,7 @@ const Reservations = React.createClass({
       );
     }
     else {
+      console.log('is empty');
       return (
         <section className="container tm-home-section-1" id="more">
           <div className="section-margin-top">
