@@ -5,6 +5,7 @@ import store from './store';
 // TODO: MUIThemeProvider
 import { App } from './router';
 
+// State will "flow" down from here thanks to the Provider component
 
 render(
   <Provider store={store}>
