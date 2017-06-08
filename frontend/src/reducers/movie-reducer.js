@@ -20,7 +20,7 @@ const movieReducer = function (state = initialState, action) {
       case types.GET_ALL_MOVIES_FROM_DATE:
           return {...state, movies: action.payload};
       case types.GET_MOVIES_SUCCESS:
-          return state;
+          return {...state, movies: action.payload};
       case types.GET_MOVIE_BY_ID:
           return state;
       case types.GET_MOVIE_BY_NAME:
@@ -30,6 +30,6 @@ const movieReducer = function (state = initialState, action) {
       default:
           return state;
   }
-}
+};
 
 export default movieReducer
