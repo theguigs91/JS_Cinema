@@ -4,26 +4,15 @@
 
 import React from 'react';
 
-export default React.createClass({
+class MovieCreationForm extends React.Component {
 
-  getMovie: function() {
-    return {
-      name: this.refs.title.value,
-      realisator: this.refs.realisator.value,
-      date: this.refs.date.value,
-      time: this.refs.time.value,
-      genre: this.refs.genre.value,
-      description: this.refs.synopsis.value,
-    };
-  },
-
-  render: function() {
+  render() {
 
     return (
       <section className="container tm-home-section-1" id="more">
         <div className="section-margin-top">
           <div className="row tm-schedules-box">
-            <form onSubmit={this.props.addMovie} className="movie-creation">
+            <form onSubmit={this.props.addMovie.bind(this)} className="movie-creation">
               <div className="tm-schedules-box-info">
                 <div className="tm-schedules-box-info-left">
                   <div className="form-group">
@@ -114,4 +103,6 @@ export default React.createClass({
       </section>
     );
   }
-});
+}
+
+export default MovieCreationForm;

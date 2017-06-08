@@ -24,6 +24,7 @@ export class MovieList extends React.Component {
             key={movie.id}
             data = {movie}
             buttonChild="Séances"
+            buttonLink="/schedules"
           />
         )}
       </div>

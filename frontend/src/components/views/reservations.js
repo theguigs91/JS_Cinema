@@ -3,9 +3,9 @@ import Reservation from './reservation';
 import * as reservationApi from '../../api/reservation-api';
 import * as scheduleApi from '../../api/schedule-api';
 
-const Reservations = React.createClass({
+class Reservations extends React.Component {
 
-  deleteReservation: function(reservation) {
+  deleteReservation(reservation) {
     console.log('deleteReservation ', reservation);
     reservationApi.deleteReservation(reservation).then(() => {
       console.log('incrementSeancePlaces');
@@ -14,9 +14,9 @@ const Reservations = React.createClass({
         this.setState({deleted: reservation.id});
       });
     });
-  },
+  }
 
-  render: function() {
+  render() {
     console.log('[Reservations] Rendering ... ', this.props.reservations);
 
     if (!_.isEmpty(this.props.reservations)) {
@@ -50,7 +50,7 @@ const Reservations = React.createClass({
       );
     }
   }
-});
+}
 
 Reservations.propTypes = {
   reservations: PropTypes.array.isRequired

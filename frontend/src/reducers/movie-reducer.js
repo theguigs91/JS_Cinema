@@ -11,25 +11,27 @@ const movieReducer = function (state = initialState, action) {
   console.log("Action payload: ", action.payload);
 
   switch (action.type) {
-      case 'ADD_MOVIE':
-          return [...state, {movies: action.payload}];
-    case 'DELETE_MOVIE':
-          return {...state, movies: state.filter(movie => movie.id !== action.id)};
-      case types.GET_ALL_MOVIES:
-          return {...state, movies: action.payload};
-      case types.GET_ALL_MOVIES_FROM_DATE:
-          return {...state, movies: action.payload};
-      case types.GET_MOVIES_SUCCESS:
-          return {...state, movies: action.payload};
-      case types.GET_MOVIE_BY_ID:
-          return state;
-      case types.GET_MOVIE_BY_NAME:
-          return state;
-      case types.UPDATE_MOVIE_BY_ID:
-          return state;
-      default:
-          return state;
-    }
+    case types.ADD_MOVIE_SUCCESS:
+      return [...state, {movies: action.payload}];
+    case types.DELETE_MOVIE_SUCCESS:
+      return {...state, movies: state.filter(movie => movie.id !== action.id)};
+    case types.GET_ALL_MOVIES:
+      return {...state, movies: action.payload};
+    case types.GET_ALL_MOVIES_FROM_DATE:
+      return {...state, movies: action.payload};
+    case types.GET_MOVIES_SUCCESS:
+      return {...state, movies: action.payload};
+    case types.GET_MOVIE_BY_ID:
+      return {...state, movie: action.payload};
+    case types.GET_MOVIE_BY_NAME:
+      return {...state, movie: action.payload};
+    case types.UPDATE_MOVIE_BY_ID:
+      return {...state, movie: action.payload};
+    case types.UPDATE_MOVIE_SUCCESS:
+      return {...state, movie: action.movie};
+    default:
+      return state;
+  }
 };
 
 export default movieReducer

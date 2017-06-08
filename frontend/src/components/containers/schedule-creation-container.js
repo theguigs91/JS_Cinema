@@ -25,14 +25,23 @@ const validate = function(schedule) {
   return errors;
 };
 
-const ScheduleCreationContainer = React.createClass({
+class ScheduleCreationContainer extends React.Component {
 
-  componentWillMount: function() {
+  componentWillMount() {
     movieApi.getAllMovies();
     roomApi.getRooms();
-  },
 
-  getComputedSchedules: function(movie) {
+    // Initialize schedules (computing schedules from first movie)
+    if (this.props.movies.length !== 0) {
+      this.schedules = ScheduleCreationContainer.getComputedSchedules(this.props.movies[0]);
+      this.setState({schedules: this.schedules});
+    }
+    else
+      this.schedules = [];
+
+  }
+
+  static getComputedSchedules(movie) {
     console.log('getComputedSchedules', movie);
     console.log(movie["time"]);
     let min = (10 - movie.time.split(':')[1] % 10) * 60; // Minutes to add for celling duration (01:34 -> 01:40)
@@ -48,19 +57,27 @@ const ScheduleCreationContainer = React.createClass({
 
     console.log("Computed schedules: ", schedules);
     return schedules;
-  },
+  }
 
   /**
    * Update schedules according to the selected movie.
    */
-  handleMovieChange: function(event) {
-    this.setState({movie: event.target.value});
-  },
-
-  addSeance: function(event) {
+  onChangeMovie(event) {
     event.preventDefault();
 
-    let formInfos = this.refs.child.getFormInfos();
+    this.schedules = [];
+
+    // Compute schedules of selected movie
+    if (this.props.movies.length !== 0)
+      this.schedules = ScheduleCreationContainer.getComputedSchedules(this.getMovie());
+
+    this.setState({movie: event.target.value});
+  }
+
+  addSeance(event) {
+    event.preventDefault();
+
+    let formInfos = this.getFormInfos();
     console.log('formInfos: ', formInfos);
     let errors = validate(formInfos);
     if (_.isEmpty(errors)) {
@@ -92,29 +109,22 @@ const ScheduleCreationContainer = React.createClass({
     else {
       console.log(errors);
     }
-  },
+  }
 
-  render: function() {
+  render() {
     console.log('ScheduleCreationContainer.render');
-    let schedules = [];
 
-    // Compute schedules of selected movie
-    if (this.props.movies.length !== 0) {
-      let movie = (this.refs.child.getMovie()) ? this.refs.child.getMovie() : this.props.movies[0];
-      schedules = this.getComputedSchedules(movie);
-    }
     return (
       <ScheduleCreationForm
         addSchedule={this.addSeance}
         movies={this.props.movies}
         rooms={this.props.rooms}
-        schedules={schedules}
-        handleMovieChange={this.handleMovieChange}
-        ref="child"
+        schedules={this.schedules}
+        onChangeMovie={this.onChangeMovie}
       />
     )
   }
-});
+}
 
 const mapStateToProps = store => {
   return {

@@ -5,22 +5,22 @@ import { getSchedulesFromUserId } from '../../api/schedule-api';
 import { getReservationsFromUserId } from '../../api/reservation-api';
 import { connect } from 'react-redux';
 
-const MyReservationsContainer = React.createClass({
+class MyReservationsContainer extends React.Component {
 
-  componentDidMount: function() {
+  static componentDidMount() {
     // TODO: To replace by current user id.
     let userId = 4;
     getReservationsFromUserId(userId);
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <Reservations
         reservations={this.props.reservations}
       />
     );
   }
-});
+}
 
 const mapStateToProps = store => {
   return {

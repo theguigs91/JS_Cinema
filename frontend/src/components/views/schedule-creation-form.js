@@ -4,25 +4,27 @@
 
 import React, { PropTypes } from 'react';
 import Checkbox from './checkbox';
+import _ from 'lodash';
 
-const ScheduleCreationForm = React.createClass({
+class ScheduleCreationForm extends React.Component {
 
-  componentWillMount: function() {
+  componentWillMount() {
     this.selectedSchedulesCheckboxes = new Set();
-  },
+    this.schedules = _.isEmpty(this.props.schedules) ? [] : this.props.schedules;
+  }
 
-  toggleSchedulesCheckbox: function(schedule) {
+  toggleSchedulesCheckbox(schedule) {
     if (this.selectedSchedulesCheckboxes.has(schedule))
       this.selectedSchedulesCheckboxes.delete(schedule);
     else
       this.selectedSchedulesCheckboxes.add(schedule);
-  },
+  }
 
   /**
    * Get the value of movie (input)
    * We use JSON.parse() because it has been JSON.stringify()
    */
-  getMovie: function() {
+  getMovie() {
     if (!this.refs.movie.value)
       return undefined;
     else {
@@ -30,17 +32,17 @@ const ScheduleCreationForm = React.createClass({
       console.log('getMovie: ', this.refs.movie.value, movie);
       return movie;
     }
-  },
+  }
 
   /**
    * Get the value of room (input)
    * We use JSON.parse() because it has been JSON.stringify()
    */
-  getRoom: function() {
+  getRoom() {
     return JSON.parse(this.refs.room.value);
-  },
+  }
 
-  getFormInfos: function() {
+  getFormInfos() {
 
     console.log('getFormInfos: ', this.selectedSchedulesCheckboxes);
 
@@ -51,7 +53,7 @@ const ScheduleCreationForm = React.createClass({
       date_start: this.refs.date_start.value,
       date_end: this.refs.date_end.value
     };
-  },
+  }
 
   /**
    * {
@@ -68,17 +70,17 @@ const ScheduleCreationForm = React.createClass({
    * @returns {XML}
    */
 
-  render: function() {
+  render() {
     return (
       <section className="container tm-home-section-1" id="more">
         <div className="section-margin-top">
           <div className="row tm-schedules-box">
-            <form onSubmit={this.props.addSchedule} method="post">
+            <form onSubmit={this.props.addSchedule.bind(this)} method="post">
               <div className="tm-schedules-box-info">
                 <div className="tm-schedules-box-info-left">
                   <div className="form-group">
                     <label for="movie-title">Nom du film</label>
-                    <select className="form-control" ref="movie" onChange={this.props.handleMovieChange} id="movie-title">
+                    <select className="form-control" ref="movie" onChange={this.props.onChangeMovie.bind(this)} id="movie-title">
                       {
                         this.props.movies.map(movie => {
                           return (
@@ -111,7 +113,7 @@ const ScheduleCreationForm = React.createClass({
                       <div className="col-sm-6">
                         <span className="schedules-title row">En VO, Numérique</span>
                         {
-                          this.props.schedules.map(schedule => {
+                          this.schedules.map(schedule => {
                             return (
                               <Checkbox
                                 label={schedule}
@@ -152,7 +154,7 @@ const ScheduleCreationForm = React.createClass({
       </section>
     );
   }
-});
+}
 
 
 ScheduleCreationForm.propTypes = {
@@ -160,7 +162,7 @@ ScheduleCreationForm.propTypes = {
   movies: PropTypes.array.isRequired,
   rooms: PropTypes.array.isRequired,
   schedules: PropTypes.array.isRequired,
-  handleMovieChange: PropTypes.func.isRequired
+  onChangeMovie: PropTypes.func.isRequired
 };
 
 export default ScheduleCreationForm;

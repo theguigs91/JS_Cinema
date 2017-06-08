@@ -4,21 +4,21 @@
 import React, { PropTypes } from 'react';
 import SeanceInfo from './seance-info';
 
-const ReservationCreationForm = React.createClass({
+class ReservationCreationForm extends React.Component {
 
-  getReservation: function() {
+  getReservation() {
     return {
       //user_id: this.refs.user_id.value,
       //schedule_id: this.refs.schedule_id.value,
       number_seats: this.refs.number_seats.value
     };
-  },
+  }
 
-  getNumberSeats: function() {
+  getNumberSeats() {
     return this.refs.number_seats.value;
-  },
+  }
 
-  render: function() {
+  render() {
 
     return (
       <section className="container tm-home-section-1" id="more">
@@ -61,7 +61,7 @@ const ReservationCreationForm = React.createClass({
       </section>
     );
   }
-});
+}
 
 
 ReservationCreationForm.propTypes = {

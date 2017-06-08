@@ -4,6 +4,7 @@
 import 'isomorphic-fetch'
 import store from '../store'
 import * as movie_actions from '../actions/movie-actions'
+import axios from 'axios';
 
 let config = {
   headers: {
@@ -52,8 +53,17 @@ export function getMovieById(id) {
   return fetch('http://localhost:8080/movie/id/' + id)
     .then(response => response.json())
     .then(json => {
-      console.log("movie: ", json);
-      store.dispatch(movie_actions.getMovieById(json));
+
+      console.log('[MovieAPI].getMovieById Before dispatch. Current state:');
+      console.log(store.getState());
+      console.log('--------------');
+
+      store.dispatch(movie_actions.getMovieById(json[0]));
+
+      console.log('[MovieAPI].getMovieById After dispatch. Current state:');
+      console.log(store.getState());
+      console.log('--------------');
+
       return json;
     })
 }
@@ -87,6 +97,14 @@ export function updateMovieById(id) {
         store.dispatch(movie_actions.updateMovieById(json));
         return json;
     })
+}
+
+export function updateMovie(movie) {
+  return axios.put('http://localhost:8080/movie/')
+    .then(response => {
+      store.dispatch(updateMovieSuccess(movie));
+      return response;
+    });
 }
 
 /**

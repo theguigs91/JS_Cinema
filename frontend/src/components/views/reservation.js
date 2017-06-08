@@ -6,9 +6,9 @@ import React, { PropTypes } from 'react';
 import SeanceInfo from './seance-info';
 import * as CONST from '../../const';
 
-const Reservation = React.createClass({
+class Reservation extends React.Component {
 
-  componentWillMount: function() {
+  componentWillMount() {
 
     let reservation = this.props.reservation;
 
@@ -24,13 +24,13 @@ const Reservation = React.createClass({
     this.room = {
       numero: reservation.room_numero
     }
-  },
+  }
 
-  getReservation: function() {
+  getReservation() {
     return this.props.reservation;
-  },
+  }
 
-  render: function() {
+  render() {
 
     return (
       <div className="row reservation">
@@ -58,7 +58,7 @@ const Reservation = React.createClass({
       </div>
     );
   }
-});
+}
 
 
 /**

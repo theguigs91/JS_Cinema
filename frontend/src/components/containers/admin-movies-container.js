@@ -1,23 +1,23 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { connect, Link } from 'react-redux'
 import MovieItem from '../views/movieItem'
 import * as movieApi from '../../api/movie-api'
 
-const AdminMoviesContainer = React.createClass({
+class AdminMoviesContainer extends React.Component {
 
-  componentDidMount: function() {
+  static componentDidMount() {
     movieApi.getAllMovies();
-  },
+  }
 
-  getEditButton: function() {
+  static getEditButton() {
     return (
       <div>
-        <span className='glyphicon glyphicon-pencil' /> Modifier
+          Modifier <span className='glyphicon glyphicon-pencil' />
       </div>
     );
-  },
+  }
 
-  render: function(){
+  render(){
     console.log("Rendering..");
     console.log("props movies: ", this.props.movies);
 
@@ -28,12 +28,13 @@ const AdminMoviesContainer = React.createClass({
             key={movie.id}
             data={movie}
             buttonChild={this.getEditButton()}
+            buttonLink={ "/movies/edition/" + movie.id }
           />
         )}
       </div>
     )
   }
-});
+}
 
 const mapStateToProps = function(store) {
   return {

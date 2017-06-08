@@ -4,13 +4,9 @@
 
 import React from 'react';
 
-export default React.createClass({
+class DateForm extends React.Component {
 
-  getDate: function() {
-    return this.refs.date.value;
-  },
-
-  render: function() {
+  render() {
 
     return (
       <section className="container tm-home-section-1" id="more">
@@ -43,4 +39,6 @@ export default React.createClass({
       </section>
     );
   }
-});
+}
+
+export default DateForm;

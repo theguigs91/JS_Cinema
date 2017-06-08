@@ -2,6 +2,12 @@ const { resolve } = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+/*
+
+ test: /\.css$/,
+ use: [ 'style-loader', 'css-loader?modules', ],
+ */
+
 module.exports = {
     context: resolve(__dirname, '../../src'),
 
@@ -50,7 +56,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: [ 'style-loader', 'css-loader?modules', ],
+                loader: 'style-loader!css-loader'
             },
             {
                 test: /\.(ttf|svg|eot|woff|woff2)$/,
@@ -60,6 +66,12 @@ module.exports = {
                 },
             },
         ],
+        loaders: [
+            {
+                test: /\.css$/,
+              loader: "style-loader!css-loader"
+            }
+          ]
     },
 
     plugins: [

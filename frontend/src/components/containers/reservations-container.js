@@ -5,17 +5,17 @@ import DateForm from '../views/date-form';
 import { getReservationsFromDate, getReservations } from '../../api/reservation-api';
 import * as DateHelper from '../../helpers/date-helper';
 
-const ReservationsContainer = React.createClass({
+class ReservationsContainer extends React.Component {
 
-  componentDidMount: function() {
+  componentDidMount() {
     getReservations();
-  },
+  }
 
   selectDate(event){
     event.preventDefault();
     console.log("SELECT DATE", this.refs);
-    getReservationsFromDate(this.refs.child.getDate());
-  },
+    getReservationsFromDate(this.refs.date.value);
+  }
 
   render(){
     console.log("[ReservationsContainer] Rendering..", JSON.stringify(this.props.reservations));
@@ -25,7 +25,6 @@ const ReservationsContainer = React.createClass({
         <DateForm
           selectDate={this.selectDate}
           buttonStr="Voir les réservations"
-          ref="child"
         />
         <Reservations
           reservations={this.props.reservations}
@@ -33,7 +32,7 @@ const ReservationsContainer = React.createClass({
       </div>
     );
   }
-});
+}
 
 const mapStateToProps = store => {
   return {

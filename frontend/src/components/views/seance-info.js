@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 
-const SeanceInfo = React.createClass({
+class SeanceInfo extends React.Component {
 
-  render: function () {
+  render() {
 
     return (
       <div className="tm-movies-box-1">
@@ -29,7 +29,7 @@ const SeanceInfo = React.createClass({
       </div>
     );
   }
-});
+}
 
 SeanceInfo.propTypes = {
   movie: PropTypes.object.isRequired,

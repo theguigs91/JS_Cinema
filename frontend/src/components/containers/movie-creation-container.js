@@ -4,7 +4,7 @@
 
 import React from 'react';
 import * as movieApi from '../../api/movie-api';
-import MovieCreation from '../views/movie-creation-form';
+import MovieCreationForm from '../views/movie-creation-form';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
@@ -28,29 +28,34 @@ function validate(movie) {
   return errors;
 }
 
-const MovieCreationContainer = React.createClass({
+class MovieCreationContainer extends React.Component {
 
-  addMovie: function(event) {
+  addMovie(event) {
     event.preventDefault();
     console.log('MovieCreationContainer.addMovie');
 
-    let movie = this.refs.child.getMovie();
-    let errors = validate(movie);
-    if (_.isEmpty(errors)) {
-      movieApi.addMovie(movie);
-    }
-    else {
-      console.log("errors: ", errors);
-    }
-  },
+    let movie = {
+      name: this.refs.title.value,
+      realisator: this.refs.realisator.value,
+      date: this.refs.date.value,
+      time: this.refs.time.value,
+      genre: this.refs.genre.value,
+      description: this.refs.synopsis.value,
+    };
 
-  render: function() {
-    return (
-      <MovieCreation addMovie={this.addMovie} ref="child"/>
-    );
+    let errors = validate(movie);
+    if (_.isEmpty(errors))
+      movieApi.addMovie(movie);
+    else
+      console.log("errors: ", errors);
   }
 
-});
+  render() {
+    return (
+      <MovieCreationForm addMovie={this.addMovie} />
+    );
+  }
+}
 
 const mapStateToProps = function(store) {
   return {

@@ -9,7 +9,7 @@ import * as scheduleApi from '../../api/schedule-api';
 import ReservationCreationForm from '../views/reservation-creation-form';
 import * as CONST from '../../const';
 
-const ReservationCreationContainer = React.createClass({
+class ReservationCreationContainer extends React.Component {
 
   componentWillMount() {
     this.totalPrice = CONST.TICKET_PRICE;
@@ -40,9 +40,9 @@ const ReservationCreationContainer = React.createClass({
       "numero": 1,
       "places_max": 380
     };
-  },
+  }
 
-  validate(reservation) {
+  static validate(reservation) {
     console.log(reservation);
 
     const errors = {};
@@ -56,7 +56,7 @@ const ReservationCreationContainer = React.createClass({
       errors.number_seats = 'Veuillez choisir le nombre de places.';
 
     return errors;
-  },
+  }
 
   addReservation(event) {
     event.preventDefault();
@@ -79,7 +79,7 @@ const ReservationCreationContainer = React.createClass({
     }
     else
       console.log("errors: ", errors);
-  },
+  }
 
   updateTotalPrice(event) {
     event.preventDefault();
@@ -90,9 +90,9 @@ const ReservationCreationContainer = React.createClass({
       this.totalPrice = (numberSeats * CONST.TICKET_PRICE).toFixed(2);
     console.log('totalPrice: ', this.totalPrice);
     this.setState({total_price: this.totalPrice});
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <ReservationCreationForm
         addReservation={this.addReservation}
@@ -105,7 +105,7 @@ const ReservationCreationContainer = React.createClass({
       />
     )
   }
-});
+}
 
 const mapStateToProps = store => {
   return {

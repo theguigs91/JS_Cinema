@@ -54,6 +54,13 @@ export function updateMovieById(payload) {
   }
 }
 
+export function updateMovie(movie) {
+  return {
+    type: types.UPDATE_MOVIE_SUCCESS,
+    movie
+  }
+}
+
 export function getMoviesSuccess(payload) {
   return {
     type: types.GET_MOVIES_SUCCESS,

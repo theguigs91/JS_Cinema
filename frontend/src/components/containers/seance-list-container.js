@@ -9,7 +9,7 @@ import ScheduleDate from '../views/date-form'
 import * as movieApi from '../../api/movie-api'
 import * as scheduleApi from '../../api/schedule-api'
 
-export class SeanceList extends React.Component {
+class SeanceList extends React.Component {
 
     constructor(props) {
         super(props);

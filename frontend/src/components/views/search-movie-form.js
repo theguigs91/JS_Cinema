@@ -3,9 +3,9 @@
  */
 import React from 'react';
 
-export default React.createClass({
+class SearchMovieForm extends React.Component {
 
-  render: function() {
+  render() {
 
     return (
       <div className="col-lg-2 col-md-2 col-sm-2 search">
@@ -22,4 +22,6 @@ export default React.createClass({
       </div>
     );
   }
-});
+}
+
+export default SearchMovieForm;
