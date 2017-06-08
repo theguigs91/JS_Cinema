@@ -54,9 +54,9 @@ export function updateMovieById(payload) {
   }
 }
 
-export function getMoviesSuccess(movie) {
+export function getMoviesSuccess(payload) {
   return {
     type: types.GET_MOVIES_SUCCESS,
-    movie
+    payload
   }
 }

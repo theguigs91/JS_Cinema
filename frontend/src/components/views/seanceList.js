@@ -1,9 +1,7 @@
 /**
  * Created by presci on 06/06/17.
  */
-/**
- * Created by presci on 03/06/17.
- */
+
 import React from 'react'
 import { connect } from 'react-redux'
 import SeanceItem from '../../components/views/seanceItem'
@@ -56,8 +54,8 @@ export class SeanceList extends React.Component {
 
 const mapStateToProps = function(store) {
     return {
-        schedules: store.scheduleReducer.schedules,
-        movies: store.movieReducer.movies,
+        schedules: store.scheduleState.schedules,
+        movies: store.movieState.movies,
     }
 };
 

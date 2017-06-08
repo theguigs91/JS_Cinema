@@ -7,9 +7,6 @@ const initialState = {
 
 const movieReducer = function (state = initialState, action) {
 
-    console.log("Action type: ", action.type)
-    console.log("Action payload: ", action.payload)
-
     switch (action.type) {
         case 'ADD_MOVIE':
             return [...state, {movies: action.payload}];
@@ -20,7 +17,7 @@ const movieReducer = function (state = initialState, action) {
         case types.GET_ALL_MOVIES_FROM_DATE:
             return {...state, movies: action.payload};
         case types.GET_MOVIES_SUCCESS:
-            return state;
+            return {...state, movies: action.payload};
         case types.GET_MOVIE_BY_ID:
             return state;
         case types.GET_MOVIE_BY_NAME:
