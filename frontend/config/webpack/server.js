@@ -2,7 +2,6 @@ const { resolve } = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-
 module.exports = {
     context: resolve(__dirname, '../../src'),
 
@@ -71,7 +70,7 @@ module.exports = {
         // prints more readable module names in the browser console on HMR updates
 
         new HtmlWebpackPlugin({
-            template: '../src/html/movies.html',
+            template: '../public/index.html',
             chunksSortMode: 'dependency'
         })
     ],

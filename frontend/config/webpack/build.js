@@ -5,7 +5,7 @@ module.exports = {
     context: resolve(__dirname, '../../src'),
 
     entry:[
-      './index.js',
+      './app.js',
       'babel-polyfill',
       'webpack-dev-server/client?http://localhost:9090',
       'webpack/hot/only-dev-server',
