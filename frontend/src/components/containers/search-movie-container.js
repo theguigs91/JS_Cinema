@@ -6,10 +6,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import SearchMovie from '../views/search-movie-form'
 import * as movieApi from '../../api/movie-api'
-<<<<<<< 6073ef4845e9809d7b04682c32c7acac65e501c7
-=======
 import ResultList from '../views/resultList'
->>>>>>> [FRONTEND] Can search any film in result.html
 import ReactDOM from 'react-dom'
 import store from '../../store';
 import { Provider } from 'react-redux'
