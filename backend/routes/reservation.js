@@ -38,9 +38,16 @@ function handleDisconnect() {
 
 handleDisconnect();
 
+/**
+ * Get all reservations with movie, seance, room information.
+ */
 router.get('/', function(req, res, next) {
 
-  let queryString = 'SELECT * FROM reservation';
+  let queryString = 'SELECT r.id, s.id AS seance_id, s.date AS seance_date, s.time AS seance_time, room.numero AS room_numero, m.name AS movie_name, m.realisator AS movie_realisator \ '
+    + 'FROM reservation AS r \ '
+    + 'INNER JOIN seance AS s ON r.seance_id = s.id \ '
+    + 'INNER JOIN room AS room ON s.room_id = room.id \ '
+    + 'INNER JOIN movie AS m ON s.movie_id = m.id';
 
   connection.query(queryString, function(err, rows, fields) {
     if (!err) {
@@ -72,6 +79,65 @@ router.get('/id/:id', function(req, res, next) {
     }
   });
 });
+
+/**
+ * Get reservations from a given user id, with movie and seance information
+ */
+router.get('/user/:id', function(req, res, next) {
+  res.setHeader("Content-Type", "application/json");
+
+  let param = [req.params.id];
+
+  let queryString =
+    'SELECT r.id, s.id AS seance_id, s.date AS seance_date, s.time AS seance_time, room.numero AS room_numero, m.name AS movie_name, m.realisator AS movie_realisator \ '
+  + 'FROM reservation AS r \ '
+  + 'INNER JOIN seance AS s ON r.seance_id = s.id \ '
+  + 'INNER JOIN room AS room ON s.room_id = room.id \ '
+  + 'INNER JOIN movie AS m ON s.movie_id = m.id \ '
+  + 'WHERE r.user_id = ?';
+
+  connection.query(queryString, param, function(err, rows, fields) {
+    if (!err) {
+      res.status(200);
+      res.json(rows);
+      res.end();
+    }
+    else {
+      res.status(400).send(JSON.stringify({message: err}));
+      console.log("Error while performing query" + err);
+    }
+  });
+});
+
+/**
+ * Get reservations from a given date (date of the seance), with movie and seance information
+ */
+router.get('/date/:date', function(req, res, next) {
+  res.setHeader("Content-Type", "application/json");
+
+  let param = [req.params.date];
+
+  let queryString =
+    'SELECT r.id, s.id AS seance_id, s.date AS seance_date, s.time AS seance_time, room.numero AS room_numero, m.name AS movie_name, m.realisator AS movie_realisator \ '
+    + 'FROM reservation AS r \ '
+    + 'INNER JOIN seance AS s ON r.seance_id = s.id \ '
+    + 'INNER JOIN room AS room ON s.room_id = room.id \ '
+    + 'INNER JOIN movie AS m ON s.movie_id = m.id \ '
+    + 'WHERE s.date = ?';
+
+  connection.query(queryString, param, function(err, rows, fields) {
+    if (!err) {
+      res.status(200);
+      res.json(rows);
+      res.end();
+    }
+    else {
+      res.status(400).send(JSON.stringify({message: err}));
+      console.log("Error while performing query" + err);
+    }
+  });
+});
+
 
 // Add a reservation
 router.post('/', jsonParser, function (req, res) {
@@ -125,34 +191,6 @@ router.put('/id/:id', function(req, res) {
   });
 });
 
-/**
- * Get reservations from a given user id, with movie and seance information
- */
-router.get('/user/:id', function(req, res, next) {
-  res.setHeader("Content-Type", "application/json");
-
-  let param = [req.params.id];
-
-  let queryString =
-    'SELECT r.id, s.id AS seance_id, s.date AS seance_date, s.time AS seance_time, room.numero AS room_numero, m.name AS movie_name, m.realisator AS movie_realisator \ '
-  + 'FROM reservation AS r \ '
-  + 'INNER JOIN seance AS s ON r.seance_id = s.id \ '
-  + 'INNER JOIN room AS room ON s.room_id = room.id \ '
-  + 'INNER JOIN movie AS m ON s.movie_id = m.id \ '
-  + 'WHERE r.user_id = ?';
-
-  connection.query(queryString, param, function(err, rows, fields) {
-    if (!err) {
-      res.status(200);
-      res.json(rows);
-      res.end();
-    }
-    else {
-      res.status(400).send(JSON.stringify({message: err}));
-      console.log("Error while performing query" + err);
-    }
-  });
-});
 
 /**
  * Delete a reservation from id
