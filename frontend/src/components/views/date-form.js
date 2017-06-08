@@ -6,6 +6,10 @@ import React from 'react';
 
 export default React.createClass({
 
+  getDate: function() {
+    return this.refs.date.value;
+  },
+
   render: function() {
 
     return (

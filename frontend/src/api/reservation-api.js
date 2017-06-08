@@ -50,16 +50,24 @@ export function getReservationsFromUserId(userId) {
   return fetch("http://localhost:8080/reservation/user/" + userId)
     .then(response => response.json())
     .then((json) => {
+      store.dispatch(reservationActions.getReservationsSuccess(json));
+      return json
+    })
+}
 
-      console.log(json);
 
-      console.log('[ReservationAPI] Before dispatch. Current state:');
+export function getReservationsFromDate(date) {
+  return fetch("http://localhost:8080/reservation/date/" + date)
+    .then(response => response.json())
+    .then((json) => {
+
+      console.log('[ReservationAPI].getReservationsFromDate Before dispatch. Current state:');
       console.log(store.getState());
       console.log('--------------');
 
       store.dispatch(reservationActions.getReservationsSuccess(json));
 
-      console.log('[ReservationAPI] After dispatch. Current state:');
+      console.log('[ReservationAPI].getReservationsFromDate After dispatch. Current state:');
       console.log(store.getState());
       console.log('--------------');
 
@@ -87,13 +95,13 @@ export function deleteReservation(reservation) {
 
   return axios.delete('http://localhost:8080/reservation/id/' + reservation.id)
     .then(response => {
-      console.log('[ReservationAPI] Before dispatch. Current state:');
+      console.log('[ReservationAPI].deleteReservation Before dispatch. Current state:');
       console.log(store.getState());
       console.log('--------------');
 
       store.dispatch(reservationActions.deleteReservationSuccess(reservation.id));
 
-      console.log('[ReservationAPI] After dispatch. Current state:');
+      console.log('[ReservationAPI].deleteReservation After dispatch. Current state:');
       console.log(store.getState());
       console.log('--------------');
 
