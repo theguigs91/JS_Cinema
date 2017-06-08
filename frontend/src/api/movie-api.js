@@ -93,10 +93,12 @@ export function updateMovieById(id) {
  * Search movies
  */
 export function searchMovies(query = '') {
-  return axios.get('http://localhost:8080/movie?q='+ query)
-    .then(response => {
-      store.dispatch(getMoviesSuccess(response.data));
-      return response;
+  return fetch('http://localhost:8080/movie/name/'+ query)
+    .then(response => response.json())
+    .then(json => {
+      console.log("JSON result: ", json)
+      store.dispatch(movie_actions.getMoviesSuccess(json));
+      return json;
     });
 }
 
