@@ -5,7 +5,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import SeanceItem from '../../components/views/seanceItem'
-import ScheduleDate from './schedule-date-form'
+import ScheduleDate from '../views/schedule-date-form'
 import * as movieApi from '../../api/movie-api'
 import * as scheduleApi from '../../api/schedule-api'
 

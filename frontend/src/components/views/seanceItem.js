@@ -2,7 +2,7 @@
  * Created by presci on 06/06/17.
  */
 import React from 'react';
-import HourButtonList from './HourButtonList'
+import HourButtonList from '../containers/hour-button-list-container'
 
 const SeanceItem = ({ data, schedules }) => (
 

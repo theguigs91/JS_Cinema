@@ -3,7 +3,7 @@
  */
 import React from 'react'
 import { connect } from 'react-redux'
-import MovieItem from '../../components/movieItem'
+import MovieItem from '../views/movieItem'
 import * as movieApi from '../../api/movie-api'
 
 export class MovieList extends React.Component {
@@ -17,10 +17,6 @@ export class MovieList extends React.Component {
         console.log("Rendering..");
         console.log("props movies: ", this.props.movies);
 
-        this.props.movies.map(el => {
-            console.log("id: ", el.name)
-        });
-
         return (
             <div>
                 {this.props.movies.map(movie =>
@@ -29,14 +25,10 @@ export class MovieList extends React.Component {
                         data = {movie}
                     />
                 )}
-                <p> --------------------- </p>
             </div>
         )
     }
 }
-
-/*
- )}*/
 
 const mapStateToProps = function(store) {
     return {

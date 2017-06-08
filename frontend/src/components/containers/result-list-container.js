@@ -4,9 +4,7 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import * as movieApi from '../../api/movie-api'
-import SearchMovie from '../views/search-movie-form'
-import MovieItem from './movieItem'
+import MovieItem from '../views/movieItem'
 
 export class ResultList extends React.Component {
 
