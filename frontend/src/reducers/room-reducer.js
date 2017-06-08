@@ -13,7 +13,7 @@ const roomReducer = (state = initialRoomState, action) => {
     case types.ADD_ROOM_SUCCESS:
       return { ...state, rooms: [...state.rooms, action.room] };
     case types.DELETE_ROOM_SUCCESS:
-      return state.filter(p => p.id !== action.id);
+      return {...state, rooms: state.rooms.filter(p => p.id !== action.id)};
     case types.GET_ROOMS_SUCCESS:
       return {...state, rooms: action.rooms};
     default:

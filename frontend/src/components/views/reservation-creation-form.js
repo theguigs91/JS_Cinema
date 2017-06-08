@@ -2,7 +2,7 @@
  * Created by kelly on 06/06/17.
  */
 import React, { PropTypes } from 'react';
-import MovieInfo from './seance-info';
+import SeanceInfo from './seance-info';
 
 const ReservationCreationForm = React.createClass({
 
@@ -29,6 +29,7 @@ const ReservationCreationForm = React.createClass({
               <SeanceInfo
                 seance={this.props.seance}
                 movie={this.props.movie}
+                room={this.props.room}
               />
             </div>
 
@@ -67,6 +68,7 @@ ReservationCreationForm.propTypes = {
   addReservation: PropTypes.func.isRequired,
   movie: PropTypes.object.isRequired,
   seance: PropTypes.object.isRequired,
+  room: PropTypes.object.isRequired,
   updateTotalPrice: PropTypes.func.isRequired,
   totalPrice: PropTypes.string.isRequired
 };

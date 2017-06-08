@@ -85,7 +85,7 @@ const ScheduleCreationContainer = React.createClass({
             time: schedule
           };
           console.log(seance);
-          //scheduleApi.addSchedule(seance);
+          scheduleApi.addSchedule(seance);
         });
       }
     }

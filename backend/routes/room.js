@@ -74,4 +74,24 @@ router.get('/id/:id', function(req, res, next) {
     });
 });
 
+/**
+ * Delete a reservation from id
+ */
+router.delete('/id/:id', function(req, res, next) {
+  res.setHeader("Content-Type", "application/json");
+
+  let param = [req.params.id];
+  let queryString = 'DELETE FROM room WHERE id = ?';
+  connection.query(queryString, param, function(err, rows, fields) {
+    if (!err) {
+      return res.status(201).send(JSON.stringify({message: "Room deleted"}));
+    }
+    else {
+      res.status(400).send(JSON.stringify({message: err}));
+      console.log("Error while performing query" + err);
+    }
+  });
+});
+
+
 module.exports = router;
