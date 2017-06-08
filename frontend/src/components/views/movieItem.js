@@ -1,9 +1,9 @@
 /**
  * Created by presci on 03/06/17.
  */
-import React from 'react'
+import React, { PropTypes } from 'react'
 
-const MovieItem = ({ data }) => (
+const MovieItem = ({ data, buttonChild }) => (
     <div className="tm-movies-box-1-info">
         <div className="tm-movies-box-1-info-left">
             <p className="text-uppercase margin-bottom-20 title">{data.name}</p>
@@ -23,7 +23,7 @@ const MovieItem = ({ data }) => (
                 Disponible
             </div>
             <a href="schedules.html" className="tm-movies-box-1-link-right schedule">
-                Séances
+              {buttonChild}
             </a>
         </div>
     </div>
