@@ -13,8 +13,8 @@ const movieReducer = function (state = initialState, action) {
   switch (action.type) {
       case 'ADD_MOVIE':
           return [...state, {movies: action.payload}];
-      case 'DELETE_MOVIE':
-          return state.filter(movie => movie.id !== action.id);
+    case 'DELETE_MOVIE':
+          return {...state, movies: state.filter(movie => movie.id !== action.id)};
       case types.GET_ALL_MOVIES:
           return {...state, movies: action.payload};
       case types.GET_ALL_MOVIES_FROM_DATE:
