@@ -51,7 +51,7 @@ class Reservation extends React.Component {
               <div className="tm-movies-box-1-link-left col-xs-8">
                 Total: <span id="reservation-total-price">{this.props.reservation.total_price}</span> €
               </div>
-              <button className={this.buttonClassName} onClick={this.props.onClickButtonFunc} ref="button" />
+              <button className={this.buttonClassName} onClick={this.props.onClickButtonFunc} ref="button">{this.props.buttonStr}</button>
             </div>
           </div>
         </div>
@@ -67,6 +67,7 @@ class Reservation extends React.Component {
  */
 Reservation.propTypes = {
   onClickButtonFunc: PropTypes.func.isRequired,
+  buttonStr: PropTypes.string.isRequired,
   reservation: PropTypes.object.isRequired,
   buttonGlyphicon: PropTypes.string.isRequired
 };

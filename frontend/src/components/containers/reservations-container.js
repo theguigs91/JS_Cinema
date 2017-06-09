@@ -20,17 +20,21 @@ class ReservationsContainer extends React.Component {
   render(){
     console.log("[ReservationsContainer] Rendering..", JSON.stringify(this.props.reservations));
 
-    return (
-      <div>
-        <DateForm
-          selectDate={this.selectDate}
-          buttonStr="Voir les réservations"
-        />
-        <Reservations
-          reservations={this.props.reservations}
-        />
-      </div>
-    );
+    if (!_.isEmpty(this.props.reservations)) {
+      return (
+        <div>
+          <DateForm
+            selectDate={this.selectDate}
+            buttonStr="Voir les réservations"
+          />
+          <Reservations
+            reservations={this.props.reservations}
+          />
+        </div>
+      );
+    }
+    else
+      return null;
   }
 }
 

@@ -7,18 +7,22 @@ import { connect } from 'react-redux';
 
 class MyReservationsContainer extends React.Component {
 
-  static componentDidMount() {
+  componentDidMount() {
     // TODO: To replace by current user id.
     let userId = 4;
     getReservationsFromUserId(userId);
   }
 
   render() {
-    return (
-      <Reservations
-        reservations={this.props.reservations}
-      />
-    );
+    if (!_.isEmpty(this.props.reservations)) {
+      return (
+          <Reservations
+            reservations={this.props.reservations}
+          />
+      );
+    }
+    else
+      return null;
   }
 }
 

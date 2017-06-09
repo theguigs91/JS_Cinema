@@ -19,36 +19,25 @@ class Reservations extends React.Component {
   render() {
     console.log('[Reservations] Rendering ... ', this.props.reservations);
 
-    if (!_.isEmpty(this.props.reservations)) {
-      console.log('is not empty');
-      return (
-        <section className="container tm-home-section-1" id="more">
-          <div className="section-margin-top">
-            {
-              this.props.reservations.map(reservation => {
-                return (
-                  <Reservation
-                    onClickButtonFunc={this.deleteReservation.bind(null, reservation)}
-                    reservation={reservation}
-                    buttonGlyphicon="glyphicon-remove"
-                    ref="child"
-                  />
-                )
-              })
-            }
-          </div>
-        </section>
-      );
-    }
-    else {
-      console.log('is empty');
-      return (
-        <section className="container tm-home-section-1" id="more">
-          <div className="section-margin-top">
-          </div>
-        </section>
-      );
-    }
+    return (
+      <section className="container tm-home-section-1" id="more">
+        <div className="section-margin-top">
+          {
+            this.props.reservations.map(reservation => {
+              return (
+                <Reservation
+                  onClickButtonFunc={this.deleteReservation.bind(null, reservation)}
+                  buttonStr="Supprimer"
+                  reservation={reservation}
+                  buttonGlyphicon="glyphicon-remove"
+                  ref="child"
+                />
+              )
+            })
+          }
+        </div>
+      </section>
+    );
   }
 }
 
