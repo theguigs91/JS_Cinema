@@ -5,11 +5,11 @@ import * as movieApi from '../../api/movie-api'
 
 class AdminMoviesContainer extends React.Component {
 
-  static componentDidMount() {
+  componentWillMount() {
     movieApi.getAllMovies();
   }
 
-  static getEditButton() {
+  getEditButton() {
     return (
       <div>
           Modifier <span className='glyphicon glyphicon-pencil' />
@@ -18,9 +18,6 @@ class AdminMoviesContainer extends React.Component {
   }
 
   render(){
-    console.log("Rendering..");
-    console.log("props movies: ", this.props.movies);
-
     return (
       <div>
         {this.props.movies.map(movie =>

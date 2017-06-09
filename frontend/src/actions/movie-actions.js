@@ -14,17 +14,17 @@ export function deleteMovieSuccess(movieId) {
   }
 }
 
-export function getAllMovies(movie) {
+export function getAllMovies(movies) {
   return {
     type: types.GET_ALL_MOVIES,
-    movie
+    movies
   }
 }
 
-export function getAllMoviesFromDate(movie) {
+export function getAllMoviesFromDate(movies) {
   return {
     type: types.GET_ALL_MOVIES_FROM_DATE,
-    movie
+    movies
   }
 }
 
@@ -56,9 +56,9 @@ export function updateMovieSuccess(movie) {
   }
 }
 
-export function getMoviesSuccess(movie) {
+export function getMoviesSuccess(movies) {
   return {
     type: types.GET_MOVIES_SUCCESS,
-    movie
+    movies
   }
 }

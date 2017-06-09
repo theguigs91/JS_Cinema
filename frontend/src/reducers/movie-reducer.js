@@ -16,11 +16,11 @@ const movieReducer = function (state = initialState, action) {
     case types.DELETE_MOVIE_SUCCESS:
       return {...state, movies: state.filter(movie => movie.id !== action.id)};
     case types.GET_ALL_MOVIES:
-      return {...state, movies: action.movie};
+      return {...state, movies: action.movies};
     case types.GET_ALL_MOVIES_FROM_DATE:
-      return {...state, movies: action.movie};
+      return {...state, movies: action.movies};
     case types.GET_MOVIES_SUCCESS:
-      return {...state, movies: action.movie};
+      return {...state, movies: action.movies};
     case types.GET_MOVIE_BY_ID:
       return {...state, movie: action.movie};
     case types.GET_MOVIE_BY_NAME:

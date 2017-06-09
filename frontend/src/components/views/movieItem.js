@@ -2,7 +2,7 @@
  * Created by presci on 03/06/17.
  */
 import React, { PropTypes } from 'react'
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 class MovieItem extends React.Component {
 
