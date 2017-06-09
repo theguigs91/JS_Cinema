@@ -9,6 +9,8 @@ import _ from 'lodash';
 class ScheduleCreationForm extends React.Component {
 
   componentWillMount() {
+    console.log('[ScheduleCreationForm] componentWillMount');
+
     this.selectedSchedulesCheckboxes = new Set();
     this.schedules = _.isEmpty(this.props.schedules) ? [] : this.props.schedules;
   }
@@ -117,7 +119,7 @@ class ScheduleCreationForm extends React.Component {
                             return (
                               <Checkbox
                                 label={schedule}
-                                handleCheckboxChange={this.toggleSchedulesCheckbox}
+                                handleCheckboxChange={this.toggleSchedulesCheckbox.bind(this)}
                                 key={schedule}
                               />
                             )
