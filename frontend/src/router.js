@@ -16,7 +16,7 @@ import UserListContainer from './components/containers/user-list-container';
 import UserProfileContainer from './components/containers/user-profile-container';
 
 import MovieListContainer from './components/containers/movie-list-container';
-import LoginContainer from './components/containers/login-container';
+import LoginSignupContainer from './components/containers/login-signup-container';
 //import MoviesContainer from './components/containers/movies-container';
 //import SchedulesContainer from './components/containers/schedules-container';
 //import ScheduleContainer from './components/containers/schedule-container';
@@ -43,6 +43,8 @@ class App extends React.Component {
       <Router history={history}>
         <div>
             <Route path="/" component={Home} />
+
+            <Route exact path="/login" component={LoginSignupContainer}/>
 
             <Route exact path="/movies" component={MovieListContainer}/>
             <Route exact path="/movies/creation" component={MovieCreationContainer}/>
