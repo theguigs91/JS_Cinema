@@ -100,9 +100,9 @@ export function updateMovieById(id) {
 }
 
 export function updateMovie(movie) {
-  return axios.put('http://localhost:8080/movie/')
+  return axios.put('http://localhost:8080/movie/', movie)
     .then(response => {
-      store.dispatch(updateMovieSuccess(movie));
+      store.dispatch(movie_actions.updateMovieSuccess(movie));
       return response;
     });
 }
@@ -114,7 +114,7 @@ export function searchMovies(query = '') {
   return fetch('http://localhost:8080/movie/name/'+ query)
     .then(response => response.json())
     .then(json => {
-      console.log("JSON result: ", json)
+      console.log("JSON result: ", json);
       store.dispatch(movie_actions.getMoviesSuccess(json));
       return json;
     });

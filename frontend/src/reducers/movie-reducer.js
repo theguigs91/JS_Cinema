@@ -8,25 +8,25 @@ const initialState = {
 const movieReducer = function (state = initialState, action) {
 
   console.log("Action type: ", action.type);
-  console.log("Action payload: ", action.payload);
+  console.log("Action movie: ", action.movie);
 
   switch (action.type) {
     case types.ADD_MOVIE_SUCCESS:
-      return [...state, {movies: action.payload}];
+      return [...state, {movies: action.movie}];
     case types.DELETE_MOVIE_SUCCESS:
       return {...state, movies: state.filter(movie => movie.id !== action.id)};
     case types.GET_ALL_MOVIES:
-      return {...state, movies: action.payload};
+      return {...state, movies: action.movie};
     case types.GET_ALL_MOVIES_FROM_DATE:
-      return {...state, movies: action.payload};
+      return {...state, movies: action.movie};
     case types.GET_MOVIES_SUCCESS:
-      return {...state, movies: action.payload};
+      return {...state, movies: action.movie};
     case types.GET_MOVIE_BY_ID:
-      return {...state, movie: action.payload};
+      return {...state, movie: action.movie};
     case types.GET_MOVIE_BY_NAME:
-      return {...state, movie: action.payload};
+      return {...state, movie: action.movie};
     case types.UPDATE_MOVIE_BY_ID:
-      return {...state, movie: action.payload};
+      return {...state, movie: action.movie};
     case types.UPDATE_MOVIE_SUCCESS:
       return {...state, movie: action.movie};
     default:

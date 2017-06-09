@@ -19,51 +19,51 @@ export function removeMovie(id) {
   }
 }
 
-export function getAllMovies(payload) {
+export function getAllMovies(movie) {
   return {
     type: types.GET_ALL_MOVIES,
-    payload
+    movie
   }
 }
 
-export function getAllMoviesFromDate(payload) {
+export function getAllMoviesFromDate(movie) {
   return {
     type: types.GET_ALL_MOVIES_FROM_DATE,
-    payload
+    movie
   }
 }
 
-export function getMovieById(payload) {
+export function getMovieById(movie) {
   return {
     type: types.GET_MOVIE_BY_ID,
-    payload
+    movie
   }
 }
 
-export function getMovieByName(payload) {
+export function getMovieByName(movie) {
   return {
     type: types.GET_MOVIE_BY_NAME,
-    payload
+    movie
   }
 }
 
-export function updateMovieById(payload) {
+export function updateMovieById(movie) {
   return {
     type: types.UPDATE_MOVIE_BY_ID,
-    payload
+    movie
   }
 }
 
-export function updateMovie(movie) {
+export function updateMovieSuccess(movie) {
   return {
     type: types.UPDATE_MOVIE_SUCCESS,
     movie
   }
 }
 
-export function getMoviesSuccess(payload) {
+export function getMoviesSuccess(movie) {
   return {
     type: types.GET_MOVIES_SUCCESS,
-    payload
+    movie
   }
 }
