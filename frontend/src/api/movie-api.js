@@ -124,7 +124,7 @@ export function searchMovies(query = '') {
  * Delete a movie
  */
 export function deleteMovie(movieId) {
-  return axios.delete('http://localhost:8080/movie/' + movieId)
+  return axios.delete('http://localhost:8080/movie/id/' + movieId)
     .then(response => {
       store.dispatch(deleteMovieSuccess(movieId));
       return response;

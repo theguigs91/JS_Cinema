@@ -1,20 +1,15 @@
 import * as types from './action-types'
 
-export function addMovie(id, name, director, time, type, description) {
+export function addMovieSuccess(movie) {
   return {
-    type: types.ADD_MOVIE,
-    id,
-    name,
-    director,
-    time,
-    movie_type: type,
-    description
+    type: types.ADD_MOVIE_SUCCESS,
+    movie
   }
 }
 
-export function removeMovie(id) {
+export function deleteMovieSuccess(movieId) {
   return {
-    type: types.REMOVE_MOVIE,
+    type: types.DELETE_MOVIE_SUCCESS,
     id
   }
 }

@@ -30,7 +30,6 @@ class MovieEditionContainer extends React.Component {
 
   editMovie() {
     let movie = this.getMovie();
-    console.log('MovieEditionContainer.editMovie', movie);
 
     let errors = validate(movie);
     if (_.isEmpty(errors)) {
@@ -42,8 +41,7 @@ class MovieEditionContainer extends React.Component {
 
   deleteMovie() {
     let movie = this.getMovie();
-    console.log('MovieEditionContainer.deleteMovie', movie);
-
+    console.log("[MovieEditionContainer] deleteMovie", movie);
     movieApi.deleteMovie(movie.id).then(() => {
       console.log('this.props.router.push');
       this.props.router.push('/movies/admin');
@@ -53,7 +51,6 @@ class MovieEditionContainer extends React.Component {
   componentWillMount() {
 
     let movieId = this.props.match.params.movieId;
-    console.log("[MovieEditionContainer] componentDidMount ", movieId);
     movieApi.getMovieById(movieId);
 
     // fire action to update redux project store
@@ -61,27 +58,20 @@ class MovieEditionContainer extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("[MovieEditionContainer] componentDidUpdate prevProps", prevProps);
-    console.log("[MovieEditionContainer] componentDidUpdate prevState", prevState);
 
-    /**
-     * this is the initial render without a previous prop change
-     */
+    // Initial render without a previous prop change
     if (prevProps === undefined) {
-      console.log("[MovieEditionContainer] prevProps == undefined");
       return false;
     }
 
     if (this.state.id !== this.props.match.params.movieId) {
       let movieId = this.props.match.params.movieId;
-      console.log("[MovieEditionContainer] !=== componentDidUpdate ", movieId);
       movieApi.getMovieById(movieId);
       this.setState({id: this.props.match.params.movieId});
     }
   }
 
   render() {
-    console.log("[MovieEditionContainer] Rendering ...", this.props);
     return (
       <MovieEditionForm
         deleteMovie={this.deleteMovie}
