@@ -114,17 +114,47 @@ router.put('/id/:id', function(req, res) {
     let description = body.description;
 
     let param = [name, realisator, time, genre, description, req.params.id]
-    let queryString = 'UPDATE user SET name = ?, realisator = ?, time = ?, genre = ?, description = ? WHERE id = ?';
+    let queryString = 'UPDATE movie SET name = ?, realisator = ?, time = ?, genre = ?, description = ? WHERE id = ?';
 
   /* Dans l'application, remplir déjà les champs avec les données du user */
     connection.query(queryString, param, function(err, rows, fields) {
         if (!err) {
-            res.status(200).send(JSON.stringify({message: "User updated"}));
+          res.status(200);
+          res.json(rows);
+          res.end();
         }
         else {
-            res.status(400).send(JSON.stringify({message: err}));
+          res.status(400).send(JSON.stringify({message: err}));
         }
     });
+
+});
+
+router.put('/', function(req, res) {
+  res.setHeader("Content-Type", "application/json");
+
+  let body = req.body;
+
+  console.log("movie.put ", body);
+
+  let id = body.id;
+  let name  = body.name;
+  let realisator = body.realisator;
+  let time = body.time;
+  let genre = body.genre;
+  let description = body.description;
+
+  let param = [name, realisator, time, genre, description, id];
+  let queryString = 'UPDATE movie SET name = ?, realisator = ?, time = ?, genre = ?, description = ? WHERE id = ?';
+
+  connection.query(queryString, param, function(err, rows, fields) {
+    if (!err) {
+      res.status(200).send(JSON.stringify({message: "Movie updated"}));
+    }
+    else {
+      res.status(400).send(JSON.stringify({message: err}));
+    }
+  });
 
 });
 
