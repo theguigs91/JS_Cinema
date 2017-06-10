@@ -1,18 +1,18 @@
-var express = require('express');
-var router = express.Router();
-var mysql = require('mysql');
-var md5 = require('md5');
+let express = require('express');
+let router = express.Router();
+let mysql = require('mysql');
+let md5 = require('md5');
 
 
 /* A CHANGER */
-var db_config = {
+let db_config = {
   host: 'localhost',
     user: 'root',
     password: 'Passw0rd!',
     database: 'js_cinema'
 };
 
-var connection;
+let connection;
 
 function handleDisconnect() {
   connection = mysql.createConnection(db_config); // Recreate the connection, since
@@ -30,7 +30,7 @@ function handleDisconnect() {
     if(err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
       handleDisconnect();                         // lost due to either server restart, or a
     } else {                                      // connnection idle timeout (the wait_timeout
-      throw err;                                  // server variable configures this)
+      throw err;                                  // server letiable configures this)
     }
   });
 }
@@ -41,7 +41,7 @@ handleDisconnect();
 router.get('/', function(req, res, next) {
 	res.setHeader("Content-Type", "application/json");
 	
-	var queryString = 'SELECT * FROM user';
+	let queryString = 'SELECT * FROM user';
 	
   connection.query(queryString, function (err, rows, fields) {
         if(!err) {
@@ -57,8 +57,8 @@ router.get('/', function(req, res, next) {
 router.get('/id/:id', function(req, res, next) {
 	res.setHeader("Content-Type", "application/json");
 	
-	var param = [req.params.id]
-	var queryString = 'SELECT * FROM user WHERE id = ?';
+	let param = [req.params.id];
+	let queryString = 'SELECT * FROM user WHERE id = ?';
 	
   connection.query(queryString, param, function (err, rows, fields) {
         if(!err) {
@@ -74,8 +74,8 @@ router.get('/id/:id', function(req, res, next) {
 router.get('/login/:login', function(req, res, next) {
 	res.setHeader("Content-Type", "application/json");
 	
-	var param = [req.params.login]
-	var queryString = 'SELECT * FROM user WHERE login = ?';
+	let param = [req.params.login];
+	let queryString = 'SELECT * FROM user WHERE login = ?';
 	
   connection.query(queryString, param, function (err, rows, fields) {
         if(!err) {
@@ -91,13 +91,13 @@ router.get('/login/:login', function(req, res, next) {
 router.post('/', function(req, res) {
 	res.setHeader("Content-Type", "application/json");
 	
-  var body = req.body;
+  let body = req.body;
 	
-  var login  = body.login;
-  var password = md5(body.password);
+  let login  = body.login;
+  let password = md5(body.password);
 
-	var param = [login, password] 
-	var queryString = 'INSERT INTO user SET login = ?, password = ?';
+	let param = [login, password];
+	let queryString = 'INSERT INTO user SET login = ?, password = ?';
   
   connection.query(queryString, param, function(err, rows, fields) 
   {
@@ -115,13 +115,13 @@ router.post('/', function(req, res) {
 router.put('/id/:id', function(req, res) {
 	res.setHeader("Content-Type", "application/json");
 	
-  var body = req.body;
+  let body = req.body;
 	
-  var login  = body.login;
-  var password = md5(body.password);
+  let login  = body.login;
+  let password = md5(body.password);
 
-	var param = [login, password, req.params.id] 
-	var queryString = 'UPDATE user SET login = ?, password = ? WHERE id = ?';
+	let param = [login, password, req.params.id];
+	let queryString = 'UPDATE user SET login = ?, password = ? WHERE id = ?';
 	
   /* Dans l'application, remplir déjà les champs avec les données du user */ 
   connection.query(queryString, param, function(err, rows, fields) {
@@ -139,23 +139,23 @@ router.put('/id/:id', function(req, res) {
 router.put('/login/:login', function(req, res) {
 	res.setHeader("Content-Type", "application/json");
 	
-  var body = req.body;
+  let body = req.body;
 	
-  var login  = body.login;
-  var password = md5(body.password);
+  let login  = body.login;
+  let password = md5(body.password);
 
-	var param = [login, password, req.params.login] 
-	var queryString = 'UPDATE user SET login = ?, password = ? WHERE login = ?';
+	let param = [login, password, req.params.login];
+	let queryString = 'UPDATE user SET login = ?, password = ? WHERE login = ?';
 	
   /* Dans l'application, remplir déjà les champs avec les données du user */ 
   connection.query(queryString, param, function(err, rows, fields) {
-                    if (!err) {
-                      res.status(200).send(JSON.stringify({message: "User updated"}));
-                    }
-                    else {
-                      res.status(400).send(JSON.stringify({message: err}));
-                   }
-                 });
+     if (!err) {
+       res.status(200).send(JSON.stringify({message: "User updated"}));
+     }
+     else {
+       res.status(400).send(JSON.stringify({message: err}));
+     }
+  });
 
 });
 
@@ -163,8 +163,8 @@ router.put('/login/:login', function(req, res) {
 router.delete('/id/:id', function(req, res) {
 	res.setHeader("Content-Type", "application/json");
 	
-	var param = [req.params.id]
-	var queryString = 'DELETE FROM user WHERE id = ?';
+	let param = [req.params.id];
+	let queryString = 'DELETE FROM user WHERE id = ?';
 
   connection.query(queryString, param,
     function(err, rows, fields) {
@@ -177,12 +177,36 @@ router.delete('/id/:id', function(req, res) {
   });
 });
 
+/**
+ * Update an user
+ */
+router.put('/', function(req, res) {
+  res.setHeader("Content-Type", "application/json");
+
+  let body = req.body;
+
+  console.log("user.put ", body);
+
+  let params = [body.login, body.email, body.password, body.lastname, body.firstname, body.birthdate, body.gender, body.role_id, body.login];
+  let queryString = 'UPDATE user SET login = ?, email = ?, password = ?, lastname = ?, firstname = ?, birthdate = ?, gender = ?, role_id = ? WHERE login = ?';
+
+  connection.query(queryString, params, function(err, rows, fields) {
+    if (!err) {
+      res.status(200).send(JSON.stringify({message: "User updated"}));
+    }
+    else {
+      res.status(400).send(JSON.stringify({message: err}));
+    }
+  });
+
+});
+
 /* DELETE a user by login */
 router.delete('/login/:login', function(req, res) {
 	res.setHeader("Content-Type", "application/json");
 	
-	var param = [req.params.login]
-	var queryString = 'DELETE FROM user WHERE login = ?';
+	let param = [req.params.login];
+	let queryString = 'DELETE FROM user WHERE login = ?';
 
   connection.query(queryString, param,
     function(err, rows, fields) {
