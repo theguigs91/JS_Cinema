@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS user
   firstname VARCHAR(30)        NOT NULL,
   birthdate DATE               NOT NULL,
   gender    VARCHAR(6)         NOT NULL,
-  role_id   BIGINT UNSIGNED    NOT NULL,
+  role_id   BIGINT UNSIGNED    NOT NULL DEFAULT 1,
   CONSTRAINT fk_role_id FOREIGN KEY (role_id)
   REFERENCES role(id)
 );
@@ -80,12 +80,12 @@ CREATE TABLE IF NOT EXISTS reservation
 INSERT INTO role (name) VALUES ('visitor');
 INSERT INTO role (name) VALUES ('admin');
 
-INSERT INTO user (login, email, password, lastname, firstname, birthdate, gender, role_id) VALUES ('root', 'root@epita.fr', 'root', 'Root', 'Root', '2017-05-01', 'Femme', 2);
-INSERT INTO user (login, email, password, lastname, firstname, birthdate, gender, role_id) VALUES ('san_p', 'san_p@epita.fr', 'root', 'San', 'Prescillia', '1996-01-19', 'Femme', 2);
-INSERT INTO user (login, email, password, lastname, firstname, birthdate, gender, role_id) VALUES ('guigui', 'audine_g@epita.fr', 'root', 'Audinet', 'Guillaume', '2017-05-01', 'Homme', 2);
-INSERT INTO user (login, email, password, lastname, firstname, birthdate, gender, role_id) VALUES ('luu_k', 'luu_k@epita.fr', 'password', 'Luu', 'Kelly', '1995-10-17', 'Femme', 2);
-INSERT INTO user (login, email, password, lastname, firstname, birthdate, gender, role_id) VALUES ('ly_h', 'ly_h@epitech.eu', 'password', 'Ly', 'Henri', '1992-03-18', 'Homme', 1);
-INSERT INTO user (login, email, password, lastname, firstname, birthdate, gender, role_id) VALUES ('tran_m', 'tran_m@mail.com', 'password', 'Tran', 'Marie', '1995-01-11', 'Femme', 1);
+INSERT INTO user (login, email, password, lastname, firstname, birthdate, gender, role_id) VALUES ('root', 'root@epita.fr', '63a9f0ea7bb98050796b649e85481845', 'Root', 'Root', '2017-05-01', 'Femme', 2);
+INSERT INTO user (login, email, password, lastname, firstname, birthdate, gender, role_id) VALUES ('san_p', 'san_p@epita.fr', '63a9f0ea7bb98050796b649e85481845', 'San', 'Prescillia', '1996-01-19', 'Femme', 2);
+INSERT INTO user (login, email, password, lastname, firstname, birthdate, gender, role_id) VALUES ('guigui', 'audine_g@epita.fr', '63a9f0ea7bb98050796b649e85481845', 'Audinet', 'Guillaume', '2017-05-01', 'Homme', 2);
+INSERT INTO user (login, email, password, lastname, firstname, birthdate, gender, role_id) VALUES ('luu_k', 'luu_k@epita.fr', '5f4dcc3b5aa765d61d8327deb882cf99', 'Luu', 'Kelly', '1995-10-17', 'Femme', 2);
+INSERT INTO user (login, email, password, lastname, firstname, birthdate, gender, role_id) VALUES ('ly_h', 'ly_h@epitech.eu', '5f4dcc3b5aa765d61d8327deb882cf99', 'Ly', 'Henri', '1992-03-18', 'Homme', 1);
+INSERT INTO user (login, email, password, lastname, firstname, birthdate, gender, role_id) VALUES ('tran_m', 'tran_m@mail.com', '5f4dcc3b5aa765d61d8327deb882cf99', 'Tran', 'Marie', '1995-01-11', 'Femme', 1);
 
 INSERT INTO room (numero, places_max)  VALUES (1, 380);
 INSERT INTO room (numero, places_max)  VALUES (2, 368);
