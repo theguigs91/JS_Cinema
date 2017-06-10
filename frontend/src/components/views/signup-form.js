@@ -3,6 +3,7 @@
  */
 
 import React, { PropTypes } from 'react';
+import * as StringHelper from '../../helpers/string-helper';
 
 class SignupForm extends React.Component {
 
@@ -17,6 +18,33 @@ class SignupForm extends React.Component {
       birthdate: this.refs.birthdate.value,
       gender: this.refs.gender.value
     }
+  }
+
+  validate(user) {
+
+    console.log(user);
+
+    const errors = {};
+    if (!user.login || user.login.trim === '')
+      errors.login = 'Veuillez entrer un identifiant.';
+    if (!user.email || user.email.trim === '' || !StringHelper.isValidEmail(user.email))
+      errors.email = 'Veuillez entrer une adresse mail valide.';
+    if (!user.password || user.password.trim === '')
+      errors.password = 'Veuillez entrer un mot de passe.';
+    if (!user.password_confirmation || user.password_confirmation.trim === '')
+      errors.password = 'Veuillez confirmation votre mot de passe.';
+    if (user.password !== user.password_confirmation)
+      errors.password = 'Les mots de passe doivent être identiques.';
+    if (!user.lastname || user.lastname.trim === '')
+      errors.lastname = 'Veuillez entrer votre nom.';
+    if (!user.firstname || user.firstname.trim === '')
+      errors.firstname = 'Veuillez entrer votre prénom.';
+    if (!user.birthdate || user.birthdate.trim === '' )
+      errors.birthdate = 'Veuillez remplir votre date d\'anniversaire.';
+    if (!user.gender || user.gender.trim === '')
+      errors.gender = 'Champ \'sexe\' invalide.';
+
+    return errors;
   }
 
   render() {
@@ -53,14 +81,12 @@ class SignupForm extends React.Component {
                     <label for="input-firstname-signup">Prénom</label>
                     <input type="text" className="form-control" ref="firstname" id="input-firstname-signup" placeholder="Prénom" />
                   </div>
-                  <div className="form-group">
-                    <label for="input-birthdate">Date de naissance</label>
-                    <div className='input-group date-time'>
-                      <input type='text' className="form-control" ref="birthdate" placeholder="Date de naissance" />
-                      <span className="input-group-addon">
-                          <span className="fa fa-calendar" />
-                      </span>
-                    </div>
+                  <div className="form-group date-time">
+                    <label for="input-birthdate" className="col-form-label">Date de naissance</label>
+                    <input className="form-control" type="date" ref="birthdate" id="birthdate" placeholder="2017-01-01" />
+                    <span className="input-group-addon">
+                        <span className="fa fa-calendar" />
+                    </span>
                   </div>
                   <div className="form-group">
                     <label for="gender">Sexe</label>

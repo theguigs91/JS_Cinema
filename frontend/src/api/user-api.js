@@ -4,6 +4,7 @@
 import "isomorphic-fetch"
 import store from '../store'
 import * as user_actions from '../actions/user-actions'
+import axios from 'axios';
 
 export function getAllUsers() {
     return fetch('http://localhost:8080/user')
@@ -32,14 +33,36 @@ export function getUserByLogin(login) {
         })
 }
 
-export function addUser(login, password) {
-    return fetch('http://localhost:8080/user', {
-        method: 'POST',
-        headers: { "Content-Type" : "application/json"  },
-        body: JSON.stringify({'login' : login, 'password' : password})
-    })
-        .then(() => store.dispatch(user_actions.addUser(login, password)))
+let config = {
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  },
+  mode: 'no-cors'
+};
+
+export function addUser(user) {
+
+  console.log("user-api: addUser ", user);
+
+  return axios.post('http://localhost:8080/user', user, config)
+    .then(response => {
+
+      console.log('[UserAPI].addUser Before dispatch. Current state:');
+      console.log(store.getState());
+      console.log('--------------');
+
+      store.dispatch(user_actions.addUser(response.data));
+
+      console.log('[UserAPI].addUser After dispatch. Current state:');
+      console.log(store.getState());
+      console.log('--------------');
+
+    }).catch(err => {
+      console.log(err.message);
+    });
 }
+
 
 export function updateUserById(id, login, password) {
     return fetch('http://localhost:8080/user/id/' + id, {

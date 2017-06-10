@@ -42,7 +42,7 @@ class App extends React.Component {
     return (
       <Router history={history}>
         <div>
-            <Route path="/" component={Home} />
+            <Route exact path="/" component={Home} />
 
             <Route exact path="/login" component={LoginSignupContainer}/>
 
