@@ -34,6 +34,8 @@ import ScheduleCreationContainer from './components/containers/schedule-creation
 import ReservationsContainer from './components/containers/reservations-container';
 
 
+import CheckLoggedInContainer from './components/containers/check-logged-in-container';
+
 console.log('router.js');
 
 class App extends React.Component {
@@ -42,21 +44,22 @@ class App extends React.Component {
     return (
       <Router history={history}>
         <div>
-            <Route exact path="/" component={Home} />
+          <Route path="/" component={CheckLoggedInContainer} />
+          <Route exact path="/" component={Home} />
 
-            <Route exact path="/login" component={LoginSignupContainer}/>
+          <Route exact path="/login" component={LoginSignupContainer}/>
 
-            <Route exact path="/movies" component={MovieListContainer}/>
-            <Route exact path="/movies/creation" component={MovieCreationContainer}/>
-            <Route exact path="/movies/edition/:movieId" component={MovieEditionContainer}/>
-            <Route exact path="/movies/admin" component={AdminMoviesContainer}/>
+          <Route exact path="/movies" component={MovieListContainer}/>
+          <Route exact path="/movies/creation" component={MovieCreationContainer}/>
+          <Route exact path="/movies/edition/:movieId" component={MovieEditionContainer}/>
+          <Route exact path="/movies/admin" component={AdminMoviesContainer}/>
 
-            <Route exact path="/schedules/creation" component={ScheduleCreationContainer}/>
-            <Route exact path="/schedules/:scheduleId"/>
+          <Route exact path="/schedules/creation" component={ScheduleCreationContainer}/>
+          <Route exact path="/schedules/:scheduleId"/>
 
-            <Route exact path="/reservation" component={ReservationCreationContainer}/>
-            <Route exact path="/myreservations" component={MyReservationsContainer}/>
-            <Route exact path="/reservations" component={ReservationsContainer}/>
+          <Route exact path="/reservation" component={ReservationCreationContainer}/>
+          <Route exact path="/myreservations" component={MyReservationsContainer}/>
+          <Route exact path="/reservations" component={ReservationsContainer}/>
         </div>
       </Router>
     )

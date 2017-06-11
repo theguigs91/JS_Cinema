@@ -84,7 +84,7 @@ router.get('/login/:login', function(req, res, next) {
   connection.query(queryString, params, function (err, rows, fields) {
         if(!err) {
           res.status(200);
-          res.json(rows);
+          res.json(rows[0]);
           res.end();
         }
         else {
@@ -110,7 +110,7 @@ router.post('/authentification', function(req, res) {
   connection.query(queryString, params, function (err, rows, fields) {
     if(!err) {
       res.status(200);
-      res.json(rows);
+      res.json(rows[0]);
       res.end();
     }
     else {

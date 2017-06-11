@@ -2,7 +2,7 @@
  * Created by presci on 04/06/17.
  */
 import "isomorphic-fetch"
-import store from '../store'
+import store, { saveStore } from '../store';
 import * as user_actions from '../actions/user-actions'
 import axios from 'axios';
 
@@ -25,12 +25,12 @@ export function getUserById(id) {
 }
 
 export function getUserByLogin(login) {
-    return fetch('http://localhost:8080/user/login/')
-        .then(response => response.json())
-        .then(json => {
-            store.dispatch(user_actions.getUserByLogin(json));
-            return json;
-        })
+  return fetch('http://localhost:8080/user/login/')
+    .then(response => response.json())
+    .then(json => {
+        store.dispatch(user_actions.getUserByLogin(json));
+        return json;
+    })
 }
 
 let config = {
@@ -40,6 +40,34 @@ let config = {
   },
   mode: 'no-cors'
 };
+
+/**
+ * Return user if the given login and password are correct,
+ * "undefined" otherwise.
+ */
+export function getLoggedUser(user) {
+
+  console.log('[UserApi] getLoggedUser user: ', user);
+
+  return axios.post('http://localhost:8080/user/authentification', user, config)
+    .then(response => {
+
+      console.log('[UserAPI].getLoggedUser Before dispatch. Current state:');
+      console.log(store.getState());
+      console.log('--------------');
+
+      store.dispatch(user_actions.logInSuccess(response.data));
+
+      console.log('[UserAPI].getLoggedUser After dispatch. Current state:');
+      console.log(store.getState());
+      console.log('--------------');
+
+      return saveStore();
+
+    }).catch(err => {
+      console.log(err.message);
+    });
+}
 
 export function addUser(user) {
 

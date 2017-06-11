@@ -3,10 +3,11 @@
  */
 
 import React, { PropTypes } from 'react';
+import store from '../../store';
 
 class LoginForm extends React.Component {
 
-  getUser() {
+  getUserFormInfo() {
     return {
       login: this.refs.login.value,
       password: this.refs.password.value
@@ -14,6 +15,8 @@ class LoginForm extends React.Component {
   }
 
   render() {
+    console.log('[Loginform] render', store.getState());
+
     return (
       <div className="col-lg-5 col-md-5 col-sm-5">
         <div className="tm-home-box-1">

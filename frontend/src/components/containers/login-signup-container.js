@@ -5,6 +5,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import store from '../../store';
 
 import * as userApi from '../../api/user-api';
 import LoginForm from '../views/login-form';
@@ -31,12 +32,18 @@ class LoginSignupContainer extends React.Component {
 
   // -- Log in --
 
-  logIn() {
-    let user = this.getUser();
-    console.log('[LoginSignupContainer] logIn', user);
+  logIn(event) {
+    event.preventDefault();
+
+    let userFormInfo = this.getUserFormInfo(); // Get user fields (login form)
+    userApi.getLoggedUser(userFormInfo);
+    console.log('[LoginSignupContainer] logIn', store.getState());
   }
 
   render() {
+
+    console.log('[LoginSignupContainer] Rendering...');
+
     return (
       <section className="container tm-home-section-1" id="more">
         <div className="row col-lg-offset-2 col-md-offset-2 col-sm-offset-2">

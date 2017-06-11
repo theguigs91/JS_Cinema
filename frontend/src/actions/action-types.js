@@ -12,6 +12,8 @@ export const USER_PROFILE_SUCCESS = 'USER_PROFILE_SUCCESS';
 export const GET_USERS_SUCCESS = 'GET_USERS_SUCCESS';
 export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
 
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+
 // Movies
 export const GET_ALL_MOVIES = "GET_ALL_MOVIES";
 export const GET_ALL_MOVIES_FROM_DATE = "GET_ALL_MOVIES_FROM_DATE";
@@ -57,3 +59,7 @@ export const GET_ROOMS_SUCCESS = 'GET_ROOMS_SUCCESS';
 // Search
 
 export const LOAD_SEARCH = 'LOAD_SEARCH';
+
+// Page
+
+export const SET_REDIRECT_ROUTE = 'SET_REDIRECT_ROUTE';

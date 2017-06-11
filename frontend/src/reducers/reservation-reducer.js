@@ -5,7 +5,7 @@ const initialReservationState = {
   reservations: []
 };
 
-const ReservationReducer = function(state: initialReservationState, action) {
+const reservationReducer = function(state: initialReservationState, action) {
 
   console.log("Action type: ", action.type);
   console.log("Action payload: ", action.payload);
@@ -24,4 +24,4 @@ const ReservationReducer = function(state: initialReservationState, action) {
   }
 };
 
-export default ReservationReducer;
+export default reservationReducer;
