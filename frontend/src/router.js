@@ -93,6 +93,9 @@ class App extends React.Component {
 
   render() {
 
+    if (!persistedState)
+      return this.renderVisitor();
+
     switch (persistedState.loggedInUser.role_name) {
       case 'admin':
         return this.renderAdmin();
