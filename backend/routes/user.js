@@ -93,6 +93,34 @@ router.get('/login/:login', function(req, res, next) {
     });
 });
 
+/**
+ * Get the logged user if the login and password are correct.
+ */
+router.post('/authentification', function(req, res) {
+  res.setHeader("Content-Type", "application/json");
+
+  let user = req.body;
+  let params = [user.login, md5(user.password)];
+  let queryString =
+    'SELECT u.id, u.login, u.email, u.lastname, u.firstname, u.birthdate, u.gender, r.name AS role_name \ '
+  + 'FROM user AS u \ '
+  + 'INNER JOIN role AS r ON u.role_id = r.id \ '
+  + 'WHERE login = ? AND password = ?';
+
+  connection.query(queryString, params, function (err, rows, fields) {
+    if(!err) {
+      res.status(200);
+      res.json(rows);
+      res.end();
+    }
+    else {
+      res.status(400).send(JSON.stringify({message: err}));
+      console.log("Erreur: " + err);
+    }
+  });
+});
+
+
 /* ADD a user */
 router.post('/', function(req, res) {
 	res.setHeader("Content-Type", "application/json");
