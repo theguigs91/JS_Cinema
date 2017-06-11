@@ -20,6 +20,9 @@ import MovieListContainer from './components/containers/movie-list-container';
 import LoginSignupContainer from './components/containers/login-signup-container';
 //import MoviesContainer from './components/containers/movies-container';
 import SchedulesContainer from './components/containers/seance-list-container';
+import SearchMovieContainer from './components/containers/search-movie-container';
+import ResultsContainer from './components/containers/result-list-container';
+
 //import ScheduleContainer from './components/containers/schedule-container';
 //import AboutContainer from './components/containers/about-container';
 
@@ -56,7 +59,7 @@ class App extends React.Component {
           <Route exact path="/movies/edition/:movieId" component={MovieEditionContainer}/>
           <Route exact path="/movies/admin" component={AdminMoviesContainer}/>
 
-          <Route exact path="/schedules/" component={SchedulesContainer}/>
+          <Route exact path="/schedules" component={SchedulesContainer}/>
           <Route exact path="/schedules/creation" component={ScheduleCreationContainer}/>
           <Route exact path="/schedules/:scheduleId"/>
 
@@ -82,7 +85,11 @@ class App extends React.Component {
 
           <Route exact path="/movies" component={MovieListContainer}/>
 
+          <Route exact path="/schedules" component={SchedulesContainer}/>
           <Route exact path="/schedules/:scheduleId"/>
+
+          <Route exact path="/search" component={SearchMovieContainer}/>
+          <Route exact path="/results" component={ResultsContainer}/>
 
           <Route exact path="/reservation" component={ReservationCreationContainer}/>
           <Route exact path="/myreservations" component={MyReservationsContainer}/>

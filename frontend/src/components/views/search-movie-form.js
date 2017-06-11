@@ -13,9 +13,7 @@ class SearchMovieForm extends React.Component {
           <div className="input-group">
             <input type="text" ref="search" id="search" className="form-control" placeholder="Rechercher un film..."/>
                 <span className="input-group-btn">
-                  <button className="btn btn-default" type="button">
-                    <span className="glyphicon glyphicon-search" aria-hidden="true"></span>
-                  </button>
+                  <input type="submit" value="Rechercher"/>
                 </span>
           </div>
         </form>
