@@ -6,19 +6,19 @@ import React from 'react';
 import { HashRouter as Router, Route, IndexRoute, Switch } from 'react-router-dom';
 
 // Layouts
-import MainLayout from './components/layouts/main-layout';
-import SearchLayoutContainer from './components/containers/search-layout-container';
+//import MainLayout from './components/layouts/main-layout';
+//import SearchLayoutContainer from './components/containers/search-layout-container';
 
 // Pages
 import Home from './components/home';
 
-import UserListContainer from './components/containers/user-list-container';
-import UserProfileContainer from './components/containers/user-profile-container';
+//import UserListContainer from './components/containers/user-list-container';
+//import UserProfileContainer from './components/containers/user-profile-container';
 
 import MovieListContainer from './components/containers/movie-list-container';
 import LoginSignupContainer from './components/containers/login-signup-container';
 //import MoviesContainer from './components/containers/movies-container';
-//import SchedulesContainer from './components/containers/schedules-container';
+import SchedulesContainer from './components/containers/seance-list-container';
 //import ScheduleContainer from './components/containers/schedule-container';
 //import AboutContainer from './components/containers/about-container';
 
@@ -54,6 +54,7 @@ class App extends React.Component {
           <Route exact path="/movies/edition/:movieId" component={MovieEditionContainer}/>
           <Route exact path="/movies/admin" component={AdminMoviesContainer}/>
 
+          <Route exact path="/schedules/" component={SchedulesContainer}/>
           <Route exact path="/schedules/creation" component={ScheduleCreationContainer}/>
           <Route exact path="/schedules/:scheduleId"/>
 
