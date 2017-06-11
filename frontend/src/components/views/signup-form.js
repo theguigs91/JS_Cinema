@@ -4,6 +4,8 @@
 
 import React, { PropTypes } from 'react';
 import * as StringHelper from '../../helpers/string-helper';
+import _ from 'lodash';
+import * as userApi from '../../api/user-api';
 
 class SignupForm extends React.Component {
 
@@ -47,6 +49,21 @@ class SignupForm extends React.Component {
     return errors;
   }
 
+  addUser(event) {
+    event.preventDefault();
+
+    let user = this.getUser();
+    console.log('[SignupForm] addUser', user);
+
+    let errors = this.validate(user);
+    if (_.isEmpty(errors)) {
+      console.log('userApi.addUser', user);
+      userApi.addUser(user);
+    }
+    else
+      console.log("errors: ", errors);
+  }
+
   render() {
     return (
       <div className="col-lg-5 col-md-5 col-sm-5">
@@ -55,7 +72,7 @@ class SignupForm extends React.Component {
 
           <div className="tm-white-bg">
             <div className="tm-search-box effect2">
-              <form onSubmit={this.props.addUser.bind(this)} method="post" className="signup-form">
+              <form onSubmit={this.addUser.bind(this)} method="post" className="signup-form">
                 <div className="tm-form-inner">
                   <div className="form-group">
                     <label for="input-login-signup">Login</label>
@@ -107,9 +124,5 @@ class SignupForm extends React.Component {
     );
   }
 }
-
-SignupForm.PropTypes = {
-  addUser: PropTypes.func.isRequired
-};
 
 export default SignupForm;

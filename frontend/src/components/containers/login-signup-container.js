@@ -3,42 +3,10 @@
  */
 
 import React from 'react';
-import { connect } from 'react-redux';
-import _ from 'lodash';
-import store from '../../store';
-
-import * as userApi from '../../api/user-api';
 import LoginForm from '../views/login-form';
 import SignupForm from '../views/signup-form';
 
 class LoginSignupContainer extends React.Component {
-
-  // -- Sign up --
-
-  addUser(event) {
-    event.preventDefault();
-
-    let user = this.getUser();
-    console.log('[LoginSignupContainer] addUser', user);
-
-    let errors = this.validate(user);
-    if (_.isEmpty(errors)) {
-      console.log('userApi.addUser', user);
-      userApi.addUser(user);
-    }
-    else
-      console.log("errors: ", errors);
-  }
-
-  // -- Log in --
-
-  logIn(event) {
-    event.preventDefault();
-
-    let userFormInfo = this.getUserFormInfo(); // Get user fields (login form)
-    userApi.getLoggedUser(userFormInfo);
-    console.log('[LoginSignupContainer] logIn', store.getState());
-  }
 
   render() {
 
@@ -55,10 +23,4 @@ class LoginSignupContainer extends React.Component {
   }
 }
 
-const mapStateToProps = function(store) {
-  return {
-    user: store.userState.user
-  };
-};
-
-export default connect(mapStateToProps)(LoginSignupContainer);
+export default LoginSignupContainer;

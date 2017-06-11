@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { setRedirectRoute } from '../../actions/page-actions';
 import { hashHistory } from 'react-router';
-import { Redirect } from 'react-router-dom';
 import { persistedState } from '../../store';
 
 class CheckLoggedInContainer extends React.Component {
@@ -11,7 +10,7 @@ class CheckLoggedInContainer extends React.Component {
 
     const { dispatch } = this.props;
 
-    console.log('[CheckLoggedInContainer] componentDidMount persistedState: ', persistedState.isLoggedIn);
+    console.log('[CheckLoggedInContainer] componentDidMount persistedState: ', persistedState);
 
     let currentRoute = this.props.location.pathname;
 
@@ -31,15 +30,8 @@ class CheckLoggedInContainer extends React.Component {
 
   render() {
 
-    console.log('[CheckLoggedInContainer] Rendering ...: isLoggedIn [', persistedState.isLoggedIn, '], loggedUser [', persistedState.loggedInUser, ']');
-
-    if (persistedState.isLoggedIn) {
-      return (
-        <Redirect to="/"/>
-      );
-    } else {
-      return null;
-    }
+    console.log('[CheckLoggedInContainer] Rendering ...: isLoggedIn [', persistedState.isLoggedIn, '], loggedInUser [', persistedState.loggedInUser, ']');
+    return null;
   }
 }
 

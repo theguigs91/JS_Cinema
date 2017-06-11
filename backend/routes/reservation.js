@@ -71,7 +71,9 @@ router.get('/id/:id', function(req, res, next) {
 
   connection.query(queryString, param, function(err, rows, fields) {
     if (!err) {
-      res.status(200).send(JSON.stringify({rows: rows}));
+      res.status(200)
+        .json(rows[0])
+        .end();
     }
     else {
       res.status(400).send(JSON.stringify({message: err}));

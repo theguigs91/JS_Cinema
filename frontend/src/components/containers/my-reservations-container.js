@@ -1,16 +1,14 @@
 import React from 'react';
 import Reservations from '../views/reservations';
-import { getMoviesFromUserId } from '../../api/movie-api';
-import { getSchedulesFromUserId } from '../../api/schedule-api';
 import { getReservationsFromUserId } from '../../api/reservation-api';
 import { connect } from 'react-redux';
+import { persistedState } from '../../store';
+import _ from 'lodash';
 
 class MyReservationsContainer extends React.Component {
 
   componentDidMount() {
-    // TODO: To replace by current user id.
-    let userId = 4;
-    getReservationsFromUserId(userId);
+    getReservationsFromUserId(persistedState.loggedInUser.id);
   }
 
   render() {

@@ -4,10 +4,12 @@ import Reservations from '../views/reservations';
 import DateForm from '../views/date-form';
 import { getReservationsFromDate, getReservations } from '../../api/reservation-api';
 import * as DateHelper from '../../helpers/date-helper';
+import _ from 'lodash';
 
 class ReservationsContainer extends React.Component {
 
   componentDidMount() {
+    console.log('componentDidMount getReservations');
     getReservations();
   }
 
@@ -33,8 +35,16 @@ class ReservationsContainer extends React.Component {
         </div>
       );
     }
-    else
-      return null;
+    else {
+      return (
+        <div>
+          <DateForm
+            selectDate={this.selectDate}
+            buttonStr="Voir les réservations"
+          />
+        </div>
+      );
+    }
   }
 }
 

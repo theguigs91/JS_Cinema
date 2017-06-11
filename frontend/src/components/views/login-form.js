@@ -3,7 +3,10 @@
  */
 
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 import store from '../../store';
+import * as userApi from '../../api/user-api';
+import { hashHistory } from 'react-router';
 
 class LoginForm extends React.Component {
 
@@ -12,6 +15,15 @@ class LoginForm extends React.Component {
       login: this.refs.login.value,
       password: this.refs.password.value
     }
+  }
+
+  logIn(event) {
+    event.preventDefault();
+
+    let userFormInfo = this.getUserFormInfo(); // Get user fields (login form)
+    userApi.getLoggedUser(userFormInfo);
+    console.log('[LoginForm] logIn', store.getState());
+    hashHistory.replace(this.props.redirectRoute);
   }
 
   render() {
@@ -24,7 +36,7 @@ class LoginForm extends React.Component {
 
           <div className="tm-white-bg">
             <div className="tm-search-box effect2">
-              <form onSubmit={this.props.logIn.bind(this)} method="post" className="login-form">
+              <form onSubmit={this.logIn.bind(this)} method="post" className="login-form">
                 <div className="tm-form-inner">
                   <div className="form-group">
                     <label for="input-email-login">Identifiant</label>
@@ -47,8 +59,10 @@ class LoginForm extends React.Component {
   }
 }
 
-LoginForm.PropTypes = {
-  logIn: PropTypes.func.isRequired
+const mapStateToProps = function(store) {
+  return {
+    redirectRoute: store.pageState.redirectRoute
+  };
 };
 
-export default LoginForm;
+export default connect(mapStateToProps)(LoginForm);

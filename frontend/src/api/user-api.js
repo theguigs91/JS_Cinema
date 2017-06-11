@@ -2,8 +2,9 @@
  * Created by presci on 04/06/17.
  */
 import "isomorphic-fetch"
-import store, { saveStore } from '../store';
-import * as user_actions from '../actions/user-actions'
+import store, { saveStore, persistedState } from '../store';
+import * as user_actions from '../actions/user-actions';
+import { setRedirectRoute } from '../actions/page-actions';
 import axios from 'axios';
 
 export function getAllUsers() {
