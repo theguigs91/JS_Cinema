@@ -8,6 +8,7 @@ import * as reservationApi from '../../api/reservation-api';
 import * as scheduleApi from '../../api/schedule-api';
 import _ from 'lodash';
 import { persistedState } from '../../store';
+import { hashHistory } from 'react-router';
 
 class ReservationCreationForm extends React.Component {
 
@@ -67,6 +68,7 @@ class ReservationCreationForm extends React.Component {
         console.log(reservation);
         reservationApi.addReservation(reservation);
         scheduleApi.decrementSeancePlaces(this.props.seance.id);
+        hashHistory.replace('/myreservations');
       }
     }
     else
@@ -120,10 +122,14 @@ class ReservationCreationForm extends React.Component {
 
 
 ReservationCreationForm.propTypes = {
+  seance: PropTypes.object.isRequired
+};
+
+/*ReservationCreationForm.propTypes = {
   movie: PropTypes.object.isRequired,
   seance: PropTypes.object.isRequired,
   room: PropTypes.object.isRequired,
-};
+};*/
 //  addReservation: PropTypes.func.isRequired,
 //  updateTotalPrice: PropTypes.func.isRequired,
 //totalPrice: PropTypes.string.isRequired

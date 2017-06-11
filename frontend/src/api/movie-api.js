@@ -58,7 +58,7 @@ export function getMovieById(id) {
       console.log(store.getState());
       console.log('--------------');
 
-      store.dispatch(movie_actions.getMovieById(json[0]));
+      store.dispatch(movie_actions.getMovieById(json));
 
       console.log('[MovieAPI].getMovieById After dispatch. Current state:');
       console.log(store.getState());

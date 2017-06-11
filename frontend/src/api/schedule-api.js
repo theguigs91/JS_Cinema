@@ -80,6 +80,29 @@ export function getSchedulesFromUserId(userId) {
 }
 
 /**
+ * Get seance with all information (Movie, room ..)
+ */
+export function getScheduleFromId(id) {
+  return fetch('http://localhost:8080/seance/fullinfo/id/' + id)
+    .then(response => response.json())
+    .then(json => {
+
+      console.log('[ScheduleAPI].getScheduleById Before dispatch. Current state:');
+      console.log(store.getState());
+      console.log('--------------');
+
+      store.dispatch(scheduleActions.getScheduleSuccess(json));
+
+      console.log('[ScheduleAPI].getScheduleById After dispatch. Current state:');
+      console.log(store.getState());
+      console.log('--------------');
+
+      return json;
+    })
+}
+
+
+/**
  * Search schedules
  */
 export function searchSchedules(query = '') {

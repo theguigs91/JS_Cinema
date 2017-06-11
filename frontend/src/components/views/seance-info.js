@@ -13,16 +13,16 @@ class SeanceInfo extends React.Component {
           <div className="tm-movies-box-1-info">
             <div className="tm-movies-box-1-info-left">
               <p className="text-uppercase margin-bottom-20 title" ref="movieTitle" id="reservation-movie-title">
-                {this.props.movie.name}
+                {this.props.seance.movie_name}
               </p>
               <p className="text-uppercase margin-bottom-20 title" ref="movieRealisator" id="reservation-movie-realisator">
-                {this.props.movie.realisator}
+                {this.props.seance.movie_realisator}
               </p>
             </div>
             <div className="tm-movies-box-1-info-right">
               <p id="reservation-date margin-bottom-20">{this.props.seance.date}</p>
               <p id="reservation-time margin-bottom-30">{this.props.seance.time}</p>
-              <p id="reservation-room">{this.props.room.numero}</p>
+              <p id="reservation-room">{this.props.seance.room}</p>
             </div>
           </div>
         </div>
@@ -32,9 +32,7 @@ class SeanceInfo extends React.Component {
 }
 
 SeanceInfo.propTypes = {
-  movie: PropTypes.object.isRequired,
-  seance: PropTypes.object.isRequired,
-  room: PropTypes.object.isRequired
+  seance: PropTypes.object.isRequired
 };
 
 export default SeanceInfo;

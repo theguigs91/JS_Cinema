@@ -4,7 +4,7 @@
 import React from 'react';
 import HourButtonList from '../containers/hour-button-list-container'
 
-const SeanceItem = ({ data, schedules }) => (
+const SeanceItem = ({ data, schedules, link }) => (
 
 <div className="row tm-schedules-box">
     <div className="col-lg-3 col-mg-3 col-sm-3">
@@ -31,11 +31,11 @@ const SeanceItem = ({ data, schedules }) => (
             <div className="tm-schedules-box-link-left">
                 <ul className="schedules">
                     <li className="schedule">
-                        <span className="schedules-title row">En VO, Numérique</span>
                         <div className="btn-group col-lg-12 col-md-12 col-sm-12" role="group">
                           <HourButtonList
                             key = {data.id}
                             data = {schedules}
+                            link = {link}
                           />
                         </div>
                     </li>

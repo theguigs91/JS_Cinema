@@ -26,6 +26,13 @@ export function getSchedulesSuccess(schedules) {
   }
 }
 
+export function getScheduleSuccess(schedule) {
+  return {
+    type: types.GET_SCHEDULE_SUCCESS,
+    schedule
+  }
+}
+
 export function getSchedulesOfAMovieSuccess(schedules) {
   console.log("[ACTION] schedules: ", schedules)
     return {

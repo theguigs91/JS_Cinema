@@ -5,12 +5,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import HourButton from '../views/hourButton'
 
-const HourButtonList = ({ data }) => (
+const HourButtonList = ({ data, link }) => (
   <div>
     {data.map(el =>
       <HourButton
         key = {el.id}
         data = {el}
+        link = {link}
       />
     )}
   </div>
