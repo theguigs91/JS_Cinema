@@ -29,6 +29,8 @@ class CheckLoggedInContainer extends React.Component {
   }
 
   render() {
+
+    console.log('[CheckLoggedInContainer] Rendering ...: isLoggedIn [', persistedState.isLoggedIn, '], loggedInUser [', persistedState.loggedInUser, ']');
     return null;
   }
 }
