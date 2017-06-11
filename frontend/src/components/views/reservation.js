@@ -13,17 +13,15 @@ class Reservation extends React.Component {
     let reservation = this.props.reservation;
 
     this.buttonClassName = "tm-movies-box-1-link-right glyphicon " + this.props.buttonGlyphicon;
-    this.movie = {
-      name: reservation.movie_name,
-      realisator: reservation.movie_realisator
-    };
     this.seance = {
       date: reservation.seance_date,
-      time: reservation.seance_time
-    };
-    this.room = {
+      time: reservation.seance_time,
+      movie_name: reservation.movie_name,
+      movie_realisator: reservation.movie_realisator,
       numero: reservation.room_numero
-    }
+    };
+
+    console.log('[Reservation] seance: ', this.seance);
   }
 
   getReservation() {
@@ -36,21 +34,16 @@ class Reservation extends React.Component {
       <div className="row reservation">
 
         <div className="col-sm-8 col-xs-12">
-          <SeanceInfo movie={this.movie} seance={this.seance} room={this.room} />
+          <SeanceInfo seance={this.seance} />
         </div>
 
         <div className="col-sm-4 col-xs-12">
           <div className="tm-movies-box-1">
             <div className="tm-reservation-box-right">
               <label>Tarif</label>
-              <span className="margin-bottom-20">{CONST.TICKET_PRICE} €</span><br/>
-              <label for="number-seats-taken">Nombre de places</label>
-              <span id="number-seats-taken">{this.props.reservation.number_seats}</span>
+              <span className="margin-bottom-20"> {CONST.TICKET_PRICE_STRING} €</span><br/>
             </div>
             <div className="tm-movies-box-1-link">
-              <div className="tm-movies-box-1-link-left col-xs-8">
-                Total: <span id="reservation-total-price">{this.props.reservation.total_price}</span> €
-              </div>
               <button className={this.buttonClassName} onClick={this.props.onClickButtonFunc} ref="button">{this.props.buttonStr}</button>
             </div>
           </div>

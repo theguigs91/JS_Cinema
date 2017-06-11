@@ -26,11 +26,11 @@ class Reservations extends React.Component {
             this.props.reservations.map(reservation => {
               return (
                 <Reservation
+                  key={reservation.id}
                   onClickButtonFunc={this.deleteReservation.bind(this, reservation)}
                   buttonStr="Supprimer"
                   reservation={reservation}
                   buttonGlyphicon="glyphicon-remove"
-                  ref="child"
                 />
               )
             })

@@ -118,6 +118,30 @@ router.get('/id/:id', function(req, res, next) {
   });
 });
 
+router.get('/fullinfo/id/:id', function(req, res) {
+  res.setHeader("Content-Type", "application/json");
+
+  let params = [req.params.id];
+  let queryString =
+    'SELECT s.id, s.date, s.time, m.name AS movie_name, m.realisator AS movie_realisator, r.numero AS room \ '
+  + 'FROM seance AS s \ '
+  + 'INNER JOIN movie AS m ON s.movie_id = m.id \ '
+  + 'INNER JOIN room AS r ON s.room_id = r.id \ '
+  + 'WHERE s.id = ?';
+
+  connection.query(queryString, params, function(err, rows) {
+    if (!err) {
+      res.status(200)
+        .json(rows[0])
+        .end();
+    }
+    else {
+      res.status(400).send(JSON.stringify({message: err}));
+      console.log("Error while performing query" + err);
+    }
+  });
+});
+
 // Add a seance
 
 router.post('/', jsonParser, function (req, res) {

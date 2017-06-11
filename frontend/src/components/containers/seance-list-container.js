@@ -21,8 +21,8 @@ class SeanceList extends React.Component {
 
     selectDate(event){
       event.preventDefault();
-      console.log("SELECT DATE")
-      movieApi.getAllMoviesFromDate(this.refs.date.value)
+      console.log("SELECT DATE");
+      movieApi.getAllMoviesFromDate(this.refs.date.value);
       scheduleApi.getAllSchedulesFromDate(this.refs.date.value);
     }
 
@@ -34,16 +34,16 @@ class SeanceList extends React.Component {
 
         return (
           <div>
-          <ScheduleDate
-            selectDate={this.selectDate}
-            ref="child"
-          />
+            <ScheduleDate
+              selectDate={this.selectDate}
+            />
             <div>
                 {this.props.movies.map(movie =>
                   <SeanceItem
                     key = {movie.id}
                     data = {movie}
                     schedules = {this.props.schedules.filter(el => el.movie_id == movie.id)}
+                    link = "/reservation/"
                   />
                 )}
             </div>
