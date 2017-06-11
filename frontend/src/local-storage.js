@@ -5,7 +5,10 @@ export const loadState = () => {
     console.log('[LoadStorage] loadState serializedState: ', serializedState);
 
     if (serializedState === null) {
-      return undefined;
+      return {
+        isLoggedIn: false,
+        loggedInUser: undefined
+      };
     }
     return JSON.parse(serializedState);
   } catch (err) {
