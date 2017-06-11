@@ -26,7 +26,7 @@ class Reservations extends React.Component {
             this.props.reservations.map(reservation => {
               return (
                 <Reservation
-                  onClickButtonFunc={this.deleteReservation.bind(null, reservation)}
+                  onClickButtonFunc={this.deleteReservation.bind(this, reservation)}
                   buttonStr="Supprimer"
                   reservation={reservation}
                   buttonGlyphicon="glyphicon-remove"

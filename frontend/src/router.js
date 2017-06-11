@@ -92,7 +92,7 @@ class App extends React.Component {
 
   render() {
 
-    switch (persistedState.loggedInUser.role) {
+    switch (persistedState.loggedInUser.role_name) {
       case 'admin':
         return this.renderAdmin();
       case 'visitor':
@@ -100,7 +100,6 @@ class App extends React.Component {
       default:
         return this.renderVisitor();
     }
-
   }
 }
 
