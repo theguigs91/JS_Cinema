@@ -21,10 +21,11 @@ class LoginForm extends React.Component {
     event.preventDefault();
 
     let userFormInfo = this.getUserFormInfo(); // Get user fields (login form)
-    userApi.getLoggedUser(userFormInfo);
     console.log('[LoginForm] logIn', store.getState());
-    hashHistory.replace('/');
-    //hashHistory.replace(this.props.redirectRoute);
+    return userApi.logInUser(userFormInfo).then(() => {
+      hashHistory.replace('/');
+      return this.forceUpdate();
+    });
   }
 
   render() {

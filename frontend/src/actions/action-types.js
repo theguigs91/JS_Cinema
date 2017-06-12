@@ -13,6 +13,7 @@ export const GET_USERS_SUCCESS = 'GET_USERS_SUCCESS';
 export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
 // Movies
 export const GET_ALL_MOVIES = "GET_ALL_MOVIES";
