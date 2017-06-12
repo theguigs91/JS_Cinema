@@ -4,8 +4,6 @@ import { setRedirectRoute } from '../../actions/page-actions';
 import { hashHistory } from 'react-router';
 import { persistedState } from '../../store';
 import SearchMovieForm from "../views/search-movie-form";
-import Search from './search-movie-container';
-import NavigationBar from '../views/navigation-bar';
 
 class CheckLoggedInContainer extends React.Component {
 
@@ -34,12 +32,7 @@ class CheckLoggedInContainer extends React.Component {
   render() {
 
     console.log('[CheckLoggedInContainer] Rendering ...: isLoggedIn [', persistedState.isLoggedIn, '], loggedInUser [', persistedState.loggedInUser, ']');
-    return (
-      <div>
-        <Search />
-        <NavigationBar />
-      </div>
-    );
+    return null;
   }
 }
 

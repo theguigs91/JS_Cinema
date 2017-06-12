@@ -4,6 +4,9 @@ import { Provider } from 'react-redux';
 import store from './store';
 // TODO: MUIThemeProvider
 import { App } from './router';
+import { HashRouter as Router } from 'react-router-dom';
+import Search from './components/containers/search-movie-container';
+import NavigationBar from './components/views/navigation-bar';
 
 import s1 from '../src/misc/css/templatemo-style.css';
 import s2 from '../src/misc/css/font-awesome.min.css';
@@ -20,16 +23,20 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-/*ReactDOM.render(
+ReactDOM.render(
   <Provider store={store}>
-    <Search />
+    <Router history={history}>
+      <Search />
+    </Router>
   </Provider>,
   document.getElementById('search')
 );
 
 ReactDOM.render(
- <Provider store={store}>
- <NavBar />
- </Provider>,
- document.getElementById('nav')
-);*/
+  <Provider store={store}>
+    <Router history={history}>
+      <NavigationBar />
+    </Router>
+  </Provider>,
+  document.getElementById('nav')
+);
