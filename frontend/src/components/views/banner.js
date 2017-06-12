@@ -13,7 +13,7 @@ class Banner extends React.Component {
                 <h1 className="tm-small-banner-title">JS <span className="tm-yellow-text">Title</span></h1>
                 <p className="tm-small-banner-subtitle">Subtitle</p>
               </div>
-              <img src="../src/misc/img/banner-1.jpg" alt="Image" />
+              <img src="http://justbgraphic.org/wp-content/uploads/2014/10/sister-souljah-blur-banner.jpg" alt="Image" />
             </li>
           </ul>
         </div>
