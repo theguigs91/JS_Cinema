@@ -63,6 +63,8 @@ class App extends React.Component {
           <Route exact path="/schedules/creation" component={ScheduleCreationContainer}/>
           <Route exact path="/schedules/:scheduleId"/>
 
+          <Route exact path="/results" component={ResultsContainer}/>
+
           <Route exact path="/reservation/:seanceId" component={ReservationCreationContainer}/>
           <Route exact path="/myreservations" component={MyReservationsContainer}/>
           <Route exact path="/reservations" component={ReservationsContainer}/>
