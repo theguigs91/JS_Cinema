@@ -25,6 +25,8 @@ const userReducer = function(state = initialState, action) {
       return {...state, userProfile: action.userProfile };
     case types.LOGIN_SUCCESS:
       return {...state, isLoggedIn: action.isLoggedIn, loggedInUser: action.loggedInUser};
+    case types.LOGOUT_SUCCESS:
+      return {...state, isLoggedIn: action.isLoggedIn, loggedInUser: action.loggedInUser};
   }
 
   return state;

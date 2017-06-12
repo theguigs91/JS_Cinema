@@ -8,7 +8,7 @@ import _ from 'lodash';
 class MyReservationsContainer extends React.Component {
 
   componentDidMount() {
-    getReservationsFromUserId(persistedState.loggedInUser.id);
+    getReservationsFromUserId(persistedState().loggedInUser.id);
   }
 
   render() {

@@ -1,15 +1,18 @@
 import { createStore } from 'redux';
 import reducers from './reducers';
-import { loadState, saveState } from './local-storage';
+import { loadState, saveState, destroyState } from './local-storage';
 
-export const persistedState = loadState();
 const store = createStore(
   reducers,
-  persistedState
+  loadState()
 );
 
+export function persistedState() {
+  return loadState();
+}
+
 store.subscribe(() => {
-  console.log('[Store] subscribe persistedState: ', persistedState);
+  console.log('[Store] subscribe persistedState: ', persistedState());
 });
 
 export function saveStore() {
@@ -20,6 +23,11 @@ export function saveStore() {
     isLoggedIn: store.getState().userState.isLoggedIn,
     loggedInUser: store.getState().userState.loggedInUser
   });
+}
+
+export function destroyStore() {
+  destroyState();
+  console.log('[Store] destroyStore isLogged In [', persistedState().isLoggedIn, '], loggedUser [', persistedState().loggedInUser, ']');
 }
 
 export default store;

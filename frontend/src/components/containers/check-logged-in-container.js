@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { setRedirectRoute } from '../../actions/page-actions';
 import { hashHistory } from 'react-router';
 import { persistedState } from '../../store';
-import SearchMovieForm from "../views/search-movie-form";
 
 class CheckLoggedInContainer extends React.Component {
 
@@ -11,11 +10,12 @@ class CheckLoggedInContainer extends React.Component {
 
     const { dispatch } = this.props;
 
-    console.log('[CheckLoggedInContainer] componentDidMount persistedState: ', persistedState);
+    let pState = persistedState();
+    console.log('[CheckLoggedInContainer] componentDidMount persistedState: ', pState);
 
     let currentRoute = this.props.location.pathname;
 
-    if (!persistedState.isLoggedIn) {
+    if (!pState.isLoggedIn) {
       // The current route is set for future redirection (after login)
       if (currentRoute === 'login')
         dispatch(setRedirectRoute('/'));
@@ -27,16 +27,17 @@ class CheckLoggedInContainer extends React.Component {
     else if (currentRoute === 'login') {
       hashHistory.replace('/');
     }
+    return this.forceUpdate();
   }
 
   render() {
-
-    console.log('[CheckLoggedInContainer] Rendering ...: isLoggedIn [', persistedState.isLoggedIn, '], loggedInUser [', persistedState.loggedInUser, ']');
+    let pState = persistedState();
+    console.log('[CheckLoggedInContainer] Rendering ...: isLoggedIn [', pState.isLoggedIn, '], loggedInUser [', pState.loggedInUser, ']');
     return null;
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps() {
   return {
     router: React.PropTypes.object.isRequired
   }

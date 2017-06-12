@@ -46,9 +46,9 @@ let config = {
  * Return user if the given login and password are correct,
  * "undefined" otherwise.
  */
-export function getLoggedUser(user) {
+export function logInUser(user) {
 
-  console.log('[UserApi] getLoggedUser user: ', user);
+  console.log('[UserApi] logInUser user: ', user);
 
   return axios.post('http://localhost:8080/user/authentification', user, config)
     .then(response => {

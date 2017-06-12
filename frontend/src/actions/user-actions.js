@@ -78,3 +78,14 @@ export function logInSuccess(user) {
     isLoggedIn: true
   }
 }
+
+export function logOutSuccess() {
+
+  console.log('[UserActions] logOutSuccess');
+
+  return {
+    type: types.LOGOUT_SUCCESS,
+    loggedInUser: undefined,
+    isLoggedIn: false
+  }
+}

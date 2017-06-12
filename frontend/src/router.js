@@ -3,14 +3,11 @@
  */
 
 import React from 'react';
-import { HashRouter as Router, Route, IndexRoute, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route } from 'react-router-dom';
 import { persistedState } from './store';
 
-// Layouts
-//import MainLayout from './components/layouts/main-layout';
-//import SearchLayoutContainer from './components/containers/search-layout-container';
-
-// Pages
+import HeaderContainer from './components/containers/header-container';
+import Banner from './components/views/banner';
 import Home from './components/home';
 
 //import UserListContainer from './components/containers/user-list-container';
@@ -38,17 +35,16 @@ import ScheduleCreationContainer from './components/containers/schedule-creation
 import ReservationsContainer from './components/containers/reservations-container';
 import CheckLoggedInContainer from './components/containers/check-logged-in-container';
 
-console.log('router.js');
-
 class App extends React.Component {
 
   renderAdmin() {
 
-    console.log('renderAdmin');
-
     return (
       <Router history={history}>
         <div>
+          <HeaderContainer />
+          <Banner />
+
           <Route path="/" component={CheckLoggedInContainer} />
           <Route exact path="/" component={Home} />
 
@@ -75,11 +71,12 @@ class App extends React.Component {
 
   renderVisitor() {
 
-    console.log('renderVisitor');
-
     return (
       <Router history={history}>
         <div>
+          <HeaderContainer />
+          <Banner />
+
           <Route path="/" component={CheckLoggedInContainer} />
           <Route exact path="/" component={Home} />
 
@@ -99,18 +96,44 @@ class App extends React.Component {
     )
   }
 
+  renderDefault() {
+
+    return (
+      <Router history={history}>
+        <div>
+          <HeaderContainer />
+          <Banner />
+
+          <Route path="/" component={CheckLoggedInContainer} />
+          <Route exact path="/" component={Home} />
+
+          <Route exact path="/login" component={LoginSignupContainer}/>
+
+          <Route exact path="/movies" component={MovieListContainer}/>
+
+          <Route exact path="/schedules" component={SchedulesContainer}/>
+          <Route exact path="/schedules/:scheduleId"/>
+
+          <Route exact path="/results" component={ResultsContainer}/>
+        </div>
+      </Router>
+    )
+  }
+
   render() {
 
-    if (!persistedState || !persistedState.loggedInUser)
-      return this.renderVisitor();
+    let pState = persistedState();
 
-    switch (persistedState.loggedInUser.role_name) {
+    if (!pState || !pState.loggedInUser)
+      return this.renderDefault();
+
+    switch (pState.loggedInUser.role_name) {
       case 'admin':
         return this.renderAdmin();
       case 'visitor':
         return this.renderVisitor();
       default:
-        return this.renderVisitor();
+        return this.renderDefault();
     }
   }
 }
