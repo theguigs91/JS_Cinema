@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { setRedirectRoute } from '../../actions/page-actions';
 import { hashHistory } from 'react-router';
 import { persistedState } from '../../store';
+import SearchMovieForm from "../views/search-movie-form";
+import Search from './search-movie-container';
+import NavBar from '../views/navigation-bar';
 
 class CheckLoggedInContainer extends React.Component {
 
@@ -28,10 +31,15 @@ class CheckLoggedInContainer extends React.Component {
     }
   }
 
+  //<NavBar />
   render() {
 
     console.log('[CheckLoggedInContainer] Rendering ...: isLoggedIn [', persistedState.isLoggedIn, '], loggedInUser [', persistedState.loggedInUser, ']');
-    return null;
+    return (
+      <div>
+        <Search />
+      </div>
+    );
   }
 }
 

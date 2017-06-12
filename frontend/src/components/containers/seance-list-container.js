@@ -27,7 +27,7 @@ class SeanceList extends React.Component {
     }
 
     render(){
-        console.log("Rendering..");
+        console.log("[SeanceListContainer] Rendering..");
 
         console.log("props movies: ", JSON.stringify(this.props.movies));
         console.log("props schedules: ", (this.props.schedules));

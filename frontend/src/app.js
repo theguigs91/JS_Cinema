@@ -4,8 +4,6 @@ import { Provider } from 'react-redux';
 import store from './store';
 // TODO: MUIThemeProvider
 import { App } from './router';
-import Search from '../src/components/containers/search-movie-container'
-import NavBar from '../src/components/views/navigation-bar'
 
 import s1 from '../src/misc/css/templatemo-style.css';
 import s2 from '../src/misc/css/font-awesome.min.css';
@@ -22,7 +20,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-ReactDOM.render(
+/*ReactDOM.render(
   <Provider store={store}>
     <Search />
   </Provider>,
@@ -34,4 +32,4 @@ ReactDOM.render(
  <NavBar />
  </Provider>,
  document.getElementById('nav')
-);
+);*/

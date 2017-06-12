@@ -7,6 +7,8 @@ class SearchMovieForm extends React.Component {
 
   render() {
 
+    console.log('[SearchMovieForm] Rendering ...');
+
     return (
       <div className="col-lg-2 col-md-2 col-sm-2 search">
         <form onSubmit={this.props.searchMovie.bind(this)} className="date-picker-form">

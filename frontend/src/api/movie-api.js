@@ -111,10 +111,12 @@ export function updateMovie(movie) {
  * Search movies
  */
 export function searchMovies(query = '') {
+  console.log('[MovieAPI] searchMovie query: ', query);
+
   return fetch('http://localhost:8080/movie/name/'+ query)
     .then(response => response.json())
     .then(json => {
-      console.log("JSON result: ", json);
+      console.log("[MovieAPI] searchMovie JSON result: ", json);
       store.dispatch(movie_actions.getMoviesSuccess(json));
       return json;
     });
