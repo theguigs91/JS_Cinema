@@ -2,7 +2,7 @@ export const loadState = () => {
   try {
     const serializedState = localStorage.getItem('state');
 
-    console.log('[LoadStorage] loadState serializedState: ', serializedState);
+    console.log('[LoadStorage] LOADSTATE serializedState: ', serializedState);
 
     if (serializedState === null) {
       return {
@@ -12,7 +12,7 @@ export const loadState = () => {
     }
     return JSON.parse(serializedState);
   } catch (err) {
-    console.log('[LoadStorage] loadState ERROR ', err.message);
+    console.log('[LoadStorage] LOADSTATE ERROR ', err.message);
 
     return undefined;
   }
