@@ -7,7 +7,7 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom';
 
-class NavigationBar extends React.Component {
+class NavigationBarAdmin extends React.Component {
 
   render() {
 
@@ -26,4 +26,4 @@ class NavigationBar extends React.Component {
   }
 }
 
-export default NavigationBar;
+export default NavigationBarAdmin;
