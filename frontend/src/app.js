@@ -6,7 +6,7 @@ import store from './store';
 import { App } from './router';
 import { HashRouter as Router } from 'react-router-dom';
 import Search from './components/containers/search-movie-container';
-import NavigationBar from './components/views/navigation-bar';
+import NavigationBar from './components/views/navigation-bar-visitor';
 
 import s1 from '../src/misc/css/templatemo-style.css';
 import s2 from '../src/misc/css/font-awesome.min.css';
