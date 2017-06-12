@@ -6,6 +6,17 @@ import { Link } from 'react-router-dom';
 
 class MovieItem extends React.Component {
 
+  /*
+    <div className="tm-movies-box-1-link">
+      <div className="tm-movies-box-1-link-left available">
+        Disponible
+      </div>
+      <Link to={ this.props.buttonLink + } className="tm-movies-box-1-link-right schedule">
+        {this.props.buttonChild}
+      </Link>
+    </div>
+   */
+
   render() {
 
     console.log("[MovieItem] Rendering ...", this.props);
@@ -24,14 +35,6 @@ class MovieItem extends React.Component {
           <p className="description">
             {this.props.data.description}
           </p>
-        </div>
-        <div className="tm-movies-box-1-link">
-          <div className="tm-movies-box-1-link-left available">
-            Disponible
-          </div>
-          <Link to={this.props.buttonLink} className="tm-movies-box-1-link-right schedule" params={{movie: JSON.stringify(this.props.data)}}>
-            {this.props.buttonChild}
-          </Link>
         </div>
       </div>
     )

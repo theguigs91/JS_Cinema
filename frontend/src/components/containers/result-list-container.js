@@ -16,7 +16,7 @@ export class ResultList extends React.Component {
   }
 
   render(){
-    console.log("Rendering result list..");
+    console.log("[ResultListContainer] Rendering ...");
 
     console.log("props movies: ", JSON.stringify(this.props.movies));
 
@@ -28,7 +28,7 @@ export class ResultList extends React.Component {
               key = {movie.id}
               data = {movie}
               buttonChild="Séances"
-              buttonLink="/schedules"
+              buttonLink="/schedules/"
             />
           )}
         </div>
