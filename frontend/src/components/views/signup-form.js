@@ -6,6 +6,7 @@ import React, { PropTypes } from 'react';
 import * as StringHelper from '../../helpers/string-helper';
 import _ from 'lodash';
 import * as userApi from '../../api/user-api';
+import ReactDOM from 'react-dom';
 
 class SignupForm extends React.Component {
 
@@ -59,9 +60,17 @@ class SignupForm extends React.Component {
     if (_.isEmpty(errors)) {
       console.log('userApi.addUser', user);
       userApi.addUser(user);
+      ReactDOM.render(<p>Vous pouvez dès à présent vous connecter</p>, document.getElementById('msg'));
+
     }
     else
       console.log("errors: ", errors);
+      var errMsg= "";
+
+      for (var err in errors){
+        errMsg += errors[err] + '\n';
+      }
+    ReactDOM.render(<p>{errMsg}</p>, document.getElementById('msg'));
   }
 
   render() {
@@ -119,6 +128,7 @@ class SignupForm extends React.Component {
               </form>
             </div>
           </div>
+          <div id="msg"></div>
         </div>
       </div>
     );
