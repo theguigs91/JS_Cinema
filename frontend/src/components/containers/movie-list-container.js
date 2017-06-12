@@ -5,6 +5,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import MovieItem from '../views/movieItem'
 import * as movieApi from '../../api/movie-api'
+import SearchMovie from '../views/search-movie-form'
 
 export class MovieList extends React.Component {
 
@@ -13,20 +14,24 @@ export class MovieList extends React.Component {
     movieApi.getAllMovies();
   }
 
-  render(){
+  render() {
     console.log("Rendering..");
     console.log("props movies: ", this.props.movies);
 
     return (
       <div>
-        {this.props.movies.map(movie =>
-          <MovieItem
-            key={movie.id}
-            data = {movie}
-            buttonChild="Séances"
-            buttonLink="/schedules"
-          />
-        )}
+        <section className="container tm-home-section-1" id="more">
+          <div>
+            {this.props.movies.map(movie =>
+              <MovieItem
+                key={movie.id}
+                data={movie}
+                buttonChild="Séances"
+                buttonLink="/schedules"
+              />
+            )}
+          </div>
+        </section>
       </div>
     )
   }

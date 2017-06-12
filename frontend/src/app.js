@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 // TODO: MUIThemeProvider
 import { App } from './router';
+import Search from '../src/components/containers/search-movie-container'
 
 import s1 from '../src/misc/css/templatemo-style.css';
 import s2 from '../src/misc/css/font-awesome.min.css';
@@ -19,3 +20,10 @@ render(
   </Provider>,
   document.getElementById('root')
 );
+
+render(
+  <Provider store={store}>
+    <Search/>
+  </Provider>,
+  document.getElementById('search')
+)
