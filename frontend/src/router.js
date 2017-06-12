@@ -75,6 +75,7 @@ class App extends React.Component {
       <Router history={history}>
         <div>
           <HeaderContainer />
+          <Banner />
 
           <Route path="/" component={CheckLoggedInContainer} />
           <Route exact path="/" component={Home} />
@@ -101,6 +102,7 @@ class App extends React.Component {
       <Router history={history}>
         <div>
           <HeaderContainer />
+          <Banner />
 
           <Route path="/" component={CheckLoggedInContainer} />
           <Route exact path="/" component={Home} />
