@@ -57,22 +57,12 @@ class ScheduleCreationForm extends React.Component {
     };
   }
 
-  /**
-   * {
-                          this.props.schedules.map(schedule => {
-                            return (
-                              <div className="form-check">
-                                <label className="form-check-label">
-                                  <input className="form-check-input" type="checkbox" value={schedule} /> {schedule}
-                                </label>
-                              </div>
-                            );
-                          })
-                        }
-   * @returns {XML}
-   */
-
   render() {
+
+    this.style = {
+      height: "250px"
+    };
+
     return (
       <section className="container tm-home-section-1" id="more">
         <div className="section-margin-top">
@@ -109,7 +99,7 @@ class ScheduleCreationForm extends React.Component {
                 </div>
               </div>
               <div className="tm-schedules-box-link">
-                <div className="tm-schedules-box-link-left col-sm-10">
+                <div className="tm-schedules-box-link-left col-sm-10" style={this.style}>
                   <div className="schedules">
                     <div className="schedule row">
                       <div className="col-sm-6">

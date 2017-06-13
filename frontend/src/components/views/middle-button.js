@@ -13,7 +13,7 @@ class MiddleButton extends React.Component {
   render() {
 
     return (
-
+      <section className="container tm-home-section-1" id="more">
         <div className="row col-lg-offset-4 col-md-offset-4 col-sm-offset-4">
           <div className="col-lg-12 col-md-12 col-sm-12">
             <div className="tm-home-box-1">
@@ -25,6 +25,7 @@ class MiddleButton extends React.Component {
             </div>
           </div>
         </div>
+      </section>
     );
   }
 }
