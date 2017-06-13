@@ -2,9 +2,21 @@
  * Created by presci on 07/06/17.
  */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
+import DatePicker from 'material-ui/DatePicker';
+import * as DateHelper from '../../helpers/date-helper';
 
 class DateForm extends React.Component {
+
+  getInitialState() {
+    this.dateValue = DateHelper.dateToYYYYMMDD(new Date(), '-');
+  }
+
+  _handleDateChange(x, event) {
+    let d = DateHelper.dateToYYYYMMDD(new Date(event), '-');
+    console.log('handleDateChange d: ', d, ', stringify: ', JSON.stringify(event));
+    this.dateValue = d;
+  }
 
   render() {
 
@@ -18,13 +30,15 @@ class DateForm extends React.Component {
                 <div className="date-picker">
                   <form onSubmit={this.props.selectDate.bind(this)} className="date-picker-form">
                     <div className="tm-form-inner">
-                      <div className="form-group">
-                        <div className='input-group date' id='schedules-date-picker'>
-                          <input type='text' ref='date' id ='date' className="form-control" placeholder="Choisissez une date" />
-                          <span className="input-group-addon">
-						                        <span className="fa fa-calendar"></span>
-						                    </span>
-                        </div>
+                      <div>
+                        <DatePicker
+                          ref="date"
+                          defaultDate={new Date()}
+                          hintText="Choisissez une date"
+                          mode="landscape"
+                          shouldDisableDate={this.props.shouldDisableDateFunction.bind(this)}
+                          onChange={(x, event) => this._handleDateChange(x, event)}
+                        />
                       </div>
                     </div>
                     <div className="form-group tm-yellow-gradient-bg text-center">

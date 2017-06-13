@@ -22,11 +22,20 @@ class SeanceList extends React.Component {
       }
   }
 
-  selectDate(event){
+  selectDate(event) {
     event.preventDefault();
-    console.log("SELECT DATE");
-    movieApi.getAllMoviesFromDate(this.refs.date.value);
-    scheduleApi.getAllSchedulesFromDate(this.refs.date.value);
+    console.log("------- SELECT DATE -------  this.date: ", this.dateValue);
+    movieApi.getAllMoviesFromDate(this.dateValue);
+    scheduleApi.getAllSchedulesFromDate(this.dateValue);
+  }
+
+  disablePreviousDates() {
+    let d = new Date();
+    d.setDate(d.getDate() - 1);
+    const startSeconds = Date.parse(d);
+    return (date) => {
+      return Date.parse(date) < startSeconds;
+    }
   }
 
   renderAdmin() {
@@ -47,6 +56,7 @@ class SeanceList extends React.Component {
           <div className="section-margin-top">
             <ScheduleDate
               selectDate={this.selectDate}
+              shouldDisableDateFunction={this.disablePreviousDates()}
             />
           </div>
           <div>
@@ -76,6 +86,7 @@ class SeanceList extends React.Component {
         <section className="container tm-home-section-1" id="more">
           <ScheduleDate
             selectDate={this.selectDate}
+            shouldDisableDateFunction={this.disablePreviousDates()}
           />
           <div>
             {this.props.movies.map(movie =>
