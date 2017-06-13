@@ -17,7 +17,7 @@ class NavigationBar extends React.Component {
           <li><Link to="/">Accueil</Link></li>
           <li><Link to="/movies">Tous les films</Link></li>
           <li><Link to="/schedules">Seances</Link></li>
-          <li><Link to="/">A propos</Link></li>
+          <li><Link to="/about">A propos</Link></li>
         </ul>
       </div>
     );

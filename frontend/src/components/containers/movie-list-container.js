@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import MovieItem from '../views/movieItem';
 import * as movieApi from '../../api/movie-api';
 import MiddleButton from '../views/middle-button';
+import Banner from '../views/banner';
 
 export class MovieList extends React.Component {
 
@@ -20,6 +21,12 @@ export class MovieList extends React.Component {
 
     return (
       <div>
+        <Banner
+          titleWhiteBefore="Tous les"
+          titleYellow="films"
+          titleWhiteAfter=""
+          subtitle=""
+        />
         <section className="container tm-home-section-1" id="more">
           <MiddleButton
             buttonStr="Ajouter un film"

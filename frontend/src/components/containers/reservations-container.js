@@ -5,6 +5,7 @@ import DateForm from '../views/date-form';
 import { getReservationsFromDate, getReservations } from '../../api/reservation-api';
 import * as DateHelper from '../../helpers/date-helper';
 import _ from 'lodash';
+import Banner from '../views/banner';
 
 class ReservationsContainer extends React.Component {
 
@@ -25,6 +26,12 @@ class ReservationsContainer extends React.Component {
     if (!_.isEmpty(this.props.reservations)) {
       return (
         <div>
+          <Banner
+            titleWhiteBefore="Toutes les"
+            titleYellow="réservations"
+            titleWhiteAfter=""
+            subtitle="Gestion des réservations"
+          />
           <DateForm
             selectDate={this.selectDate}
             buttonStr="Voir les réservations"

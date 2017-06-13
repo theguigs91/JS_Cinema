@@ -5,6 +5,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import MovieItem from '../views/movieItem'
+import Banner from '../views/banner';
 
 export class ResultList extends React.Component {
 
@@ -21,18 +22,26 @@ export class ResultList extends React.Component {
     console.log("props movies: ", JSON.stringify(this.props.movies));
 
     return (
-      <section className="container tm-home-section-1" id="more">
-        <div>
-          {this.props.movies.map(movie =>
-            <MovieItem
-              key = {movie.id}
-              data = {movie}
-              buttonChild="Séances"
-              buttonLink="/schedules/"
-            />
-          )}
-        </div>
-      </section>
+      <div>
+        <Banner
+          titleWhiteBefore=""
+          titleYellow="Résultats"
+          titleWhiteAfter="de la recherche"
+          subtitle=""
+        />
+        <section className="container tm-home-section-1" id="more">
+          <div>
+            {this.props.movies.map(movie =>
+              <MovieItem
+                key = {movie.id}
+                data = {movie}
+                buttonChild="Séances"
+                buttonLink="/schedules/"
+              />
+            )}
+          </div>
+        </section>
+      </div>
     )
   }
 }

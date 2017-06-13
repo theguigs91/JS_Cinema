@@ -3,6 +3,7 @@ import * as movieApi from '../../api/movie-api';
 import MovieEditionForm from '../views/movie-edition-form';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import Banner from '../views/banner';
 
 function validate(movie) {
   console.log(movie);
@@ -73,11 +74,19 @@ class MovieEditionContainer extends React.Component {
 
   render() {
     return (
-      <MovieEditionForm
-        deleteMovie={this.deleteMovie}
-        editMovie={this.editMovie}
-        movie={this.props.movie}
-        ref="child"/>
+      <div>
+        <Banner
+          titleWhiteBefore=""
+          titleYellow="Edition"
+          titleWhiteAfter="de film"
+          subtitle=""
+        />
+        <MovieEditionForm
+          deleteMovie={this.deleteMovie}
+          editMovie={this.editMovie}
+          movie={this.props.movie}
+          ref="child"/>
+      </div>
     );
   }
 }

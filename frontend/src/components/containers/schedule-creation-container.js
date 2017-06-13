@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import { HHMMSSToSeconds, HHMMToSeconds, secondsToHHMM } from '../../helpers/time-helper';
 import { dateToYYYYMMDD } from '../../helpers/date-helper';
+import Banner from '../views/banner';
 
 const validate = function(schedule) {
   const errors = {};
@@ -115,13 +116,21 @@ class ScheduleCreationContainer extends React.Component {
     console.log('ScheduleCreationContainer.render');
 
     return (
-      <ScheduleCreationForm
-        addSchedule={this.addSeance}
-        movies={this.props.movies}
-        rooms={this.props.rooms}
-        schedules={this.schedules}
-        onChangeMovie={this.onChangeMovie}
-      />
+      <div>
+        <Banner
+          titleWhiteBefore=""
+          titleYellow="Création"
+          titleWhiteAfter="de séances"
+          subtitle=""
+        />
+        <ScheduleCreationForm
+          addSchedule={this.addSeance}
+          movies={this.props.movies}
+          rooms={this.props.rooms}
+          schedules={this.schedules}
+          onChangeMovie={this.onChangeMovie}
+        />
+      </div>
     )
   }
 }

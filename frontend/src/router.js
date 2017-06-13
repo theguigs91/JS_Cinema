@@ -10,19 +10,11 @@ import HeaderContainer from './components/containers/header-container';
 import Banner from './components/views/banner';
 import Home from './components/home';
 
-//import UserListContainer from './components/containers/user-list-container';
-//import UserProfileContainer from './components/containers/user-profile-container';
-
 import MovieListContainer from './components/containers/movie-list-container';
 import LoginSignupContainer from './components/containers/login-signup-container';
-//import MoviesContainer from './components/containers/movies-container';
 import SchedulesContainer from './components/containers/seance-list-container';
-import SearchMovieContainer from './components/containers/search-movie-container';
 import ResultsContainer from './components/containers/result-list-container';
-
-//import ScheduleContainer from './components/containers/schedule-container';
-//import AboutContainer from './components/containers/about-container';
-
+import AboutContainer from './components/containers/about-container';
 import ReservationCreationContainer from './components/containers/reservation-creation-container';
 import MyReservationsContainer from './components/containers/my-reservations-container';
 
@@ -43,8 +35,6 @@ class App extends React.Component {
       <Router history={history}>
         <div>
           <HeaderContainer />
-          <Banner />
-
           <Route path="/" component={CheckLoggedInContainer} />
           <Route exact path="/" component={Home} />
 
@@ -57,7 +47,6 @@ class App extends React.Component {
 
           <Route exact path="/schedules" component={SchedulesContainer}/>
           <Route exact path="/schedules/creation" component={ScheduleCreationContainer}/>
-          <Route exact path="/schedules/:scheduleId"/>
 
           <Route exact path="/results" component={ResultsContainer}/>
 
@@ -75,7 +64,6 @@ class App extends React.Component {
       <Router history={history}>
         <div>
           <HeaderContainer />
-          <Banner />
 
           <Route path="/" component={CheckLoggedInContainer} />
           <Route exact path="/" component={Home} />
@@ -91,6 +79,7 @@ class App extends React.Component {
 
           <Route exact path="/reservation/:seanceId" component={ReservationCreationContainer}/>
           <Route exact path="/myreservations" component={MyReservationsContainer}/>
+
         </div>
       </Router>
     )
@@ -102,7 +91,6 @@ class App extends React.Component {
       <Router history={history}>
         <div>
           <HeaderContainer />
-          <Banner />
 
           <Route path="/" component={CheckLoggedInContainer} />
           <Route exact path="/" component={Home} />
@@ -116,6 +104,8 @@ class App extends React.Component {
           <Route exact path="/reservation/:seanceId" component={ReservationCreationContainer}/>
 
           <Route exact path="/results" component={ResultsContainer}/>
+          <Route exact path="/about" component={AboutContainer}/>
+
         </div>
       </Router>
     )

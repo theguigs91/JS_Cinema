@@ -5,12 +5,22 @@
 import React from 'react';
 import MovieCreationForm from '../views/movie-creation-form';
 import { connect } from 'react-redux';
+import Banner from '../views/banner';
 
 class MovieCreationContainer extends React.Component {
 
   render() {
     return (
-      <MovieCreationForm />
+      <div>
+        <Banner
+          titleWhiteBefore=""
+          titleYellow="Création"
+          titleWhiteAfter="de film"
+          subtitle=""
+        />
+
+        <MovieCreationForm />
+      </div>
     );
   }
 }

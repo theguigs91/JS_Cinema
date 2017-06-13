@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import ReservationCreationForm from '../views/reservation-creation-form';
 import * as scheduleApi from '../../api/schedule-api';
 import * as CONST from '../../const';
-
+import Banner from '../views/banner';
 
 class ReservationCreationContainer extends React.Component {
 
@@ -23,9 +23,17 @@ class ReservationCreationContainer extends React.Component {
 
     if (this.props.seance) {
       return (
-        <ReservationCreationForm
-          seance={this.props.seance}
-        />
+        <div>
+          <Banner
+            titleWhiteBefore="Nouvelle"
+            titleYellow="réservation"
+            titleWhiteAfter=""
+            subtitle=""
+          />
+          <ReservationCreationForm
+            seance={this.props.seance}
+          />
+        </div>
       )
     }
     else

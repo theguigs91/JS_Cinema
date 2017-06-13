@@ -26,7 +26,7 @@ const SeanceItem = ({ data, schedules, link }) => (
         <div className="tm-schedules-box-link-left">
             <ul className="schedules">
                 <li className="schedule">
-                    <span class="schedules-title row">Séances</span>
+                    <span className="schedules-title row">Séances</span>
                     <HourButtonList
                     key = {data.id}
                     data = {schedules}

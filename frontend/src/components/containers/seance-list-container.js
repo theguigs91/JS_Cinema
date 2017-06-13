@@ -9,6 +9,7 @@ import ScheduleDate from '../views/date-form'
 import * as movieApi from '../../api/movie-api'
 import * as scheduleApi from '../../api/schedule-api'
 import MiddleButton from '../views/middle-button';
+import Banner from '../views/banner';
 
 class SeanceList extends React.Component {
 
@@ -34,27 +35,35 @@ class SeanceList extends React.Component {
         console.log("props schedules: ", (this.props.schedules));
 
         return (
-          <section className="container tm-home-section-1" id="more">
-            <MiddleButton
-              buttonStr="Ajouter des séances"
-              link="/schedules/creation"
+          <div>
+            <Banner
+              titleWhiteBefore="Toutes les"
+              titleYellow="séances"
+              titleWhiteAfter=""
+              subtitle="Réservez votre place de cinéma!"
             />
-            <div className="section-margin-top">
-            <ScheduleDate
-              selectDate={this.selectDate}
-            />
-            </div>
-            <div>
-              {this.props.movies.map(movie =>
-                <SeanceItem
-                  key = {movie.id}
-                  data = {movie}
-                  schedules = {this.props.schedules.filter(el => el.movie_id == movie.id)}
-                  link = "/reservation/"
-                />
-              )}
-            </div>
-          </section>
+            <section className="container tm-home-section-1" id="more">
+              <MiddleButton
+                buttonStr="Ajouter des séances"
+                link="/schedules/creation"
+              />
+              <div className="section-margin-top">
+              <ScheduleDate
+                selectDate={this.selectDate}
+              />
+              </div>
+              <div>
+                {this.props.movies.map(movie =>
+                  <SeanceItem
+                    key = {movie.id}
+                    data = {movie}
+                    schedules = {this.props.schedules.filter(el => el.movie_id == movie.id)}
+                    link = "/reservation/"
+                  />
+                )}
+              </div>
+            </section>
+          </div>
         )
     }
 }

@@ -21,7 +21,7 @@ class LogoutButton extends React.Component {
   render() {
 
     return (
-      <div className="col-lg-1 col-md-1 col-sm-1 logout" id="logout">
+      <div className="col-lg-1 col-md-1 col-sm-1 login" id="logout">
         <button onClick={this.logOut.bind(this)} type="button" className="btn btn-default">
           <span className="glyphicon glyphicon-log-out" aria-hidden="true"/>
         </button>
