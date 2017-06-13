@@ -289,20 +289,19 @@ router.get('/user/:id', function(req, res, next) {
 });
 
 /**
- * Get seances from a given user id (The seances on which the user took reservations)
+ * Get the list of all seances with given date and room
  */
-router.get('/from/range/:id', function(req, res, next) {
+router.get('/date/:date/room/:roomId', function(req, res, next) {
   res.setHeader("Content-Type", "application/json");
 
-  let param = [req.params.id];
+  let params = [req.params.date, req.params.roomId]
   let queryString =
-    'SELECT distinct s.id, room.numero AS room, s.movie_id, s.date, s.time_start, s.time_end \ '
-    + 'FROM seance AS s \ '
-    + 'INNER JOIN room as room ON room.id = s.room_id \ '
-    + 'INNER JOIN reservation as r ON r.seance_id = s.id \ '
-    + 'WHERE r.user_id = ?';
+    'SELECT * \ '
+    + 'FROM seance \ '
+    + 'WHERE date = ? AND room_id = ? \ '
+    + 'ORDER BY time_start';
 
-  connection.query(queryString, param, function(err, rows, fields) {
+  connection.query(queryString, params, function (err, rows, fields) {
     if (!err) {
       res.status(200);
       res.json(rows);
