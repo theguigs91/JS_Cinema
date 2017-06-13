@@ -73,6 +73,7 @@ class MovieEditionForm extends React.Component {
               </form>
             </div>
           </div>
+          <div id="msg-deletion"></div>
         </section>
       );
     }
