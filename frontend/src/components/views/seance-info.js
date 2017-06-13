@@ -16,9 +16,10 @@ class SeanceInfo extends React.Component {
             </p>
           </div>
           <div className="tm-movies-box-1-info-right">
-            <p id="reservation-date margin-bottom-20">{this.props.seance.date}</p>
-            <p id="reservation-time margin-bottom-30">{this.props.seance.time}</p>
-            <p id="reservation-room">{this.props.seance.room}</p>
+            <p id="reservation-date margin-bottom-20">Date: {new Date(this.props.seance.date).toDateString()}</p>
+            <p id="reservation-time margin-bottom-30">Heure: {this.props.seance.time}</p>
+            <p id="reservation-room">Salle: {this.props.seance.room}</p>
+            <p id="places">Nombre de places disponibles: {this.props.seance.places_available}</p>
           </div>
         </div>
       </div>
