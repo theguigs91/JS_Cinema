@@ -66,7 +66,8 @@ export function logInUser(user) {
       return saveStore();
 
     }).catch(err => {
-      console.log(err.message);
+      console.log("Erreur de connexion: login ou mot de passe incorrectes");
+      return false;
     });
 }
 
