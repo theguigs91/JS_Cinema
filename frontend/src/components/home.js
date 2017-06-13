@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../src/misc/css/flexslider.css'
+
 
 const Home = React.createClass({
   render: function() {
