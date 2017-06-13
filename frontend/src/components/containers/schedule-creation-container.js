@@ -19,10 +19,8 @@ const validate = function(schedule) {
     errors.room = 'Veuillez choisir une salle.';
   if (!schedule.schedules || _.isEmpty(schedule.schedules))
     errors.schedules = 'Veuillez sélectionner au moins une horaire.';
-  if (!schedule.date_start || schedule.date_start.trim === '')
-    errors.date_start = 'Veuillez choisir une date de début.';
-  if (!schedule.date_end || schedule.date_end.trim === '')
-    errors.date_end = 'Veuillez entrer une date de fin.';
+  if (!schedule.date || schedule.date.trim === '')
+    errors.date = 'Veuillez choisir une date.';
 
   return errors;
 };
@@ -66,7 +64,7 @@ class ScheduleCreationContainer extends React.Component {
     let schedules = [];
 
     // TODO replace date_start.. Or Iterate from date_start to date_from.
-    return scheduleApi.getSchedulesFromDateRoomId(formInfos.date_start, formInfos.room.id)
+    return scheduleApi.getSchedulesFromDateRoomId(formInfos.date, formInfos.room.id)
       .then((seancesDateRoom) => {
 
         // Let's assume the cinema is open from 9:30 to 23:00
@@ -154,7 +152,7 @@ class ScheduleCreationContainer extends React.Component {
     const elt = event.target.value;
 
     let formInfos = this.getFormInfos(); // movie, room (room name), date_start, date_end
-    if (formInfos.movie && formInfos.room && formInfos.date_start && formInfos.date_end) {
+    if (formInfos.movie && formInfos.room && formInfos.date) {
       // Compute schedules
       ScheduleCreationContainer.getComputedSchedules(formInfos)
         .then(schedules => {
@@ -174,6 +172,11 @@ class ScheduleCreationContainer extends React.Component {
     if (_.isEmpty(errors)) {
 
       let now = new Date();
+      let date = new Date(formInfos.date);
+
+      if (date < now)
+        return;
+      /*
       let start = new Date(formInfos.date_start);
       if (start < now)
         start = now;
@@ -181,23 +184,24 @@ class ScheduleCreationContainer extends React.Component {
 
       // Iterate over days and schedule of each, and add seance.
       while(start <= end) {
-        start.setDate(start.getDate() + 1);
+        start.setDate(start.getDate() + 1);*/
 
-        formInfos.schedules.forEach(schedule => {
-          console.log("SCHEDULE ", schedule, "FORMINFOS ", formInfos);
+      formInfos.schedules.forEach(schedule => {
+        console.log("SCHEDULE ", schedule, "FORMINFOS ", formInfos);
 
-          let seance = {
-            movie_id: formInfos.movie.id,
-            room_id: formInfos.room.id,
-            places_available: formInfos.room.places_max,
-            date: dateToYYYYMMDD(start, '-'),
-            time_start: schedule,
-            time_end: (secondsToHHMM(HHMMToSeconds(schedule) + HHMMSSToSeconds(formInfos.movie.time)))
-          };
-          console.log(seance);
-          scheduleApi.addSchedule(seance);
-        });
-      }
+        let seance = {
+          movie_id: formInfos.movie.id,
+          room_id: formInfos.room.id,
+          places_available: formInfos.room.places_max,
+          date: dateToYYYYMMDD(date, '-'),
+          time_start: schedule,
+          time_end: (secondsToHHMM(HHMMToSeconds(schedule) + HHMMSSToSeconds(formInfos.movie.time)))
+        };
+        console.log(seance);
+        scheduleApi.addSchedule(seance).then(() =>
+          this.forceUpdate()
+        );
+      });
     }
     else {
       console.log(errors);

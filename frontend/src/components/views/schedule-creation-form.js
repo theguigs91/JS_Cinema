@@ -53,8 +53,7 @@ class ScheduleCreationForm extends React.Component {
       movie: this.getMovie(),
       room: this.getRoom(),
       schedules: this.selectedSchedulesCheckboxes,
-      date_start: this.refs.date_start.value,
-      date_end: this.refs.date_end.value
+      date: this.refs.date.value,
     };
   }
 
@@ -82,15 +81,9 @@ class ScheduleCreationForm extends React.Component {
                 </div>
                 <div className="tm-schedules-box-info-right">
                   <div className="form-group">
-                    <label for="movie-begin-date" className="col-2 col-form-label">Du</label>
+                    <label for="movie-begin-date" className="col-2 col-form-label">Date</label>
                     <div className="col-10">
-                      <input className="form-control" type="date" ref="date_start" id="movie-begin-date" onChange={this.props.onChangeElement.bind(this)} />
-                    </div>
-                  </div>
-                  <div className="form-group">
-                    <label for="movie-end-date" className="col-2 col-form-label">Au</label>
-                    <div className="col-10">
-                      <input className="form-control" type="date" ref="date_end" id="movie-end-date" onChange={this.props.onChangeElement.bind(this)} />
+                      <input className="form-control" type="date" ref="date" id="movie-begin-date" onChange={this.props.onChangeElement.bind(this)} />
                     </div>
                   </div>
                 </div>
