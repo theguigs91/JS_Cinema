@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import HourButton from '../views/hourButton'
 
 const HourButtonList = ({ data, link }) => (
-  <div>
+  <div className="btn-group col-lg-12 col-md-12 col-sm-12" role="group">
     {data.map(el =>
       <HourButton
         key = {el.id}

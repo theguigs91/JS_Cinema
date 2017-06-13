@@ -37,16 +37,18 @@ class SeanceList extends React.Component {
             <ScheduleDate
               selectDate={this.selectDate}
             />
-            <div>
-                {this.props.movies.map(movie =>
-                  <SeanceItem
-                    key = {movie.id}
-                    data = {movie}
-                    schedules = {this.props.schedules.filter(el => el.movie_id == movie.id)}
-                    link = "/reservation/"
-                  />
-                )}
-            </div>
+            <section className="container tm-home-section-1" id="more">
+              <div className="section-margin-top">
+                  {this.props.movies.map(movie =>
+                    <SeanceItem
+                      key = {movie.id}
+                      data = {movie}
+                      schedules = {this.props.schedules.filter(el => el.movie_id == movie.id)}
+                      link = "/reservation/"
+                    />
+                  )}
+              </div>
+            </section>
           </div>
         )
     }

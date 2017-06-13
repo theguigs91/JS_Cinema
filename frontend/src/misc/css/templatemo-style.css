@@ -430,8 +430,8 @@ body { overflow-x: hidden; }
 .tm-schedules-box-link-left {
 	background-color: #272727;
 	padding: 20px 30px;
-	text-transform: uppercase;
 	color: #FFFFFF;
+	height: 130px;
 }
 
 	.tm-schedules-box-link-left ul.schedules {

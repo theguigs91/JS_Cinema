@@ -21,7 +21,7 @@ export class ResultList extends React.Component {
     console.log("props movies: ", JSON.stringify(this.props.movies));
 
     return (
-      <div>
+      <section className="container tm-home-section-1" id="more">
         <div>
           {this.props.movies.map(movie =>
             <MovieItem
@@ -32,7 +32,7 @@ export class ResultList extends React.Component {
             />
           )}
         </div>
-      </div>
+      </section>
     )
   }
 }
