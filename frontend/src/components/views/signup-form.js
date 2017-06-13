@@ -60,8 +60,7 @@ class SignupForm extends React.Component {
     if (_.isEmpty(errors)) {
       console.log('userApi.addUser', user);
       userApi.addUser(user);
-      ReactDOM.render(<p>Vous pouvez dès à présent vous connecter</p>, document.getElementById('msg'));
-
+      ReactDOM.render(<p>Vous pouvez dès à présent vous connecter</p>, document.getElementById('msg-sign'));
     }
     else
       console.log("errors: ", errors);
@@ -70,7 +69,7 @@ class SignupForm extends React.Component {
       for (var err in errors){
         errMsg += errors[err] + '\n';
       }
-    ReactDOM.render(<p>{errMsg}</p>, document.getElementById('msg'));
+    ReactDOM.render(<p>{errMsg}</p>, document.getElementById('msg-sign'));
   }
 
   render() {
@@ -125,7 +124,7 @@ class SignupForm extends React.Component {
               </form>
             </div>
           </div>
-          <div id="msg"></div>
+          <div id="msg-sign"></div>
         </div>
       </div>
     );
