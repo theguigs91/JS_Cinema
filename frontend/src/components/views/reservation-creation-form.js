@@ -56,7 +56,7 @@ class ReservationCreationForm extends React.Component {
       .then(response => {
         if (response == true){
           console.log("CAN BOOK");
-          this.addReservation(event);
+          this.addReservation();
         }
         else {
           console.log("CANNOT BOOK")
@@ -66,8 +66,7 @@ class ReservationCreationForm extends React.Component {
       })
   }
 
-  addReservation(event) {
-    event.preventDefault();
+  addReservation() {
 
     console.log('ReservationCreationForm.addReservation this.props: ', this.props);
 
@@ -89,7 +88,9 @@ class ReservationCreationForm extends React.Component {
           console.log(reservation);
           reservationApi.addReservation(reservation);
           scheduleApi.decrementSeancePlaces(this.props.seance.id);
-          hashHistory.replace('/myreservations');
+         // hashHistory.replace('/myreservations');
+          ReactDOM.render(<p>Place(s) réservée(s) !</p>,
+            document.getElementById('msg-reservation-creation'))
         }
       }
       else
