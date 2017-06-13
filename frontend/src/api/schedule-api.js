@@ -86,7 +86,6 @@ export function getScheduleFromId(id) {
   return fetch('http://localhost:8080/seance/fullinfo/id/' + id)
     .then(response => response.json())
     .then(json => {
-
       console.log('[ScheduleAPI].getScheduleById Before dispatch. Current state:');
       console.log(store.getState());
       console.log('--------------');
@@ -98,6 +97,20 @@ export function getScheduleFromId(id) {
       console.log('--------------');
 
       return json;
+    })
+}
+
+export function canBook(id) {
+  return fetch('http://localhost:8080/seance/canBook/id/' + id)
+    .then(response => {
+      console.log("CAN book: ", response);
+
+      if (response.status == 400){
+        return false;
+      }
+      else{
+        return true;
+      }
     })
 }
 
