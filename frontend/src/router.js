@@ -21,7 +21,6 @@ import MyReservationsContainer from './components/containers/my-reservations-con
 
 import MovieCreationContainer from './components/containers/movie-creation-container';
 import MovieDeletionContainer from './components/containers/movie-deletion-container';
-import AdminMoviesContainer from './components/containers/admin-movies-container';
 import ScheduleCreationContainer from './components/containers/schedule-creation-container';
 import ReservationsContainer from './components/containers/reservations-container';
 import CheckLoggedInContainer from './components/containers/check-logged-in-container';
@@ -42,7 +41,6 @@ class App extends React.Component {
           <Route exact path="/movies" component={MovieListContainer}/>
           <Route exact path="/movies/creation" component={MovieCreationContainer}/>
           <Route exact path="/movies/deletion/:movieId" component={MovieDeletionContainer}/>
-          <Route exact path="/movies/admin" component={AdminMoviesContainer}/>
 
           <Route exact path="/schedules" component={SchedulesContainer}/>
           <Route exact path="/schedules/creation" component={ScheduleCreationContainer}/>
