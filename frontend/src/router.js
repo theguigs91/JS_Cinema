@@ -39,7 +39,7 @@ class App extends React.Component {
 
           <Route exact path="/login" component={LoginSignupContainer}/>
 
-          <Route exact path="/movies" component={AdminMoviesContainer}/>
+          <Route exact path="/movies" component={MovieListContainer}/>
           <Route exact path="/movies/creation" component={MovieCreationContainer}/>
           <Route exact path="/movies/deletion/:movieId" component={MovieDeletionContainer}/>
           <Route exact path="/movies/admin" component={AdminMoviesContainer}/>
