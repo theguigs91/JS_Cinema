@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import store from '../../store';
 import * as userApi from '../../api/user-api';
 import { hashHistory } from 'react-router';
+import ReactDOM from 'react-dom';
 
 class LoginForm extends React.Component {
 
@@ -21,8 +22,15 @@ class LoginForm extends React.Component {
     event.preventDefault();
 
     let userFormInfo = this.getUserFormInfo(); // Get user fields (login form)
+
     console.log('[LoginForm] logIn', store.getState());
-    return userApi.logInUser(userFormInfo).then(() => {
+
+    return userApi.logInUser(userFormInfo).then((response) => {
+      if (response == false){
+        ReactDOM.render(<p>Erreur de connexion: Identifiant ou mot de passe incorrect</p>,
+                        document.getElementById('msg-login'));
+        return;
+      }
       hashHistory.replace('/');
       return this.forceUpdate();
     });
@@ -55,6 +63,7 @@ class LoginForm extends React.Component {
               </form>
             </div>
           </div>
+          <div id="msg-login"></div>
         </div>
       </div>
     );
