@@ -99,6 +99,9 @@ router.get('/date/:date', function(req, res, next) {
   });
 });
 
+/**
+ * Get a seances from its id
+ */
 router.get('/id/:id', function(req, res, next) {
   res.setHeader("Content-Type", "application/json");
 
@@ -123,7 +126,7 @@ router.get('/fullinfo/id/:id', function(req, res) {
 
   let params = [req.params.id];
   let queryString =
-    'SELECT s.id, s.date, s.time_start, s.time_end, m.name AS movie_name, m.realisator AS movie_realisator, r.numero AS room \ '
+    'SELECT s.id, s.date, s.time_start, s.places_available, s.time_end, m.name AS movie_name, m.realisator AS movie_realisator, r.numero AS room \ '
   + 'FROM seance AS s \ '
   + 'INNER JOIN movie AS m ON s.movie_id = m.id \ '
   + 'INNER JOIN room AS r ON s.room_id = r.id \ '
@@ -134,6 +137,34 @@ router.get('/fullinfo/id/:id', function(req, res) {
       res.status(200)
         .json(rows[0])
         .end();
+    }
+    else {
+      res.status(400).send(JSON.stringify({message: err}));
+      console.log("Error while performing query" + err);
+    }
+  });
+});
+
+router.get('/canBook/id/:id', function(req, res) {
+  res.setHeader("Content-Type", "application/json");
+
+  let params = [req.params.id];
+  let queryString =
+    'SELECT s.date FROM seance AS s WHERE s.id = ?';
+
+  connection.query(queryString, params, function(err, rows) {
+    if (!err) {
+
+      const today = new Date();
+
+      if (rows[0].date > today){
+        res.status(200);
+      }
+      else {
+        res.status(400);
+      }
+
+      res.end();
     }
     else {
       res.status(400).send(JSON.stringify({message: err}));
