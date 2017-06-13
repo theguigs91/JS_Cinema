@@ -73,7 +73,8 @@ class ScheduleCreationContainer extends React.Component {
     let end = HHMMToSeconds('23:00');
 
     for (let s = start; s + laps < end; s += laps)
-      schedules.push({start: secondsToHHMM(s), end: secondsToHHMM(s + duration)});
+      schedules.push(secondsToHHMM(s));
+      //schedules.push({start: secondsToHHMM(s), end: secondsToHHMM(s + duration)});
 
     console.log("Computed schedules: ", schedules);
     return schedules;
@@ -113,13 +114,15 @@ class ScheduleCreationContainer extends React.Component {
         start.setDate(start.getDate() + 1);
 
         formInfos.schedules.forEach(schedule => {
+          console.log("SCHEDULE ", schedule, "FORMINFOS ", formInfos);
 
           let seance = {
             movie_id: formInfos.movie.id,
             room_id: formInfos.room.id,
             places_available: formInfos.room.places_max,
             date: dateToYYYYMMDD(start, '-'),
-            time: schedule
+            time_start: schedule,
+            time_end: (secondsToHHMM(HHMMToSeconds(schedule) + HHMMSSToSeconds(formInfos.movie.time)))
           };
           console.log(seance);
           scheduleApi.addSchedule(seance);

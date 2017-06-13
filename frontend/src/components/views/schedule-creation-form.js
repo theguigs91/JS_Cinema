@@ -103,13 +103,11 @@ class ScheduleCreationForm extends React.Component {
                         {
                           this.schedules.map(schedule => {
 
-                            let s = schedule.start + '-' + schedule.end;
-
                             return (
                               <Checkbox
-                                label={s}
+                                label={schedule}
                                 handleCheckboxChange={this.toggleSchedulesCheckbox.bind(this)}
-                                key={s}
+                                key={schedule}
                               />
                             )
                           })
