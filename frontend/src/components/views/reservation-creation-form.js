@@ -9,7 +9,6 @@ import * as scheduleApi from '../../api/schedule-api';
 import _ from 'lodash';
 import { persistedState } from '../../store';
 import { hashHistory } from 'react-router';
-import { setRedirectRoute } from '../../actions/page-actions';
 
 class ReservationCreationForm extends React.Component {
 

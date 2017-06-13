@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
 import * as movieApi from '../../api/movie-api';
-import MovieEditionForm from '../views/movie-edition-form';
+import MovieEditionForm from '../views/movie-deletion-form';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import Banner from '../views/banner';
+import { hashHistory } from 'react-router';
 
 function validate(movie) {
   console.log(movie);
@@ -27,7 +28,7 @@ function validate(movie) {
   return errors;
 }
 
-class MovieEditionContainer extends React.Component {
+class MovieDeletionContainer extends React.Component {
 
   editMovie() {
     let movie = this.getMovie();
@@ -42,10 +43,10 @@ class MovieEditionContainer extends React.Component {
 
   deleteMovie() {
     let movie = this.getMovie();
-    console.log("[MovieEditionContainer] deleteMovie", movie);
+    console.log("[MovieDeletionContainer] deleteMovie", movie);
     movieApi.deleteMovie(movie.id).then(() => {
-      console.log('this.props.router.push');
-      this.props.router.push('/movies/admin');
+      hashHistory.replace('/movies');
+      return this.forceUpdate();
     });
   }
 
@@ -77,9 +78,9 @@ class MovieEditionContainer extends React.Component {
       <div>
         <Banner
           titleWhiteBefore=""
-          titleYellow="Edition"
+          titleYellow="suppression"
           titleWhiteAfter="de film"
-          subtitle=""
+          subtitle="Cette action sera irréversible."
         />
         <MovieEditionForm
           deleteMovie={this.deleteMovie}
@@ -97,4 +98,4 @@ const mapStateToProps = function(store) {
   };
 };
 
-export default connect(mapStateToProps)(MovieEditionContainer);
+export default connect(mapStateToProps)(MovieDeletionContainer);

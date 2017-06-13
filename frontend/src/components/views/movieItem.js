@@ -37,6 +37,11 @@ class MovieItem extends React.Component {
             </p>
           </div>
         </div>
+        <div className="tm-movies-box-1-link">
+          <Link to={ this.props.buttonLink } className="tm-movies-box-1-link-right schedule">
+            {this.props.buttonChild}
+          </Link>
+        </div>
       </div>
     )
   }

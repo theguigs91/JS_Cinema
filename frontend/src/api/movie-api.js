@@ -128,7 +128,7 @@ export function searchMovies(query = '') {
 export function deleteMovie(movieId) {
   return axios.delete('http://localhost:8080/movie/id/' + movieId)
     .then(response => {
-      store.dispatch(deleteMovieSuccess(movieId));
+      store.dispatch(movie_actions.deleteMovieSuccess(movieId));
       return response;
     });
 }

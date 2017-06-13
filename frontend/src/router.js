@@ -7,7 +7,6 @@ import { HashRouter as Router, Route } from 'react-router-dom';
 import { persistedState } from './store';
 
 import HeaderContainer from './components/containers/header-container';
-import Banner from './components/views/banner';
 import Home from './components/home';
 
 import MovieListContainer from './components/containers/movie-list-container';
@@ -21,7 +20,7 @@ import MyReservationsContainer from './components/containers/my-reservations-con
 // -- Admin
 
 import MovieCreationContainer from './components/containers/movie-creation-container';
-import MovieEditionContainer from './components/containers/movie-edition-container';
+import MovieDeletionContainer from './components/containers/movie-deletion-container';
 import AdminMoviesContainer from './components/containers/admin-movies-container';
 import ScheduleCreationContainer from './components/containers/schedule-creation-container';
 import ReservationsContainer from './components/containers/reservations-container';
@@ -40,9 +39,9 @@ class App extends React.Component {
 
           <Route exact path="/login" component={LoginSignupContainer}/>
 
-          <Route exact path="/movies" component={MovieListContainer}/>
+          <Route exact path="/movies" component={AdminMoviesContainer}/>
           <Route exact path="/movies/creation" component={MovieCreationContainer}/>
-          <Route exact path="/movies/edition/:movieId" component={MovieEditionContainer}/>
+          <Route exact path="/movies/deletion/:movieId" component={MovieDeletionContainer}/>
           <Route exact path="/movies/admin" component={AdminMoviesContainer}/>
 
           <Route exact path="/schedules" component={SchedulesContainer}/>
