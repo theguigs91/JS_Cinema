@@ -12,7 +12,7 @@ const movieReducer = function (state = initialState, action) {
 
   switch (action.type) {
     case types.ADD_MOVIE_SUCCESS:
-      return [...state, {movies: action.movie}];
+      return {...state, movie: action.movie};
     case types.DELETE_MOVIE_SUCCESS:
       return {...state, movies: state.filter(movie => movie.id !== action.id)};
     case types.GET_ALL_MOVIES:

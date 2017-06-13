@@ -8,6 +8,7 @@ import SeanceItem from '../../components/views/seanceItem'
 import ScheduleDate from '../views/date-form'
 import * as movieApi from '../../api/movie-api'
 import * as scheduleApi from '../../api/schedule-api'
+import MiddleButton from '../views/middle-button';
 
 class SeanceList extends React.Component {
 
@@ -34,6 +35,10 @@ class SeanceList extends React.Component {
 
         return (
           <div>
+            <MiddleButton
+              buttonStr="Ajouter des séances"
+              link="/schedules/creation"
+            />
             <ScheduleDate
               selectDate={this.selectDate}
             />

@@ -23,7 +23,7 @@ export function addMovie(movie) {
 
   return axios.post('http://localhost:8080/movie', movie, config)
     .then(response => {
-      store.dispatch(addMovieSuccess(response.data));
+      store.dispatch(movie_actions.addMovieSuccess(response.data));
       return response;
     }).catch(err => {
       console.log(err.message);

@@ -30,7 +30,6 @@ class MovieItem extends React.Component {
             <p className="release-date">{this.props.data.release}</p>
             <p className="duration">{this.props.data.time}</p>
             <p className="type">{this.props.data.genre}</p>
-            <img src='../../misc/img/cinema.jpg' alt="image" className="margin-bottom-5"/>
           </div>
           <div className="tm-movies-box-1-info-right">
             <p className="description">
