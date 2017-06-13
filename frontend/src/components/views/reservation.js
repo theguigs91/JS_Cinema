@@ -14,9 +14,9 @@ class Reservation extends React.Component {
 
     this.buttonClassName = "tm-movies-box-1-link-right col-xs-4 glyphicon " + this.props.buttonGlyphicon;
     this.seance = {
-      date: reservation.seance_date,
-      time_start: reservation.seance_time_start,
-      time_end: reservation.seance_time_end,
+      date: reservation.date,
+      time_start: reservation.time_start,
+      time_end: reservation.time_end,
       movie_name: reservation.movie_name,
       movie_realisator: reservation.movie_realisator,
       room: reservation.room

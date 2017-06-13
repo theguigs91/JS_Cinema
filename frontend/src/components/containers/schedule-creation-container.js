@@ -158,7 +158,7 @@ class ScheduleCreationContainer extends React.Component {
         .then(schedules => {
           this.schedules = schedules;
           console.log("ONCHANGELEMENT END Computed schedules: ", schedules);
-          this.setState({movie: elt});
+          this.setState({elt: elt});
         });
     }
    }
