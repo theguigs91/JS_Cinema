@@ -12,7 +12,8 @@ import MiddleButton from '../views/middle-button';
 import Banner from '../views/banner';
 import { persistedState } from '../../store';
 import * as DateHelper from '../../helpers/date-helper';
-
+import ReactDOM from 'react-dom';
+import _ from 'lodash';
 class SeanceList extends React.Component {
 
   constructor(props) {
@@ -31,6 +32,15 @@ class SeanceList extends React.Component {
     event.preventDefault();
     movieApi.getAllMoviesFromDate(this.dateValue);
     scheduleApi.getAllSchedulesFromDate(this.dateValue);
+  }
+
+  componentWillReceiveProps(){
+    if (_.isEmpty(this.props.movies)){
+      ReactDOM.render(<p>Pas de séances ce jour-là.</p>, document.getElementById('msg-seance-list'));
+    }
+    else {
+      ReactDOM.render(<p></p>, document.getElementById('msg-seance-list'));
+    }
   }
 
   disablePreviousDates() {
@@ -79,6 +89,7 @@ class SeanceList extends React.Component {
   }
 
   renderDefault() {
+
     return (
       <div>
         <Banner

@@ -43,6 +43,7 @@ class DateForm extends React.Component {
               </div>
             </div>
           </div>
+          <div id="msg-seance-list"></div>
         </div>
       </section>
     );
