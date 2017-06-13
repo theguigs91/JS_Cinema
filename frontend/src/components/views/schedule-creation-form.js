@@ -5,6 +5,7 @@
 import React, { PropTypes } from 'react';
 import Checkbox from './checkbox';
 import _ from 'lodash';
+import { connect } from 'react-redux';
 
 class ScheduleCreationForm extends React.Component {
 
@@ -68,7 +69,7 @@ class ScheduleCreationForm extends React.Component {
                 <div className="tm-schedules-box-info-left">
                   <div className="form-group">
                     <label for="movie-title">Nom du film</label>
-                    <select className="form-control" ref="movie" onChange={this.props.onChangeMovie.bind(this)} id="movie-title">
+                    <select className="form-control" ref="movie" onChange={this.props.onChangeElement.bind(this)} id="movie-title">
                       {
                         this.props.movies.map(movie => {
                           return (
@@ -83,13 +84,13 @@ class ScheduleCreationForm extends React.Component {
                   <div className="form-group">
                     <label for="movie-begin-date" className="col-2 col-form-label">Du</label>
                     <div className="col-10">
-                      <input className="form-control" type="date" ref="date_start" id="movie-begin-date" />
+                      <input className="form-control" type="date" ref="date_start" id="movie-begin-date" onChange={this.props.onChangeElement.bind(this)} />
                     </div>
                   </div>
                   <div className="form-group">
                     <label for="movie-end-date" className="col-2 col-form-label">Au</label>
                     <div className="col-10">
-                      <input className="form-control" type="date" ref="date_end" id="movie-end-date" />
+                      <input className="form-control" type="date" ref="date_end" id="movie-end-date" onChange={this.props.onChangeElement.bind(this)} />
                     </div>
                   </div>
                 </div>
@@ -117,7 +118,7 @@ class ScheduleCreationForm extends React.Component {
                         <div className="room">
                           <div className="form-group">
                             <label for="room" className="col-2 col-form-label">Salle</label>
-                            <select className="form-control" ref="room" id="room">
+                            <select className="form-control" ref="room" id="room" onChange={this.props.onChangeElement.bind(this)}>
                               {
                                 this.props.rooms.map(room => {
                                   return (
@@ -151,7 +152,7 @@ ScheduleCreationForm.propTypes = {
   movies: PropTypes.array.isRequired,
   rooms: PropTypes.array.isRequired,
   schedules: PropTypes.array.isRequired,
-  onChangeMovie: PropTypes.func.isRequired
+  onChangeElement: PropTypes.func.isRequired
 };
 
 export default ScheduleCreationForm;

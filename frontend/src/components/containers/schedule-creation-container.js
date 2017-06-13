@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import { HHMMSSToSeconds, HHMMToSeconds, secondsToHHMM } from '../../helpers/time-helper';
 import { dateToYYYYMMDD } from '../../helpers/date-helper';
+import * as timeHelper from '../../helpers/time-helper';
 import Banner from '../views/banner';
 
 const validate = function(schedule) {
@@ -42,26 +43,76 @@ class ScheduleCreationContainer extends React.Component {
 
   }
 
-  static _getComputedSchedules(movie) {
-    console.log('getComputedSchedules', movie);
-    console.log(movie["time"]);
-    let min = (10 - movie.time.split(':')[1] % 10) * 60; // Minutes to add for celling duration (01:34 -> 01:40)
-    let duration = HHMMSSToSeconds(movie.time);
-    let laps = duration + min + 10 * 60; // 10 minutes between each seance, to clean up the room.
+  static getComputedSchedulesBetweenTimes(timeStart, timeEnd, neededGap) {
+
+    let start = HHMMToSeconds(timeStart);
+    let end = HHMMToSeconds(timeEnd);
+
     let schedules = [];
-    // Let's assume the cinema is open from 9:30 to 23:00
-    let start = HHMMToSeconds('09:30');
-    let end = HHMMToSeconds('23:00');
 
-    for (let s = start; s + laps < end; s += laps)
+    for (let s = start; s + neededGap < end; s += neededGap) {
+
       schedules.push(secondsToHHMM(s));
+    }
 
-    console.log("Computed schedules: ", schedules);
+    console.log("Computed schedules between times: ", schedules);
     return schedules;
   }
 
+  static getComputedSchedules(formInfos) {
 
-  static getComputedSchedules(movie) {
+    console.log("[ScheduleCreationContainer] getComputedSchedules formInfos ", formInfos);
+
+    let schedules = [];
+
+    // TODO replace date_start.. Or Iterate from date_start to date_from.
+    return scheduleApi.getSchedulesFromDateRoomId(formInfos.date_start, formInfos.room.id)
+      .then((seancesDateRoom) => {
+
+        // Let's assume the cinema is open from 9:30 to 23:00
+        let start = '09:30';
+        let end = '23:00';
+
+        let min = (10 - formInfos.movie.time.split(':')[1] % 10) * 60; // Minutes to add for celling duration (01:34 -> 01:40)
+        let duration = HHMMSSToSeconds(formInfos.movie.time);
+        let neededGap = duration + min + 10 * 60; // 10 minutes between each seance, to clean up the room.
+
+        console.log("[ScheduleCreationContainer] getComputedSchedules seancesDateRoom ", seancesDateRoom);
+
+        if (!_.isEmpty(seancesDateRoom)) {
+
+          let schedules = this.getComputedSchedulesBetweenTimes(start, seancesDateRoom[0].time_start, neededGap);
+
+          // Gap between opening time and first seance.
+          console.log("Computed schedules: ", schedules);
+
+          // Gap between seances
+          let length = seancesDateRoom.length;
+          for (let i = 0; i + 1 < length; i++) {
+            let gap = timeHelper.HHMMSSToSeconds(seancesDateRoom[i + 1].time_start) - HHMMSSToSeconds(seancesDateRoom[i].time_end);
+            if (gap >= neededGap)
+              schedules.push(secondsToHHMM(seancesDateRoom[i].time_end));
+          }
+
+          // Gap between last seance and closing time.
+          _.merge(schedules, this.getComputedSchedulesBetweenTimes(seancesDateRoom[length - 1].time_end, end, neededGap));
+
+          console.log("Computed schedules: ", schedules);
+
+          return schedules;
+        }
+        else {
+          // Gap between opening time and first seance.
+          schedules = this.getComputedSchedulesBetweenTimes(start, end, neededGap);
+
+          console.log("Computed schedules: ", schedules);
+
+          return schedules;
+        }
+    });
+  }
+
+  static _getComputedSchedules(movie) {
     console.log('getComputedSchedules', movie);
     console.log(movie["time"]);
     let min = (10 - movie.time.split(':')[1] % 10) * 60; // Minutes to add for celling duration (01:34 -> 01:40)
@@ -94,6 +145,25 @@ class ScheduleCreationContainer extends React.Component {
 
     this.setState({movie: event.target.value});
   }
+
+  onChangeElement(event) {
+    event.preventDefault();
+
+    this.schedules = [];
+
+    const elt = event.target.value;
+
+    let formInfos = this.getFormInfos(); // movie, room (room name), date_start, date_end
+    if (formInfos.movie && formInfos.room && formInfos.date_start && formInfos.date_end) {
+      // Compute schedules
+      ScheduleCreationContainer.getComputedSchedules(formInfos)
+        .then(schedules => {
+          this.schedules = schedules;
+          console.log("ONCHANGELEMENT END Computed schedules: ", schedules);
+          this.setState({movie: elt});
+        });
+    }
+   }
 
   addSeance(event) {
     event.preventDefault();
@@ -150,7 +220,7 @@ class ScheduleCreationContainer extends React.Component {
           movies={this.props.movies}
           rooms={this.props.rooms}
           schedules={this.schedules}
-          onChangeMovie={this.onChangeMovie}
+          onChangeElement={this.onChangeElement}
         />
       </div>
     )

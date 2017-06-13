@@ -70,6 +70,20 @@ export function getAllSchedulesFromDate(date) {
   })
 }
 
+export function getSchedulesFromDateRoomId(date, roomId) {
+
+  console.log('[ScheduleAPI] getSchedulesFromDateRoomId date: ', date, ' roomId: ', roomId);
+
+  return fetch("http://localhost:8080/seance/date/" + date + "/room/" + roomId)
+    .then(response => response.json())
+    .then((json) => {
+      console.log('[ScheduleAPI] json: ', json);
+
+      store.dispatch(scheduleActions.getSchedulesSuccess(json));
+      return json
+    })
+}
+
 export function getSchedulesFromUserId(userId) {
   return fetch("http://localhost:8080/seance/user/" + userId)
     .then(response => response.json())
