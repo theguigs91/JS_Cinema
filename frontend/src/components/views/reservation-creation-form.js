@@ -9,13 +9,12 @@ import * as scheduleApi from '../../api/schedule-api';
 import _ from 'lodash';
 import { persistedState } from '../../store';
 import { hashHistory } from 'react-router';
+import { setRedirectRoute } from '../../actions/page-actions';
 
 class ReservationCreationForm extends React.Component {
 
   getReservation() {
     return {
-      //user_id: this.refs.user_id.value,
-      //schedule_id: this.refs.schedule_id.value,
       number_seats: this.refs.number_seats.value
     };
   }
@@ -39,8 +38,8 @@ class ReservationCreationForm extends React.Component {
     console.log(reservation);
 
     const errors = {};
-    //if (!reservation.user_id || reservation.user_id.trim === '')
-    //  errors.user_id = 'Veuillez vous connecter.';
+    //if (!reservation.user)
+    //  errors.user = 'Veuillez vous connecter.';
     //if (!reservation.seance_id || reservation.seance_id.trim === '')
     //  errors.seance_id = 'Séance inconnue.';
     //if (!reservation.price || reservation.price.trim === '' )
@@ -54,25 +53,32 @@ class ReservationCreationForm extends React.Component {
   addReservation(event) {
     event.preventDefault();
 
-    console.log('ReservationCreationForm.addReservation');
+    console.log('ReservationCreationForm.addReservation this.props: ', this.props);
 
-    let reservation = this.getReservation();
-    let errors = this.validate(reservation);
-    if (_.isEmpty(errors)) {
-
-      for (let i = 0; i < reservation.number_seats; i++) {
-        let reservation = {
-          user_id: persistedState.loggedInUser.id,
-          seance_id: this.props.seance.id
-        };
-        console.log(reservation);
-        reservationApi.addReservation(reservation);
-        scheduleApi.decrementSeancePlaces(this.props.seance.id);
-        hashHistory.replace('/myreservations');
-      }
+    let pState = persistedState();
+    if (!pState.isLoggedIn) {
+      hashHistory.replace('/login');
+      return this.forceUpdate();
     }
-    else
-      console.log("errors: ", errors);
+    else {
+      let reservation = this.getReservation();
+      let errors = this.validate(reservation);
+      if (_.isEmpty(errors)) {
+
+        for (let i = 0; i < reservation.number_seats; i++) {
+          let reservation = {
+            user_id: pState.loggedInUser.id,
+            seance_id: this.props.seance.id
+          };
+          console.log(reservation);
+          reservationApi.addReservation(reservation);
+          scheduleApi.decrementSeancePlaces(this.props.seance.id);
+          hashHistory.replace('/myreservations');
+        }
+      }
+      else
+        console.log("errors: ", errors);
+    }
   }
 
   render() {

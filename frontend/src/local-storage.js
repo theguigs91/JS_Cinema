@@ -14,6 +14,8 @@ export const loadState = () => {
   } catch (err) {
     console.log('[LoadStorage] LOADSTATE ERROR ', err.message);
 
+
+
     return {
       isLoggedIn: false,
       loggedInUser: undefined

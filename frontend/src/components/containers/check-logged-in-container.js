@@ -7,7 +7,6 @@ import { persistedState } from '../../store';
 class CheckLoggedInContainer extends React.Component {
 
   componentDidMount() {
-
     const { dispatch } = this.props;
 
     let pState = persistedState();
@@ -23,11 +22,11 @@ class CheckLoggedInContainer extends React.Component {
         dispatch(setRedirectRoute(currentRoute));
 
       hashHistory.replace('/login');
+      return this.forceUpdate();
     }
     else if (currentRoute === 'login') {
       hashHistory.replace('/');
     }
-    return this.forceUpdate();
   }
 
   render() {

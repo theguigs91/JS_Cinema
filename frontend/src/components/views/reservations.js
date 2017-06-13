@@ -28,7 +28,7 @@ class Reservations extends React.Component {
                 <Reservation
                   key={reservation.id}
                   onClickButtonFunc={this.deleteReservation.bind(this, reservation)}
-                  buttonStr="Supprimer"
+                  buttonStr=""
                   reservation={reservation}
                   buttonGlyphicon="glyphicon-remove"
                 />

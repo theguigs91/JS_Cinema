@@ -12,7 +12,7 @@ class Reservation extends React.Component {
 
     let reservation = this.props.reservation;
 
-    this.buttonClassName = "tm-movies-box-1-link-right glyphicon " + this.props.buttonGlyphicon;
+    this.buttonClassName = "tm-movies-box-1-link-right col-xs-4 glyphicon " + this.props.buttonGlyphicon;
     this.seance = {
       date: reservation.seance_date,
       time: reservation.seance_time,
@@ -32,7 +32,6 @@ class Reservation extends React.Component {
 
     return (
       <div className="row reservation">
-
         <div className="col-sm-8 col-xs-12">
           <SeanceInfo seance={this.seance} />
         </div>
@@ -44,6 +43,9 @@ class Reservation extends React.Component {
               <span className="margin-bottom-20"> {CONST.TICKET_PRICE_STRING} €</span><br/>
             </div>
             <div className="tm-movies-box-1-link">
+              <div className="tm-movies-box-1-link-left col-xs-8">
+                Total: <span id="reservation-total-price">{CONST.TICKET_PRICE_STRING}</span> €
+              </div>
               <button className={this.buttonClassName} onClick={this.props.onClickButtonFunc} ref="button">{this.props.buttonStr}</button>
             </div>
           </div>
