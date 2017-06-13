@@ -9,6 +9,7 @@ import * as scheduleApi from '../../api/schedule-api';
 import _ from 'lodash';
 import { persistedState } from '../../store';
 import { hashHistory } from 'react-router';
+import ReactDOM from 'react-dom';
 
 class ReservationCreationForm extends React.Component {
 
@@ -45,8 +46,24 @@ class ReservationCreationForm extends React.Component {
     //  errors.total_price = 'Erreur de prix';
     if (!reservation.number_seats || reservation.number_seats.trim === '')
       errors.number_seats = 'Veuillez choisir le nombre de places.';
-
     return errors;
+  }
+
+  checkBooking(event){
+    event.preventDefault();
+
+    scheduleApi.canBook(this.props.seance.id)
+      .then(response => {
+        if (response == true){
+          console.log("CAN BOOK");
+          this.addReservation(event);
+        }
+        else {
+          console.log("CANNOT BOOK")
+          ReactDOM.render(<p>Vous ne pouvez pas reserver cette seance, la date est depassee.</p>,
+                          document.getElementById('msg-reservation-creation'))
+        }
+      })
   }
 
   addReservation(event) {
@@ -97,7 +114,7 @@ class ReservationCreationForm extends React.Component {
 
             <div className="col-sm-4 col-xs-12">
               <div className="tm-movies-box-1">
-                <form onSubmit={this.addReservation.bind(this)} method="post" className="login-form">
+                <form onSubmit={this.checkBooking.bind(this)} method="post" className="login-form">
                   <div className="tm-reservation-box-right">
                     <p>Tarif: 4,90 €</p>
                     <div className="tm-form-inner">
@@ -120,6 +137,7 @@ class ReservationCreationForm extends React.Component {
             </div>
           </div>
         </div>
+        <div id="msg-reservation-creation"></div>
       </section>
     );
   }
