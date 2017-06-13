@@ -126,7 +126,7 @@ router.get('/fullinfo/id/:id', function(req, res) {
 
   let params = [req.params.id];
   let queryString =
-    'SELECT s.id, s.date, s.time, m.name AS movie_name, m.realisator AS movie_realisator, r.numero AS room \ '
+    'SELECT s.id, s.date, s.time, s.places_available, m.name AS movie_name, m.realisator AS movie_realisator, r.numero AS room \ '
   + 'FROM seance AS s \ '
   + 'INNER JOIN movie AS m ON s.movie_id = m.id \ '
   + 'INNER JOIN room AS r ON s.room_id = r.id \ '
