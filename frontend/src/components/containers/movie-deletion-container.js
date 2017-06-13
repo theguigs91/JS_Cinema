@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import Banner from '../views/banner';
 import { hashHistory } from 'react-router';
+import ReactDOM from 'react-dom';
 
 function validate(movie) {
   console.log(movie);
@@ -44,7 +45,12 @@ class MovieDeletionContainer extends React.Component {
   deleteMovie() {
     let movie = this.getMovie();
     console.log("[MovieDeletionContainer] deleteMovie", movie);
-    movieApi.deleteMovie(movie.id).then(() => {
+    movieApi.deleteMovie(movie.id).then((response) => {
+      if (response == false){
+        ReactDOM.render(<p>Suppression impossible: ce film est encore à l'affiche ou fait partie de l'historique d'achats de l'un de nos chers clients.</p>,
+                        document.getElementById('msg-deletion'));
+        return;
+      }
       hashHistory.replace('/movies');
       return this.forceUpdate();
     });

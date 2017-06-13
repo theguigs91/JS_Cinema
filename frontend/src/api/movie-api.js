@@ -130,5 +130,9 @@ export function deleteMovie(movieId) {
     .then(response => {
       store.dispatch(movie_actions.deleteMovieSuccess(movieId));
       return response;
+    })
+    .catch(err => {
+      console.log("[MovieAPI] Cannot delete this movie")
+      return false;
     });
 }
