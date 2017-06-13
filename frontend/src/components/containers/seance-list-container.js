@@ -10,62 +10,101 @@ import * as movieApi from '../../api/movie-api'
 import * as scheduleApi from '../../api/schedule-api'
 import MiddleButton from '../views/middle-button';
 import Banner from '../views/banner';
+import { persistedState } from '../../store';
 
 class SeanceList extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            movies: [],
-            schedules: []
-        }
-    }
+  constructor(props) {
+      super(props);
+      this.state = {
+          movies: [],
+          schedules: []
+      }
+  }
 
-    selectDate(event){
-      event.preventDefault();
-      console.log("SELECT DATE");
-      movieApi.getAllMoviesFromDate(this.refs.date.value);
-      scheduleApi.getAllSchedulesFromDate(this.refs.date.value);
-    }
+  selectDate(event){
+    event.preventDefault();
+    console.log("SELECT DATE");
+    movieApi.getAllMoviesFromDate(this.refs.date.value);
+    scheduleApi.getAllSchedulesFromDate(this.refs.date.value);
+  }
 
-    render(){
-        console.log("[SeanceListContainer] Rendering..");
+  renderAdmin() {
 
-        console.log("props movies: ", JSON.stringify(this.props.movies));
-        console.log("props schedules: ", (this.props.schedules));
-
-        return (
-          <div>
-            <Banner
-              titleWhiteBefore="Toutes les"
-              titleYellow="séances"
-              titleWhiteAfter=""
-              subtitle="Réservez votre place de cinéma!"
+    return (
+      <div>
+        <Banner
+          titleWhiteBefore="Toutes les"
+          titleYellow="séances"
+          titleWhiteAfter=""
+          subtitle="Ajoutez des séances pour vos clients..."
+        />
+        <section className="container tm-home-section-1" id="more">
+          <MiddleButton
+            buttonStr="Ajouter des séances"
+            link="/schedules/creation"
+          />
+          <div className="section-margin-top">
+            <ScheduleDate
+              selectDate={this.selectDate}
             />
-            <section className="container tm-home-section-1" id="more">
-              <MiddleButton
-                buttonStr="Ajouter des séances"
-                link="/schedules/creation"
-              />
-              <div className="section-margin-top">
-              <ScheduleDate
-                selectDate={this.selectDate}
-              />
-              </div>
-              <div>
-                {this.props.movies.map(movie =>
-                  <SeanceItem
-                    key = {movie.id}
-                    data = {movie}
-                    schedules = {this.props.schedules.filter(el => el.movie_id == movie.id)}
-                    link = "/reservation/"
-                  />
-                )}
-              </div>
-            </section>
           </div>
-        )
+          <div>
+            {this.props.movies.map(movie =>
+              <SeanceItem
+                key = {movie.id}
+                data = {movie}
+                schedules = {this.props.schedules.filter(el => el.movie_id == movie.id)}
+                link = "/reservation/"
+              />
+            )}
+          </div>
+        </section>
+      </div>
+    )
+  }
+
+  renderDefault() {
+    return (
+      <div>
+        <Banner
+          titleWhiteBefore="Toutes les"
+          titleYellow="séances"
+          titleWhiteAfter=""
+          subtitle="Réservez votre place de cinéma!"
+        />
+        <section className="container tm-home-section-1" id="more">
+          <ScheduleDate
+            selectDate={this.selectDate}
+          />
+          <div>
+            {this.props.movies.map(movie =>
+              <SeanceItem
+                key = {movie.id}
+                data = {movie}
+                schedules = {this.props.schedules.filter(el => el.movie_id == movie.id)}
+                link = "/reservation/"
+              />
+            )}
+          </div>
+        </section>
+      </div>
+    )
+  }
+
+  render() {
+
+    let pState = persistedState();
+
+    if (!pState || !pState.loggedInUser)
+      return this.renderDefault();
+    switch (pState.loggedInUser.role_name) {
+      case 'admin':
+        return this.renderAdmin();
+      default:
+        return this.renderDefault();
     }
+  }
 }
 
 const mapStateToProps = function(store) {
