@@ -110,9 +110,6 @@ class SignupForm extends React.Component {
                   <div className="form-group date-time">
                     <label for="input-birthdate" className="col-form-label">Date de naissance</label>
                     <input className="form-control" type="date" ref="birthdate" id="birthdate" placeholder="2017-01-01" />
-                    <span className="input-group-addon">
-                        <span className="fa fa-calendar" />
-                    </span>
                   </div>
                   <div className="form-group">
                     <label for="gender">Sexe</label>

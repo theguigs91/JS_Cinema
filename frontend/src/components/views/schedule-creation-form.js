@@ -59,10 +59,6 @@ class ScheduleCreationForm extends React.Component {
 
   render() {
 
-    this.style = {
-      height: "250px"
-    };
-
     return (
       <section className="container tm-home-section-1" id="more">
         <div className="section-margin-top">
@@ -106,11 +102,14 @@ class ScheduleCreationForm extends React.Component {
                         <span className="schedules-title row">En VO, Numérique</span>
                         {
                           this.schedules.map(schedule => {
+
+                            let s = schedule.start + '-' + schedule.end;
+
                             return (
                               <Checkbox
-                                label={schedule}
+                                label={s}
                                 handleCheckboxChange={this.toggleSchedulesCheckbox.bind(this)}
-                                key={schedule}
+                                key={s}
                               />
                             )
                           })

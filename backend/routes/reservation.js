@@ -43,7 +43,7 @@ handleDisconnect();
  */
 router.get('/', function(req, res, next) {
 
-  let queryString = 'SELECT r.id, s.id AS seance_id, s.date AS seance_date, s.time AS seance_time, room.numero AS room, m.name AS movie_name, m.realisator AS movie_realisator \ '
+  let queryString = 'SELECT r.id, s.id AS seance_id, s.date AS date, s.time_start AS time_start, s.time_end AS time_end, room.numero AS room, m.name AS movie_name, m.realisator AS movie_realisator \ '
     + 'FROM reservation AS r \ '
     + 'INNER JOIN seance AS s ON r.seance_id = s.id \ '
     + 'INNER JOIN room AS room ON s.room_id = room.id \ '
@@ -91,7 +91,7 @@ router.get('/user/:id', function(req, res, next) {
   let param = [req.params.id];
 
   let queryString =
-    'SELECT r.id, s.id AS seance_id, s.date AS seance_date, s.time AS seance_time, room.numero AS room, m.name AS movie_name, m.realisator AS movie_realisator \ '
+    'SELECT r.id, s.id AS seance_id, s.date AS seance_date, s.time_start AS seance_time_start, s.time_end AS seance_time_end, room.numero AS room, m.name AS movie_name, m.realisator AS movie_realisator \ '
   + 'FROM reservation AS r \ '
   + 'INNER JOIN seance AS s ON r.seance_id = s.id \ '
   + 'INNER JOIN room AS room ON s.room_id = room.id \ '
@@ -120,7 +120,7 @@ router.get('/date/:date', function(req, res, next) {
   let param = [req.params.date];
 
   let queryString =
-    'SELECT r.id, s.id AS seance_id, s.date AS seance_date, s.time AS seance_time, room.numero AS room, m.name AS movie_name, m.realisator AS movie_realisator \ '
+    'SELECT r.id, s.id AS seance_id, s.date AS date, s.time_start AS time_start, s.time_end AS time_end, room.numero AS room, m.name AS movie_name, m.realisator AS movie_realisator \ '
     + 'FROM reservation AS r \ '
     + 'INNER JOIN seance AS s ON r.seance_id = s.id \ '
     + 'INNER JOIN room AS room ON s.room_id = room.id \ '

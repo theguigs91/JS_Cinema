@@ -24,6 +24,7 @@ class Reservations extends React.Component {
         <div className="section-margin-top">
           {
             this.props.reservations.map(reservation => {
+              console.log("[Reservations] Rendering... reservation: ", reservation);
               return (
                 <Reservation
                   key={reservation.id}

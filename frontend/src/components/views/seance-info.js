@@ -1,9 +1,12 @@
 import React, { PropTypes } from 'react';
 import { dateToYYYYMMDD } from '../../helpers/date-helper';
+import { HHMMSSToHHMM } from '../../helpers/time-helper';
 
 class SeanceInfo extends React.Component {
 
   render() {
+
+    console.log('[SeanceInfo] Rendering ...', this.props.seance);
 
     return (
       <div className="tm-movies-box-1">
@@ -18,7 +21,7 @@ class SeanceInfo extends React.Component {
           </div>
           <div className="tm-movies-box-1-info-right">
             <p id="reservation-date margin-bottom-20">Date de la séance: {dateToYYYYMMDD(new Date(this.props.seance.date), '-')}</p>
-            <p id="reservation-time margin-bottom-30">Horaire: {this.props.seance.time}</p>
+            <p id="reservation-time margin-bottom-30">Horaire: {HHMMSSToHHMM(this.props.seance.time_start) + '-' + HHMMSSToHHMM(this.props.seance.time_end)}</p>
             <p id="reservation-room">Salle {this.props.seance.room}</p>
           </div>
         </div>

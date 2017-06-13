@@ -23,9 +23,19 @@ INSERT INTO movie (name, realisator, time, date, genre, description) VALUES ('Pr
 INSERT INTO movie (name, realisator, time, date, genre, description) VALUES ('MOI, MOCHE ET MÉCHANT 3', 'Kyle Balda', '01:25:00', '2017-07-05', 'Animation', 'Dans ce troisième volet, Balthazar Bratt, un ancien enfant star reste obnubilé par le rôle qu''il a interprété dans les années 80. Il va devenir l''ennemi juré de Gru.');
 INSERT INTO movie (name, realisator, time, date, genre, description) VALUES ('Your name', 'Makoto Shinkai', '01:46:00', '2016-12-28', 'Animation', 'Mitsuha, adolescente coincée dans une famille traditionnelle, rêve de quitter ses montagnes natales pour découvrir la vie trépidante de Tokyo. Elle est loin d’imaginer pouvoir vivre l’aventure urbaine dans la peau de… Taki, un jeune lycéen vivant à Tokyo, occupé entre son petit boulot dans un restaurant italien et ses nombreux amis. À travers ses rêves, Mitsuha se voit littéralement propulsée dans la vie du jeune garçon au point qu’elle croit vivre la réalité... Tout bascule lorsqu’elle réalise que Taki rêve également d’une vie dans les montagnes, entouré d’une famille traditionnelle… dans la peau d’une jeune fille ! Une étrange relation s’installe entre leurs deux corps qu’ils accaparent mutuellement. Quel mystère se cache derrière ces rêves étranges qui unissent deux destinées que tout oppose et qui ne se sont jamais rencontrées ?');
 
-INSERT INTO seance (room_id, movie_id, places_available, date, time) VALUES (1, 2, 380, '2017-05-16', '19:50:00');
-INSERT INTO seance (room_id, movie_id, places_available, date, time) VALUES (1, 2, 380, '2017-05-16', '21:10:00');
-INSERT INTO seance (room_id, movie_id, places_available, date, time) VALUES (1, 2, 380, '2017-05-16', '22:30:00');
-INSERT INTO seance (room_id, movie_id, places_available, date, time) VALUES (2, 3, 368, '2017-05-16', '18:00:00');
-INSERT INTO seance (room_id, movie_id, places_available, date, time) VALUES (2, 3, 368, '2017-05-16', '20:00:00');
-INSERT INTO seance (room_id, movie_id, places_available, date, time) VALUES (2, 3, 368, '2017-05-16', '22:00:00');
+INSERT INTO seance (room_id, movie_id, places_available, date, time_start, time_end) VALUES (1, 2, 380, '2017-06-13', '10:00:00', '11:42:00');
+INSERT INTO seance (room_id, movie_id, places_available, date, time_start, time_end) VALUES (1, 2, 380, '2017-06-13', '12:00:00', '13:42:00');
+INSERT INTO seance (room_id, movie_id, places_available, date, time_start, time_end) VALUES (1, 2, 380, '2017-06-13', '14:00:00', '15:42:00');
+INSERT INTO seance (room_id, movie_id, places_available, date, time_start, time_end) VALUES (1, 3, 380, '2017-06-13', '16:00:00', '17:42:00');
+INSERT INTO seance (room_id, movie_id, places_available, date, time_start, time_end) VALUES (2, 4, 295, '2017-06-14', '10:00:00', '11:25:00');
+INSERT INTO seance (room_id, movie_id, places_available, date, time_start, time_end) VALUES (2, 4, 295, '2017-06-14', '11:35:00', '13:00:00');
+INSERT INTO seance (room_id, movie_id, places_available, date, time_start, time_end) VALUES (2, 4, 295, '2017-06-14', '14:00:00', '15:25:00');
+INSERT INTO seance (room_id, movie_id, places_available, date, time_start, time_end) VALUES (2, 5, 295, '2017-06-14', '16:00:00', '17:46:00');
+INSERT INTO seance (room_id, movie_id, places_available, date, time_start, time_end) VALUES (2, 4, 295, '2017-06-15', '10:00:00', '11:25:00');
+INSERT INTO seance (room_id, movie_id, places_available, date, time_start, time_end) VALUES (2, 4, 295, '2017-06-15', '11:35:00', '13:00:00');
+INSERT INTO seance (room_id, movie_id, places_available, date, time_start, time_end) VALUES (2, 4, 295, '2017-06-15', '14:00:00', '15:25:00');
+INSERT INTO seance (room_id, movie_id, places_available, date, time_start, time_end) VALUES (2, 5, 295, '2017-06-15', '16:00:00', '17:46:00');
+INSERT INTO seance (room_id, movie_id, places_available, date, time_start, time_end) VALUES (2, 4, 295, '2017-06-16', '10:00:00', '11:25:00');
+INSERT INTO seance (room_id, movie_id, places_available, date, time_start, time_end) VALUES (2, 4, 295, '2017-06-16', '11:35:00', '13:00:00');
+INSERT INTO seance (room_id, movie_id, places_available, date, time_start, time_end) VALUES (2, 4, 295, '2017-06-16', '14:00:00', '15:25:00');
+INSERT INTO seance (room_id, movie_id, places_available, date, time_start, time_end) VALUES (2, 5, 295, '2017-06-16', '16:00:00', '17:46:00');

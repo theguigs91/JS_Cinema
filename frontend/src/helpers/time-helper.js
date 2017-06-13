@@ -42,6 +42,10 @@ export const secondsToHHMM = function(seconds) {
   return hh + ':' + mm;
 };
 
+export const HHMMSSToHHMM = function(hhmmss) {
+  return hhmmss.substring(0, 5);
+};
+
 let hhmmss = HHMMSSToSeconds("11:30:33");
 console.log(hhmmss);
 console.log(secondsToHHMMSS(hhmmss));

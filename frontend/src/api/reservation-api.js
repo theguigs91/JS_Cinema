@@ -50,6 +50,7 @@ export function getReservationsFromUserId(userId) {
   return fetch("http://localhost:8080/reservation/user/" + userId)
     .then(response => response.json())
     .then((json) => {
+    console.log('------------------', json);
       store.dispatch(reservationActions.getReservationsSuccess(json));
       return json
     })

@@ -47,7 +47,8 @@ CREATE TABLE IF NOT EXISTS seance
   movie_id BIGINT UNSIGNED NOT NULL,
   places_available BIGINT NOT NULL,
   date DATE NOT NULL,
-  time TIME NOT NULL,
+  time_start TIME NOT NULL,
+  time_end TIME NOT NULL,
   CONSTRAINT fk_room_id FOREIGN KEY (room_id)
   REFERENCES room(id),
   CONSTRAINT fk_movie_id FOREIGN KEY (movie_id)

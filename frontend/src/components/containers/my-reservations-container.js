@@ -16,21 +16,31 @@ class MyReservationsContainer extends React.Component {
   render() {
     if (!_.isEmpty(this.props.reservations)) {
       return (
-          <div>
-            <Banner
-              titleWhiteBefore="Mes"
-              titleYellow="réservations"
-              titleWhiteAfter=""
-              subtitle="Mon historique"
-            />
-            <Reservations
-              reservations={this.props.reservations}
-            />
-          </div>
+        <div>
+          <Banner
+            titleWhiteBefore="Mes"
+            titleYellow="réservations"
+            titleWhiteAfter=""
+            subtitle="Mon historique"
+          />
+          <Reservations
+            reservations={this.props.reservations}
+          />
+        </div>
       );
     }
-    else
-      return null;
+    else {
+      return (
+        <div>
+          <Banner
+            titleWhiteBefore="Mes"
+            titleYellow="réservations"
+            titleWhiteAfter=""
+            subtitle="Mon historique"
+          />
+        </div>
+      );
+    }
   }
 }
 

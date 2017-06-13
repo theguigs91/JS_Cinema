@@ -123,7 +123,7 @@ router.get('/fullinfo/id/:id', function(req, res) {
 
   let params = [req.params.id];
   let queryString =
-    'SELECT s.id, s.date, s.time, m.name AS movie_name, m.realisator AS movie_realisator, r.numero AS room \ '
+    'SELECT s.id, s.date, s.time_start, s.time_end, m.name AS movie_name, m.realisator AS movie_realisator, r.numero AS room \ '
   + 'FROM seance AS s \ '
   + 'INNER JOIN movie AS m ON s.movie_id = m.id \ '
   + 'INNER JOIN room AS r ON s.room_id = r.id \ '
@@ -238,7 +238,34 @@ router.get('/user/:id', function(req, res, next) {
 
   let param = [req.params.id];
   let queryString =
-    'SELECT distinct s.id, room.numero AS room, s.movie_id, s.date, s.time \ '
+    'SELECT distinct s.id, room.numero AS room, s.movie_id, s.date, s.time_start, s.time_end \ '
+    + 'FROM seance AS s \ '
+    + 'INNER JOIN room as room ON room.id = s.room_id \ '
+    + 'INNER JOIN reservation as r ON r.seance_id = s.id \ '
+    + 'WHERE r.user_id = ?';
+
+  connection.query(queryString, param, function(err, rows, fields) {
+    if (!err) {
+      res.status(200);
+      res.json(rows);
+      res.end();
+    }
+    else {
+      res.status(400).send(JSON.stringify({message: err}));
+      console.log("Error while performing query" + err);
+    }
+  });
+});
+
+/**
+ * Get seances from a given user id (The seances on which the user took reservations)
+ */
+router.get('/from/range/:id', function(req, res, next) {
+  res.setHeader("Content-Type", "application/json");
+
+  let param = [req.params.id];
+  let queryString =
+    'SELECT distinct s.id, room.numero AS room, s.movie_id, s.date, s.time_start, s.time_end \ '
     + 'FROM seance AS s \ '
     + 'INNER JOIN room as room ON room.id = s.room_id \ '
     + 'INNER JOIN reservation as r ON r.seance_id = s.id \ '
@@ -275,6 +302,5 @@ router.delete('/id/:id', function(req, res, next) {
     }
   });
 });
-
 
 module.exports = router;

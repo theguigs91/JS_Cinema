@@ -11,6 +11,7 @@ import * as scheduleApi from '../../api/schedule-api'
 import MiddleButton from '../views/middle-button';
 import Banner from '../views/banner';
 import { persistedState } from '../../store';
+import * as DateHelper from '../../helpers/date-helper';
 
 class SeanceList extends React.Component {
 
@@ -22,9 +23,12 @@ class SeanceList extends React.Component {
       }
   }
 
+  componentDidMount() {
+    scheduleApi.getAllSchedulesFromDate(DateHelper.dateToYYYYMMDD(new Date(event), '-'));
+  }
+
   selectDate(event) {
     event.preventDefault();
-    console.log("------- SELECT DATE -------  this.date: ", this.dateValue);
     movieApi.getAllMoviesFromDate(this.dateValue);
     scheduleApi.getAllSchedulesFromDate(this.dateValue);
   }

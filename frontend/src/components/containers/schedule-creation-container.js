@@ -42,7 +42,7 @@ class ScheduleCreationContainer extends React.Component {
 
   }
 
-  static getComputedSchedules(movie) {
+  static _getComputedSchedules(movie) {
     console.log('getComputedSchedules', movie);
     console.log(movie["time"]);
     let min = (10 - movie.time.split(':')[1] % 10) * 60; // Minutes to add for celling duration (01:34 -> 01:40)
@@ -55,6 +55,25 @@ class ScheduleCreationContainer extends React.Component {
 
     for (let s = start; s + laps < end; s += laps)
       schedules.push(secondsToHHMM(s));
+
+    console.log("Computed schedules: ", schedules);
+    return schedules;
+  }
+
+
+  static getComputedSchedules(movie) {
+    console.log('getComputedSchedules', movie);
+    console.log(movie["time"]);
+    let min = (10 - movie.time.split(':')[1] % 10) * 60; // Minutes to add for celling duration (01:34 -> 01:40)
+    let duration = HHMMSSToSeconds(movie.time);
+    let laps = duration + min + 10 * 60; // 10 minutes between each seance, to clean up the room.
+    let schedules = [];
+    // Let's assume the cinema is open from 9:30 to 23:00
+    let start = HHMMToSeconds('09:30');
+    let end = HHMMToSeconds('23:00');
+
+    for (let s = start; s + laps < end; s += laps)
+      schedules.push({start: secondsToHHMM(s), end: secondsToHHMM(s + duration)});
 
     console.log("Computed schedules: ", schedules);
     return schedules;

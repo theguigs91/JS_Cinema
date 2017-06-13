@@ -8,14 +8,8 @@ import * as DateHelper from '../../helpers/date-helper';
 
 class DateForm extends React.Component {
 
-  getInitialState() {
-    this.dateValue = DateHelper.dateToYYYYMMDD(new Date(), '-');
-  }
-
   _handleDateChange(x, event) {
-    let d = DateHelper.dateToYYYYMMDD(new Date(event), '-');
-    console.log('handleDateChange d: ', d, ', stringify: ', JSON.stringify(event));
-    this.dateValue = d;
+    this.dateValue = DateHelper.dateToYYYYMMDD(new Date(event), '-');
   }
 
   render() {
@@ -36,7 +30,7 @@ class DateForm extends React.Component {
                           defaultDate={new Date()}
                           hintText="Choisissez une date"
                           mode="landscape"
-                          shouldDisableDate={this.props.shouldDisableDateFunction.bind(this)}
+                          shouldDisableDate={this.props.shouldDisableDateFunction}
                           onChange={(x, event) => this._handleDateChange(x, event)}
                         />
                       </div>

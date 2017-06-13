@@ -20,6 +20,7 @@ class ReservationCreationContainer extends React.Component {
   }
 
   render() {
+    console.log('[ReservationCreationContainer] seance: ', this.props.seance);
 
     if (this.props.seance) {
       return (
