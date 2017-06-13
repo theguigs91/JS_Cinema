@@ -3,8 +3,58 @@
  */
 
 import React from 'react';
+import _ from 'lodash';
+import * as movieApi from '../../api/movie-api';
+import { hashHistory } from 'react-router';
 
 class MovieCreationForm extends React.Component {
+
+
+  validate(movie) {
+    console.log(movie);
+
+    const errors = {};
+    if (!movie.name || movie.name.trim === '')
+      errors.name = 'Veuillez entrer un titre.';
+    if (!movie.realisator || movie.realisator.trim === '')
+      errors.realisator = 'Veuillez entrer le nom du réalisateur.';
+    if (!movie.date || movie.date.trim === '')
+      errors.date = 'Veuillez choisir une date de sortie.';
+    if (!movie.time || movie.time.trim === '')
+      errors.time = 'Veuillez entrer une durée.';
+    if (!movie.genre || movie.genre.trim === '')
+      errors.genre = 'Veuillez choisir un genre.';
+    if (!movie.description || movie.description.trim === '')
+      errors.description = 'Veuillez entrer une description.';
+
+    return errors;
+  }
+
+
+  addMovie(event) {
+    event.preventDefault();
+    console.log('MovieCreationContainer.addMovie');
+
+    let movie = {
+      name: this.refs.title.value,
+      realisator: this.refs.realisator.value,
+      date: this.refs.date.value,
+      time: this.refs.time.value,
+      genre: this.refs.genre.value,
+      description: this.refs.synopsis.value,
+    };
+
+    let errors = this.validate(movie);
+    if (_.isEmpty(errors)) {
+      movieApi.addMovie(movie)
+        .then(() => {
+          hashHistory.replace('/movies');
+          return this.forceUpdate();
+        });
+    }
+    else
+      console.log("errors: ", errors);
+  }
 
   render() {
 
@@ -12,7 +62,7 @@ class MovieCreationForm extends React.Component {
       <section className="container tm-home-section-1" id="more">
         <div className="section-margin-top">
           <div className="row tm-schedules-box">
-            <form onSubmit={this.props.addMovie.bind(this)} className="movie-creation">
+            <form onSubmit={this.addMovie.bind(this)} className="movie-creation">
               <div className="tm-schedules-box-info">
                 <div className="tm-schedules-box-info-left">
                   <div className="form-group">
@@ -78,10 +128,6 @@ class MovieCreationForm extends React.Component {
                     <div className="col-10">
                       <input className="form-control" ref="time" type="duration" placeholder="02:00:00" id="movie-duration" />
                     </div>
-                  </div>
-                  <div className="form-group">
-                    <label for="movie-image">Affiche</label>
-                    <input type="file" className="form-control-file" ref="image" id="movie-image" />
                   </div>
                 </div>
                 <div className="tm-schedules-box-info-right">
