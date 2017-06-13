@@ -18,7 +18,7 @@ class Reservation extends React.Component {
       time: reservation.seance_time,
       movie_name: reservation.movie_name,
       movie_realisator: reservation.movie_realisator,
-      numero: reservation.room_numero
+      room: reservation.room
     };
 
     console.log('[Reservation] seance: ', this.seance);
